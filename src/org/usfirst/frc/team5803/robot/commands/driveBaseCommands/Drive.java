@@ -1,5 +1,12 @@
-package org.usfirst.frc5803.robot2018.commands.driveBaseCommands;
+package org.usfirst.frc.team5803.robot.commands.driveBaseCommands;
 
-public class Drive {
+import edu.wpi.first.wpilibj.command.Command;
 
+public class Drive extends Command{
+
+	protected boolean isFinished() {
+		return false;
+		
+	}
+	
 }

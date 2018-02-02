@@ -6,13 +6,14 @@
 /*----------------------------------------------------------------------------*/
 
 package org.usfirst.frc.team5803.robot;
-import org.usfirst.frc.team5803.robot.subsystems.*;
+//import org.usfirst.frc.team5803.robot.subsystems.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-import org.usfirst.frc.team5803.robot.commands.*;
+//import org.usfirst.frc.team5803.robot.commands.*;
 
 
 /**
@@ -23,7 +24,7 @@ import org.usfirst.frc.team5803.robot.commands.*;
  */
 public class RobotMap {
 	
-	
+	public static DifferentialDrive joystickControl;
 	//Drive Base speed controllers
 	public static WPI_TalonSRX L1;
 	public static WPI_VictorSPX L2;
@@ -83,10 +84,10 @@ public class RobotMap {
 		
 		RollerT1 = new WPI_TalonSRX(PortMap.TOP_ROLLER_LEAD);
 		RollerT2 = new WPI_VictorSPX(PortMap.TOP_ROLLER_FOLLOWER);
-		
+		RollerT2.follow(RollerT1);
 		RollerB1 = new WPI_TalonSRX(PortMap.BOTTOM_ROLLER_LEAD);
 		RollerB2 = new WPI_VictorSPX(PortMap.BOTTOM_ROLLER_FOLLOWER);
-		
+		RollerB2.follow(RollerB1);
 		Puncher = new DoubleSolenoid(PortMap.PUNCHER_FORWARD_CHANNEL, PortMap.PUNCHER_REVERSE_CHANNEL);
 		
 		Jaw = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
