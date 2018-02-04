@@ -1,9 +1,9 @@
-package org.usfirst.frc.team5803.robot.commands.armCommands;
+package org.usfirst.frc.team5803.robot.commands.wheelieBarCommands;
 
 import org.usfirst.frc.team5803.robot.Robot;
 
-public class LockArm {
-public LockArm() {
+public class retractWheelieBar {
+public retractWheelieBar() {
 		
 	}
 	
@@ -12,7 +12,7 @@ public LockArm() {
 	}
 	
 	protected void execute() {
-		Robot.kArm.secure();
+		Robot.kWheelieBar.retract();
 	}
 	
 	protected boolean isFinished() {
@@ -20,7 +20,7 @@ public LockArm() {
 	}
 	
 	protected void end() {
-		
+		Robot.kWheelieBar.end();
 	}
 	
 	protected void interrupted() {

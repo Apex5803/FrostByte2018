@@ -1,9 +1,12 @@
-package org.usfirst.frc.team5803.robot.commands.cubeCommands;
+package org.usfirst.frc.team5803.robot.commands.armCommands;
+
+import org.usfirst.frc.team5803.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-public class EatCube {
-	
-	public EatCube() {
+public class ReleaseArm extends Command{
+
+public ReleaseArm() {
 		
 	}
 	
@@ -12,7 +15,7 @@ public class EatCube {
 	}
 	
 	protected void execute() {
-		
+		Robot.kArm.unsecure();
 	}
 	
 	protected boolean isFinished() {
@@ -20,13 +23,10 @@ public class EatCube {
 	}
 	
 	protected void end() {
-		
+		Robot.kArm.endSecurer();
 	}
 	
 	protected void interrupted() {
 	
 	}
-	
-	
-	
 }

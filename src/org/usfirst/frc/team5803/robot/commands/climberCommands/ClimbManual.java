@@ -1,5 +1,29 @@
-package org.usfirst.frc5803.robot2018.commands.climberCommands;
+package org.usfirst.frc.team5803.robot.commands.climberCommands;
 
-public class ClimbManual {
-
+import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team5803.robot.subsystems.Climber;
+import org.usfirst.frc.team5803.robot.subsystems.Arm;
+public class ClimbManual extends Command {
+	
+	protected void initialize() {
+		
+	}
+	
+	protected void execute() {
+		
+		
+	}
+	
+	protected boolean isFinished() {
+			return false;
+			
+	}
+	
+	protected void end() {
+		
+	}
+	
+	protected void interrupted() {
+		
+	}
 }

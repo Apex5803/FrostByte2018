@@ -24,7 +24,7 @@ public class WheelieBar extends Subsystem {
 	}
 	
 	public void end() {
-		WheelieBar.set(Value.kReverse);
+		WheelieBar.set(Value.kOff);
 	}
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.

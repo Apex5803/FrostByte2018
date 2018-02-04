@@ -24,9 +24,14 @@ import org.usfirst.frc.team5803.robot.commands.*;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static final ExampleSubsystem kExampleSubsystem
-			= new ExampleSubsystem();
+	public static final ExampleSubsystem kExampleSubsystem = new ExampleSubsystem();
+	public static final Arm kArm = new Arm();
+	public static final Climber kClimber = new Climber();
+	public static final CubeEater kCubeEater = new CubeEater();
+	public static final DriveBase kDriveBase = new DriveBase();
+	public static final WheelieBar kWheelieBar = new WheelieBar();
 	public static OI m_oi;
+	
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();

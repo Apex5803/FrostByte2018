@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5803.robot.subsystems;
 
+import org.usfirst.frc.team5803.robot.OI;
 import org.usfirst.frc.team5803.robot.Robot;
 import org.usfirst.frc.team5803.robot.models.*;
 import org.usfirst.frc.team5803.robot.RobotMap;
@@ -25,7 +26,7 @@ public class DriveBase extends Subsystem {
 	
 	//public WPI_TalonSRX L1 = RobotMap.driveTrainDriveTrainL1;
     //public WPI_TalonSRX R1 = RobotMap.driveTrainDriveTrainR1;
-   private final DifferentialDrive joystickControl = RobotMap.joystickControl;
+//   private final DifferentialDrive joystickControl = RobotMap.joystickControl;
    StringBuilder _sb = new StringBuilder();
    int _loops = 0;
 	
@@ -73,7 +74,7 @@ public class DriveBase extends Subsystem {
 
 
     public boolean quickTurnController() {
-    if (Robot.oi.xbox.getY(Hand.kLeft) < 0.2 && Robot.oi.xbox.getY(Hand.kLeft) > -0.2) {
+    if (OI.xbox1.getY(Hand.kLeft) < 0.2 && OI.xbox1.getY(Hand.kLeft) > -0.2) {
 		return true;	
 	} else {
 		return false;
@@ -86,8 +87,8 @@ public class DriveBase extends Subsystem {
 		TalonSRX _talonL = this.L1;
 		TalonSRX _talonR = this.R1;
 		
-		double leftYstick = Robot.oi.xbox.getY(Hand.kLeft);
-		double rightYstick = Robot.oi.xbox.getY(Hand.kRight);
+		double leftYstick = OI.xbox1.getY(Hand.kLeft);
+		double rightYstick = OI.xbox1.getY(Hand.kRight);
 		double motorOutputL = _talonL.getMotorOutputPercent();
 		double motorOutputR = _talonR.getMotorOutputPercent();
 	    	
@@ -105,7 +106,7 @@ public class DriveBase extends Subsystem {
 		_sb.append(_talonR.getSelectedSensorVelocity(0));
 		_sb.append("\n");
 	
-		if (Robot.oi.xbox.getAButton()) { //Run left drive
+		if (OI.xbox1.getAButton()) { //Run left drive
 			/* Speed mode */
 			/* Convert 500 RPM to units / 100ms.
 			 * 4096 Units/Rev * 500 RPM / 600 100ms/min in either direction:
@@ -123,7 +124,7 @@ public class DriveBase extends Subsystem {
 			_sb.append(targetVelocity_UnitsPer100ms);
 			//_sb.append("\n");
 		} 
-		else if (Robot.oi.xbox.getBButton()){ //Run right drive
+		else if (OI.xbox1.getBButton()){ //Run right drive
 			/* Speed mode */
 			/* Convert 500 RPM to units / 100ms.
 			 * 4096 Units/Rev * 500 RPM / 600 100ms/min in either direction:
@@ -163,7 +164,7 @@ public class DriveBase extends Subsystem {
     }
 	
 	public void End() {
-		Robot.driveTrain.drive(ControlMode.PercentOutput, 0,0);
+		drive(ControlMode.PercentOutput, 0,0);
 	}
 
     // Put methods for controlling this subsystem
