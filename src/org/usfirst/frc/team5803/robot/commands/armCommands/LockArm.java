@@ -20,7 +20,7 @@ public LockArm() {
 	}
 	
 	protected void end() {
-		
+		Robot.kArm.end();
 	}
 	
 	protected void interrupted() {

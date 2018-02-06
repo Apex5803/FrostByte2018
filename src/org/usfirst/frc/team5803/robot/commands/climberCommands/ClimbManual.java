@@ -2,6 +2,7 @@ package org.usfirst.frc.team5803.robot.commands.climberCommands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5803.robot.subsystems.Climber;
+import org.usfirst.frc.team5803.robot.Robot;
 import org.usfirst.frc.team5803.robot.subsystems.Arm;
 public class ClimbManual extends Command {
 	
@@ -11,6 +12,8 @@ public class ClimbManual extends Command {
 	
 	protected void execute() {
 		
+		
+		Robot.kClimber.climb();
 		
 	}
 	

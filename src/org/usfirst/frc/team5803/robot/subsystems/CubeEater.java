@@ -47,6 +47,10 @@ public class CubeEater extends Subsystem {
 		RollerB1.set(-0.8);
 	}
 	
+	public void endRoller() {
+		RollerT1.set(0.0);
+		RollerB1.set(0.0);
+	}
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
