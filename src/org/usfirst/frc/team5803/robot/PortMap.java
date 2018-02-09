@@ -12,8 +12,8 @@ public class PortMap {
 		//arm ports
 	public static final int ARM_LEAD = 7;
 	public static final int ARM_FOLLOWER = 8;
-	public static final int ARM_EXTENDER_FORWARD_CHANNEL = 9;
-	public static final int ARM_EXTENDER_REVERSE_CHANNEL = 10;
+	public static final int ARM_EXTENDER_LEAD = 9;
+	public static final int ARM_EXTENDER_FOLLOWER = 10;
 	public static final int ARM_BRAKE_FORWARD_CHANNEL = 11;
 	public static final int ARM_BRAKE_REVERSE_CHANNEL = 12;
 		

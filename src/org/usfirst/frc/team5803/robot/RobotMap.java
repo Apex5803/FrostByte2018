@@ -36,7 +36,8 @@ public class RobotMap {
 	//Arm stuff
 	public static WPI_TalonSRX Arm1;
 	public static WPI_VictorSPX Arm2;
-	public static DoubleSolenoid Extender;
+	public static WPI_TalonSRX Extender1;
+	public static WPI_VictorSPX Extender2;
 	public static DoubleSolenoid ArmBrake;
 	
 	//Cube Eater stuff
@@ -77,8 +78,16 @@ public class RobotMap {
 		
 		Arm1 = new WPI_TalonSRX(PortMap.ARM_LEAD);
 		Arm2 = new WPI_VictorSPX(PortMap.ARM_FOLLOWER);
+		Arm1.setInverted(false);
+		Arm1.setSensorPhase(true);
+		Arm1.configForwardSoftLimitEnable(true, 0);
+		Arm1.configForwardSoftLimitThreshold(120*4096/360,0);
+		Arm1.configReverseSoftLimitEnable(true, 0);
+		Arm1.configReverseSoftLimitThreshold(0*4096,0);
 		
-		Extender = new DoubleSolenoid(PortMap.ARM_EXTENDER_FORWARD_CHANNEL, PortMap.ARM_EXTENDER_REVERSE_CHANNEL);
+		Extender1 = new WPI_TalonSRX(PortMap.ARM_EXTENDER_LEAD);
+		Extender2 = new WPI_VictorSPX(PortMap.ARM_EXTENDER_FOLLOWER);
+		Extender2.follow(Extender1);
 		
 		ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		
