@@ -7,9 +7,12 @@
 
 package org.usfirst.frc.team5803.robot;
 
+import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmAngle;
 import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -26,7 +29,13 @@ public class OI {
    
         xbox1 = new XboxController(0);
         xbox2 = new XboxController(1);
-
+        
+        //pickup angle
+        Button A=new JoystickButton(xbox2,1);
+        A.whenPressed(new RotateArmAngle(6));
+        //climb angle
+        Button B=new JoystickButton(xbox2,2);
+        B.whenPressed(new RotateArmAngle(90));
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Drive", new Drive());
@@ -72,5 +81,6 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+    
 	
 }
