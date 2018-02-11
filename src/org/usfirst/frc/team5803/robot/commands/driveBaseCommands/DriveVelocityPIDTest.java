@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 	    public DriveVelocityPIDTest() {
 	        // Use requires() here to declare subsystem dependencies
-	        requires(Robot.driveBase);
+	        requires(Robot.driveTrain);
 	    }
 
 	    // Called just before this Command runs the first time

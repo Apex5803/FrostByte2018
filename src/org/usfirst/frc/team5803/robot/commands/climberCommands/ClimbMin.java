@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5803.robot.commands.climberCommands;
 
-public class ClimbMin {
+import edu.wpi.first.wpilibj.command.Command;
+
+public class ClimbMin extends Command{
 public ClimbMin() {
 		
 	}

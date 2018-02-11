@@ -2,7 +2,9 @@ package org.usfirst.frc.team5803.robot.commands.cubeCommands;
 
 import org.usfirst.frc.team5803.robot.Robot;
 
-public class PunchCube {
+import edu.wpi.first.wpilibj.command.Command;
+
+public class PunchCube extends Command{
 
 	
 	protected void initialize() {
@@ -10,7 +12,7 @@ public class PunchCube {
 	}
 	
 	protected void execute() {
-		Robot.kCubeEater.punchCube();
+		//Robot.kCubeEater.punchCube();
 	}
 	
 	protected boolean isFinished() {
@@ -18,7 +20,7 @@ public class PunchCube {
 	}
 	
 	protected void end() {
-		Robot.kCubeEater.retractPuncher();
+		//Robot.kCubeEater.retractPuncher();
 	}
 	
 	protected void interrupted() {

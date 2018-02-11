@@ -21,22 +21,22 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  */
 
 public class DriveBase extends Subsystem {
-	public WPI_TalonSRX L1 = RobotMap.L1;
-	public WPI_TalonSRX R1 = RobotMap.R1;
+	public TalonSRX L1 = RobotMap.L1;
+	public TalonSRX R1 = RobotMap.R1;
 	
 	//public WPI_TalonSRX L1 = RobotMap.driveTrainDriveTrainL1;
     //public WPI_TalonSRX R1 = RobotMap.driveTrainDriveTrainR1;
 //   private final DifferentialDrive joystickControl = RobotMap.joystickControl;
    StringBuilder _sb = new StringBuilder();
    int _loops = 0;
-	
-   @Override
+   
    public void initDefaultCommand() {
-	   //TODO make sure this is set to how you want to drive, or what you want to test
-     setDefaultCommand(new Drive());
-	   //setDefaultCommand(new DriveVelocityPIDTest());
-	   
-    }
+       // et the default command for a subsystem here.
+   	System.out.println("about to set default command to drive something");
+	   setDefaultCommand(new Drive());
+   	System.out.println("drive something" + new Drive());
+   	//setDefaultCommand(new DrivetrainVelocityPIDTest());
+   }
 
     public void configPIDF(double p, double i, double d, double f) {
 
@@ -56,12 +56,6 @@ public class DriveBase extends Subsystem {
     	this.R1.set(controlMode, right);
     	//joystickControl.arcadeDrive(move, rotate, true);
 
-    }
-    /**** NEW METHOD FOR DRIVING PATHS ****/
-    //TODO do we need this? I don't think we actually do
-    public void drivePath(double left, double right) {
-     	this.L1.set(ControlMode.PercentOutput, left);
-    	this.R1.set(ControlMode.PercentOutput, right);    	    	
     }
 
     public void drive(ControlMode controlMode, DriveSignal driveSignal) {

@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5803.robot.commands.climberCommands;
 
-public class ClimbMax {
+import edu.wpi.first.wpilibj.command.Command;
+
+public class ClimbMax extends Command{
 public ClimbMax() {
 		
 	}
@@ -13,8 +15,8 @@ public ClimbMax() {
 		
 	}
 	
-	protected void isFinished() {
-		
+	protected boolean isFinished() {
+		return false;
 	}
 	
 	protected void end() {

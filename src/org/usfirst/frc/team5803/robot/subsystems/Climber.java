@@ -15,13 +15,12 @@ public class Climber extends Subsystem {
 	// here. Call these from Commands.
 	public DigitalInput ClimbMin = RobotMap.ClimbMin;
 	public DigitalInput ClimbMax = RobotMap.ClimbMax;
-	public WPI_TalonSRX Climber = RobotMap.Climber;
 	public float ClimbSpeed;
 	
 	
 	
 	public void climb() {
-		Climber.set(ClimbSpeed);
+		
 	}
 	
 	public void initDefaultCommand() {

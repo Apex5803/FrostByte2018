@@ -2,7 +2,9 @@ package org.usfirst.frc.team5803.robot.commands.wheelieBarCommands;
 
 import org.usfirst.frc.team5803.robot.Robot;
 
-public class retractWheelieBar {
+import edu.wpi.first.wpilibj.command.Command;
+
+public class retractWheelieBar extends Command{
 public retractWheelieBar() {
 		
 	}
@@ -12,7 +14,7 @@ public retractWheelieBar() {
 	}
 	
 	protected void execute() {
-		Robot.kWheelieBar.retract();
+		//Robot.kWheelieBar.retract();
 	}
 	
 	protected boolean isFinished() {
@@ -20,7 +22,7 @@ public retractWheelieBar() {
 	}
 	
 	protected void end() {
-		Robot.kWheelieBar.end();
+		//Robot.kWheelieBar.end();
 	}
 	
 	protected void interrupted() {

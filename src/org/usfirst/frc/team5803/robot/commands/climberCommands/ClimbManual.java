@@ -13,7 +13,7 @@ public class ClimbManual extends Command {
 	protected void execute() {
 		
 		
-		Robot.kClimber.climb();
+		//Robot.kClimber.climb();
 		
 	}
 	

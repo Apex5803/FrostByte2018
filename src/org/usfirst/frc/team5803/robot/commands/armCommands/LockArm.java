@@ -2,7 +2,9 @@ package org.usfirst.frc.team5803.robot.commands.armCommands;
 
 import org.usfirst.frc.team5803.robot.Robot;
 
-public class LockArm {
+import edu.wpi.first.wpilibj.command.Command;
+
+public class LockArm extends Command{
 public LockArm() {
 		
 	}
@@ -12,7 +14,7 @@ public LockArm() {
 	}
 	
 	protected void execute() {
-		Robot.kArm.secure();
+		//Robot.kArm.secure();
 	}
 	
 	protected boolean isFinished() {
@@ -20,7 +22,7 @@ public LockArm() {
 	}
 	
 	protected void end() {
-		Robot.kArm.end();
+		//Robot.kArm.end();
 	}
 	
 	protected void interrupted() {

@@ -11,7 +11,7 @@ public class RotateArmAngle extends Command {
 
 	public RotateArmAngle(double setAngle) {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kArm);
+		requires(Robot.arm);
 		this.angle = setAngle;
 	}
 
@@ -23,13 +23,14 @@ public class RotateArmAngle extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.kArm.moveTo(this.angle);
+		//Robot.kArm.moveTo(this.angle);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		double movevalue = Robot.kArm.vgiver();
+		//double movevalue = 0;
+		double movevalue = Robot.arm.vgiver();
 		double targetvalue=this.angle*4096/360;
 		//System.out.println("In isFinished() before check, value: " + movevalue + "target: " + targetvalue);
 
@@ -42,7 +43,7 @@ public class RotateArmAngle extends Command {
 	
 	@Override
 	protected void end() {
-		Robot.kArm.move(0);
+		Robot.arm.move(0);
 	}
 
 	// Called when another command which requires one or more of the same

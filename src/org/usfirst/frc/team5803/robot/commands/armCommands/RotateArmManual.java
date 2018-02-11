@@ -12,7 +12,7 @@ import org.usfirst.frc.team5803.robot.Robot;
 public class RotateArmManual extends Command {
 	public RotateArmManual() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kArm);
+		requires(Robot.arm);
 	}
 
 	// Called just before this Command runs the first time
@@ -26,13 +26,13 @@ public class RotateArmManual extends Command {
 
 		
 		if(OI.xbox1.getTriggerAxis(Hand.kLeft) > 0.75) {
-			//System.out.println("running full manual test");
+			System.out.println("running full manual test");
 			if(OI.xbox1.getY(Hand.kLeft) > 0.2 || OI.xbox1.getY(Hand.kLeft) < -0.2) {
-				Robot.kArm.move(0.2 * OI.xbox1.getY(Hand.kLeft)); 						
+			Robot.arm.move(0.2 * OI.xbox1.getY(Hand.kLeft)); 						
 			}
-			else Robot.kArm.move(0);
+			else Robot.arm.move(0);
 		}		
-		else Robot.kArm.move(0);
+		else Robot.arm.move(0);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

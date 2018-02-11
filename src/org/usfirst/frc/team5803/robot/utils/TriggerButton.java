@@ -1,29 +1,56 @@
-package org.usfirst.frc.team319.controllers;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-import org.usfirst.frc.team319.controllers.BobXboxController.XboxAxis;
+package org.usfirst.frc.team5803.robot.utils;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 
-public class BobAxisButton extends Button{
+/**
+ *
+ * @author mwtidd
+ */
+public class TriggerButton extends Trigger{
+    private final XboxController xbox;
+    private final int axis;
+
+    public TriggerButton(XboxController xbox, int axis){
+        this.xbox = xbox;
+        this.axis = axis;
+
+    }
+
+    public boolean get() {
+        return xbox.getRawAxis(axis) >= .5;
+    }
+}
+
+/*
+package org.usfirst.frc.team5803.robot.utils;
+
+//import org.usfirst.frc.team5803.robot.utils;
+
+import edu.wpi.first.wpilibj.Joystick;
+//import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+
+public class TriggerButton extends Button{
 		private final Joystick joy;
 		private final int axis;
 		private double targetVal;
 		private ThresholdType thresholdType;
 
-	public BobAxisButton(Joystick joystick, int axis, double threshold, ThresholdType thresholdType) {
+	public TriggerButton(Joystick joystick, int axis, double threshold, ThresholdType thresholdType) {
 		this.joy = joystick;
 		this.axis = axis;
 		this.targetVal = threshold;
 		this.thresholdType = thresholdType;
 	}
-		
-	public BobAxisButton(Joystick joystick, XboxAxis axis, double threshold, ThresholdType thresholdType) {
-		this(joystick, axis.value, threshold, thresholdType);
-	}
-		
-	
 
 	public boolean get() {
 		switch (this.thresholdType) {
@@ -47,3 +74,4 @@ public class BobAxisButton extends Button{
 	}
 
 }
+*/

@@ -15,7 +15,7 @@ public ReleaseArm() {
 	}
 	
 	protected void execute() {
-		Robot.kArm.unsecure();
+		//Robot.kArm.unsecure();
 	}
 	
 	protected boolean isFinished() {
@@ -23,7 +23,7 @@ public ReleaseArm() {
 	}
 	
 	protected void end() {
-		Robot.kArm.endSecurer();
+		//Robot.kArm.endSecurer();
 	}
 	
 	protected void interrupted() {
