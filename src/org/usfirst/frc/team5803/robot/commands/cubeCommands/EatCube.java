@@ -11,7 +11,7 @@ public class EatCube extends Command{
 	}
 	
 	protected void execute() {
-		//Robot.kCubeEater.eatCube();
+		Robot.kCubeEater.eatCube();
 	}
 	
 	protected boolean isFinished() {
@@ -19,7 +19,7 @@ public class EatCube extends Command{
 	}
 	
 	protected void end() {
-		//Robot.kCubeEater.endRoller();
+		Robot.kCubeEater.endRoller();
 	}
 	
 	protected void interrupted() {

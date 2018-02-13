@@ -29,13 +29,15 @@ import org.usfirst.frc.team5803.robot.subsystems.*;
  * the project.
  */
 public class Robot extends TimedRobot {
-	
+
     Command autonomousCommand;
     SendableChooser<Command> chooser = new SendableChooser<>();
 
     public static OI oi;
     public static DriveBase driveTrain;
     public static Arm arm;
+    public static CubeEater kCubeEater;
+    
     
     Compressor compressor = new Compressor (0);
     
@@ -48,7 +50,10 @@ public class Robot extends TimedRobot {
         RobotMap.init();
         driveTrain = new DriveBase();
         arm = new Arm();
+        kCubeEater = new CubeEater();
         compressor.setClosedLoopControl(true);
+        
+        
 
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
@@ -118,5 +123,6 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Arm 1 encoder position", RobotMap.Arm1.getSelectedSensorPosition(0));
     }
 }

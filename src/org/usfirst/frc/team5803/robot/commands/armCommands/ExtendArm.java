@@ -24,15 +24,15 @@ public class ExtendArm extends Command {
 	protected void execute() {
 
 		
-		if(OI.xbox1.getTriggerAxis(Hand.kRight) > 0.75) {
+//		if(OI.xbox2.getTriggerAxis(Hand.kRight) > 0.75) {
 			//System.out.println("running full manual test");
-			if(OI.xbox1.getY(Hand.kRight) >= 0.2) {
-			//	Robot.kArm.extend(0.2 * OI.xbox1.getY(Hand.kRight)); 						
+			if(OI.xbox2.getY(Hand.kRight) >= 0.2 || OI.xbox2.getY(Hand.kRight) <= 0.2) {
+				Robot.arm.extend(0.2 * OI.xbox2.getY(Hand.kRight)); 						
 			}
-			//else Robot.kArm.extend(0);
+			else Robot.arm.extend(0);
 		}		
-		//else Robot.kArm.extend(0);
-	}
+//		else Robot.arm.extend(0);
+//	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	@Override

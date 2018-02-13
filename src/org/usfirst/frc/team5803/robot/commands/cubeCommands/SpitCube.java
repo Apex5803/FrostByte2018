@@ -11,7 +11,7 @@ public class SpitCube extends Command {
 	}
 	
 	protected void execute() {
-		//Robot.kCubeEater.spitCube();
+		Robot.kCubeEater.spitCube();
 	}
 	
 	protected boolean isFinished() {
@@ -19,7 +19,7 @@ public class SpitCube extends Command {
 	}
 	
 	protected void end() {
-		//Robot.kCubeEater.endRoller(); 
+		Robot.kCubeEater.endRoller(); 
 	}
 	
 	protected void interrupted() {

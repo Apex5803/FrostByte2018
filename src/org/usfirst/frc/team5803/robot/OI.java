@@ -12,6 +12,7 @@ import org.usfirst.frc.team5803.robot.commands.armCommands.LockArm;
 import org.usfirst.frc.team5803.robot.commands.armCommands.ReleaseArm;
 import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmAngle;
 import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmManual;
+import org.usfirst.frc.team5803.robot.commands.armCommands.StopArm;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.AutonomousCommand;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.EatCube;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCube;
@@ -39,32 +40,35 @@ public class OI {
         
         //pickup angle
         Button A=new JoystickButton(xbox2,1);
-        A.whenPressed(new RotateArmAngle(20));
+        A.whileHeld(new RotateArmManual());
+//        A.whenPressed(new RotateArmAngle(20));
         //A.whenPressed(new RotateArmManual());
         
         //climb angle
-        Button B=new JoystickButton(xbox2,2);
-        B.whenPressed(new RotateArmAngle(60));
+//        Button B=new JoystickButton(xbox2,2);
+//        B.whenPressed(new RotateArmAngle(60));
         
         //manual arm control
-        //Button RT=new TriggerButton(xbox2,3);
-        //RT.whileHeld(new RotateArmManual());
+//       TriggerButton RT=new TriggerButton(xbox2,3);
+//        RT.whenActive(new ExtendArm());
+        
         
         Button LB=new JoystickButton(xbox2,5);
         	LB.whileHeld(new EatCube());
         	
         Button RB=new JoystickButton(xbox2,6);
         	 RB.whileHeld(new SpitCube());
-        /*
+        
         TriggerButton LT=new TriggerButton(xbox2, 2);
         	LT.whenActive(new RotateArmManual());
-        	LT.whenInactive(null);
+        	LT.whenInactive(new StopArm());
         	 
         TriggerButton RT=new TriggerButton(xbox2, 3);
             RT.whenActive(new ExtendArm());
+//            RT.whenInactive(new StopArm());
         	
         	
-        POVTrigger UP=new POVTrigger(xbox2, 0, 0);
+        /* POVTrigger UP=new POVTrigger(xbox2, 0, 0);
         	UP.whenActive(new LockArm());
        
         POVTrigger DOWN=new POVTrigger(xbox2, 0, 180);
