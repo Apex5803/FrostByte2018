@@ -12,7 +12,7 @@ public class PunchCube extends Command{
 	}
 	
 	protected void execute() {
-		//Robot.kCubeEater.punchCube();
+		Robot.kCubeEater.punchCube();
 	}
 	
 	protected boolean isFinished() {
@@ -20,7 +20,7 @@ public class PunchCube extends Command{
 	}
 	
 	protected void end() {
-		//Robot.kCubeEater.retractPuncher();
+		Robot.kCubeEater.retractPuncher();
 	}
 	
 	protected void interrupted() {

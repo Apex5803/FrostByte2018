@@ -32,9 +32,9 @@ public class DriveBase extends Subsystem {
    
    public void initDefaultCommand() {
        // et the default command for a subsystem here.
-   	System.out.println("about to set default command to drive something");
+//   	System.out.println("about to set default command to drive something");
 	   setDefaultCommand(new Drive());
-   	System.out.println("drive something" + new Drive());
+//   	System.out.println("drive something" + new Drive());
    	//setDefaultCommand(new DrivetrainVelocityPIDTest());
    }
 

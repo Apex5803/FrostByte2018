@@ -48,7 +48,8 @@ public class RobotMap {
 	public static VictorSPX RollerT2;
 	public static TalonSRX RollerB1;
 	public static VictorSPX RollerB2;
-	//public static DoubleSolenoid Puncher;
+	public static Solenoid Puncher1;
+	public static Solenoid Puncher2;
 	//public static DoubleSolenoid Jaw;
 	
 	//Climber stuff
@@ -124,6 +125,8 @@ public class RobotMap {
 //		RollerT2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER);
 //		RollerT2.follow(RollerT1);
 //		RollerT2.setInverted(true);
+		Puncher1 = new Solenoid(PortMap.PUNCHER1_FORWARD_CHANNEL);
+		Puncher2 = new Solenoid(PortMap.PUNCHER2_FORWARD_CHANNEL);
 		RollerB1 = new TalonSRX(PortMap.BOTTOM_ROLLER_LEAD);
 //		RollerB1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		RollerB1.setInverted(true);

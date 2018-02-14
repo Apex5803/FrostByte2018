@@ -15,6 +15,7 @@ import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmManual;
 import org.usfirst.frc.team5803.robot.commands.armCommands.StopArm;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.AutonomousCommand;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.EatCube;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.PunchCube;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCube;
 import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
 import org.usfirst.frc.team5803.robot.utils.POVTrigger;
@@ -48,16 +49,19 @@ public class OI {
 //        Button B=new JoystickButton(xbox2,2);
 //        B.whenPressed(new RotateArmAngle(60));
         
-        //manual arm control
-//       TriggerButton RT=new TriggerButton(xbox2,3);
-//        RT.whenActive(new ExtendArm());
-        
+  
         
         Button LB=new JoystickButton(xbox2,5);
         	LB.whileHeld(new EatCube());
         	
         Button RB=new JoystickButton(xbox2,6);
         	 RB.whileHeld(new SpitCube());
+        	 
+        Button X=new JoystickButton(xbox2,3);
+        	X.whenPressed(new PunchCube());
+        	
+        
+   //      Button Y=new JoystickButton(xbox2,4);
         
         TriggerButton LT=new TriggerButton(xbox2, 2);
         	LT.whenActive(new RotateArmManual());

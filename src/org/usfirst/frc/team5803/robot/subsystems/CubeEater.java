@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -19,7 +20,8 @@ public class CubeEater extends Subsystem {
 	// here. Call these from Commands.
 	public TalonSRX RollerT1 = RobotMap.RollerT1;
 	public TalonSRX RollerB1 = RobotMap.RollerB1;
-	//public DoubleSolenoid Puncher = RobotMap.Puncher;
+	public Solenoid Puncher1 = RobotMap.Puncher1;
+	public Solenoid Puncher2 = RobotMap.Puncher2;
 	//public DoubleSolenoid Jaw = RobotMap.Jaw;
 
 	public void jawExtend() {
@@ -31,11 +33,13 @@ public class CubeEater extends Subsystem {
 	}
 	
 	public void punchCube() {
-		//Puncher.set(Value.kForward);
+		Puncher1.set(true);
+		Puncher2.set(true);
 	}
 	
 	public void retractPuncher() {
-		//Puncher.set(Value.kReverse);
+		Puncher1.set(false);
+		Puncher2.set(false);
 	}
 	
 	public void eatCube() {
@@ -52,6 +56,7 @@ public class CubeEater extends Subsystem {
 		RollerT1.set(ControlMode.PercentOutput, 0.0);
 		RollerB1.set(ControlMode.PercentOutput, 0.0);
 	}
+
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.

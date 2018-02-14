@@ -21,6 +21,8 @@ import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
 //import org.usfirst.frc5803.RobotTestBench.commands.autonomous.DriveForwardFiveFeet;
 import org.usfirst.frc.team5803.robot.subsystems.*;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -37,6 +39,7 @@ public class Robot extends TimedRobot {
     public static DriveBase driveTrain;
     public static Arm arm;
     public static CubeEater kCubeEater;
+    
     
     
     Compressor compressor = new Compressor (0);
@@ -60,6 +63,15 @@ public class Robot extends TimedRobot {
         // constructed yet. Thus, their requires() statements may grab null
         // pointers. Bad news. Don't move it.
         oi = new OI();
+        int absolutePosition = RobotMap.Arm1.getSensorCollection().getPulseWidthPosition();
+		/* mask out overflows, keep bottom 12 bits */
+		absolutePosition &= 0xFFF;
+//		if (Constants.kSensorPhase)
+//			absolutePosition *= -1;
+//		if (Constants.kMotorInvert)
+//			absolutePosition *= -1;
+		/* set the quadrature (relative) sensor to match absolute */
+RobotMap.Arm1.setSelectedSensorPosition(absolutePosition, 0, 0);
 
         // Add commands to Autonomous Sendable Chooser
 

@@ -10,7 +10,7 @@ public class PortMap {
 	public static final int DRIVE_BASE_RIGHT_3 = 3;
 	
 		//arm ports
-	public static final int ARM_LEAD = 2;
+	public static final int ARM_LEAD = 7; //2 for practice bot
 	public static final int ARM_FOLLOWER = 4;
 	public static final int ARM_EXTENDER_LEAD = 6;
 	public static final int ARM_EXTENDER_FOLLOWER = 5;
@@ -22,10 +22,12 @@ public class PortMap {
 	public static final int TOP_ROLLER_FOLLOWER = 5;
 	public static final int BOTTOM_ROLLER_LEAD = 4;
 	public static final int BOTTOM_ROLLER_FOLLOWER = 6;
-	public static final int PUNCHER_FORWARD_CHANNEL = 4;
-	public static final int	PUNCHER_REVERSE_CHANNEL = 4;
-	public static final int JAW_FORWARD_CHANNEL = 4;
-	public static final int JAW_REVERSE_CHANNEL = 4;
+	public static final int PUNCHER1_FORWARD_CHANNEL = 0;
+	public static final int	PUNCHER1_REVERSE_CHANNEL = 7;
+	public static final int PUNCHER2_FORWARD_CHANNEL = 1;
+	public static final int	PUNCHER2_REVERSE_CHANNEL = 6;
+	public static final int JAW_FORWARD_CHANNEL = 2;
+	public static final int JAW_REVERSE_CHANNEL = 5;
 	
 		//climber ports
 	public static final int CLIMBER = 4;

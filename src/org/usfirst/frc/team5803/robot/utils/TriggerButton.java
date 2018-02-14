@@ -22,7 +22,6 @@ public class TriggerButton extends Trigger{
     public TriggerButton(XboxController xbox, int axis){
         this.xbox = xbox;
         this.axis = axis;
-
     }
 
     public boolean get() {
