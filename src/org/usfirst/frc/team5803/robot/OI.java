@@ -8,6 +8,7 @@
 package org.usfirst.frc.team5803.robot;
 
 import org.usfirst.frc.team5803.robot.commands.armCommands.ExtendArm;
+import org.usfirst.frc.team5803.robot.commands.armCommands.HoldArmPosition;
 import org.usfirst.frc.team5803.robot.commands.armCommands.LockArm;
 import org.usfirst.frc.team5803.robot.commands.armCommands.ReleaseArm;
 import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmAngle;
@@ -41,13 +42,15 @@ public class OI {
         
         //pickup angle
         Button A=new JoystickButton(xbox2,1);
-        A.whileHeld(new RotateArmManual());
-//        A.whenPressed(new RotateArmAngle(20));
+//        A.whileHeld(new RotateArmManual());
+        A.whenPressed(new RotateArmAngle(20));
+        A.whenInactive(new HoldArmPosition());
         //A.whenPressed(new RotateArmManual());
         
         //climb angle
-//        Button B=new JoystickButton(xbox2,2);
-//        B.whenPressed(new RotateArmAngle(60));
+        Button B=new JoystickButton(xbox2,2);
+        B.whenPressed(new RotateArmAngle(60));
+        B.whenInactive(new HoldArmPosition());
         
   
         
@@ -65,11 +68,11 @@ public class OI {
         
         TriggerButton LT=new TriggerButton(xbox2, 2);
         	LT.whenActive(new RotateArmManual());
-        	LT.whenInactive(new StopArm());
+        	LT.whenInactive(new HoldArmPosition());
         	 
         TriggerButton RT=new TriggerButton(xbox2, 3);
             RT.whenActive(new ExtendArm());
-//            RT.whenInactive(new StopArm());
+//            RT.whenInactive(new HoldArmPosition());
         	
         	
         /* POVTrigger UP=new POVTrigger(xbox2, 0, 0);

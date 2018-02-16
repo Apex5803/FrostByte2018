@@ -72,7 +72,7 @@ public class Arm extends Subsystem {
 		 public void move(double stickv){
 			 this.Arm1.set(ControlMode.PercentOutput, stickv);
 		 }
-		 public void moveTo(double angle){
+		 public void moveTo(ControlMode controlMode, double angle){
 			 //angle*4096 tics per rev./total degrees per revolution 
 			 double setPoint= angle*4096/360;
 			 this.Arm1.set(ControlMode.MotionMagic, setPoint);
@@ -91,4 +91,6 @@ public class Arm extends Subsystem {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 	}
+
+	
 }

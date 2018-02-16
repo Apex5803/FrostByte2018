@@ -3,6 +3,9 @@ package org.usfirst.frc.team5803.robot.commands.armCommands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5803.robot.Robot;
 
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 /**
  * An example command.  You can replace me with your own command.
  */
@@ -23,7 +26,7 @@ public class RotateArmAngle extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.arm.moveTo(this.angle);
+		Robot.arm.moveTo(ControlMode.MotionMagic, this.angle);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
