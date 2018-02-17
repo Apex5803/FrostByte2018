@@ -21,7 +21,7 @@ public class Arm extends Subsystem {
 	public VictorSPX Arm2 = RobotMap.Arm2;
 	public TalonSRX Extender1 = RobotMap.Extender1;
 	public TalonSRX Extender2 = RobotMap.Extender2;
-	//public static DoubleSolenoid ArmBrake = RobotMap.ArmBrake;
+	public static DoubleSolenoid ArmBrake = RobotMap.ArmBrake;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	
@@ -44,7 +44,7 @@ public class Arm extends Subsystem {
 	}
 	
 	public void endSecurer() {
-		//ArmBrake.set(Value.kOff);
+		ArmBrake.set(Value.kOff);
 	}
 	
 	public void endExtender() {
@@ -53,7 +53,7 @@ public class Arm extends Subsystem {
 	}
 	
 	public void end() {
-		//ArmBrake.set(Value.kOff);
+//		ArmBrake.set(Value.kOff);
 		Extender1.set(ControlMode.PercentOutput, 0.0);
 		Extender2.set(ControlMode.PercentOutput, 0.0);
 	}
@@ -77,7 +77,7 @@ public class Arm extends Subsystem {
 			 double setPoint= angle*4096/360;
 			 this.Arm1.set(ControlMode.MotionMagic, setPoint);
 			 //System.out.println(angle + ": target angle");
-			 System.out.println( Arm1.getSelectedSensorPosition(0)*306/4096 + ": actual angle");
+			 System.out.println( Arm1.getSelectedSensorPosition(0)*360/4096 + ": actual angle");
 		 }
 		 public void End() {
 				this.move(0);

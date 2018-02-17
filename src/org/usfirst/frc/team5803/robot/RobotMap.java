@@ -41,7 +41,7 @@ public class RobotMap {
 	public static VictorSPX Arm2;
 	public static TalonSRX Extender1;
 	public static TalonSRX Extender2;
-	//public static DoubleSolenoid ArmBrake;
+	public static DoubleSolenoid ArmBrake;
 	
 	//Cube Eater stuff
 	public static TalonSRX RollerT1;
@@ -91,13 +91,16 @@ public class RobotMap {
 		Arm1.configForwardSoftLimitEnable(false, 0);		
 		//Arm1.configForwardSoftLimitEnable(true, 0);
 		//Arm1.configForwardSoftLimitThreshold(120*4096/360,0);
-		Arm1.configReverseSoftLimitEnable(false, 0);		
+//		Arm1.configReverseSoftLimitEnable(false, 0);		
 		//Arm1.configReverseSoftLimitEnable(true, 0);
 		//Arm1.configReverseSoftLimitThreshold(0*4096,0);
+//		Arm1.configMotionCruiseVelocity(3092,0);
+//		Arm1.configMotionAcceleration(3092,0);
 		//ARM2 RUNS THE SAME DIRECTION AS ARM1
 		Arm2 = new VictorSPX(PortMap.ARM_FOLLOWER);
 		Arm2.follow(Arm1);
 		Arm2.setInverted(true);
+		ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		
 		
 		Extender1 = new TalonSRX(PortMap.ARM_EXTENDER_LEAD);
@@ -133,7 +136,7 @@ public class RobotMap {
 		RollerB2 = new VictorSPX(PortMap.BOTTOM_ROLLER_FOLLOWER);
 		RollerB2.follow(RollerB1);
 //		RollerB2.setInverted(false);
-		//Puncher = new DoubleSolenoid(PortMap.PUNCHER_FORWARD_CHANNEL, PortMap.PUNCHER_REVERSE_CHANNEL);
+//		Puncher1 = new Solenoid(PortMap.PUNCHER1_FORWARD_CHANNEL);
 		
 		//Jaw = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		

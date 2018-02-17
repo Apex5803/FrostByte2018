@@ -10,7 +10,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
  * An example command.  You can replace me with your own command.
  */
 public class RotateArmAngle extends Command {
-	private double angle;
+	 double angle;
 
 	public RotateArmAngle(double setAngle) {
 		// Use requires() here to declare subsystem dependencies

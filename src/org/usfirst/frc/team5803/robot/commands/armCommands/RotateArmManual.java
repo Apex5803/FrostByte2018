@@ -3,6 +3,9 @@ package org.usfirst.frc.team5803.robot.commands.armCommands;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5803.robot.subsystems.Arm;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import org.usfirst.frc.team5803.robot.OI;
 import org.usfirst.frc.team5803.robot.Robot;
 
@@ -28,7 +31,7 @@ public class RotateArmManual extends Command {
 //		if(OI.xbox1.getTriggerAxis(Hand.kLeft) > 0.75) {
 //			System.out.println("running full manual test");
 			if(OI.xbox2.getY(Hand.kLeft) >= 0.2 || OI.xbox2.getY(Hand.kLeft) < -0.2) {
-			Robot.arm.move(0.3 * OI.xbox2.getY(Hand.kLeft)); 		
+			Robot.arm.moveTo(ControlMode.MotionMagic, 50. * OI.xbox2.getY(Hand.kLeft)); 		
 //			System.out.println("if statement achieved");
 			}
 			else Robot.arm.move(0);

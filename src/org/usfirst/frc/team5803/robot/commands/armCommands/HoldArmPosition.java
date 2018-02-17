@@ -2,6 +2,7 @@ package org.usfirst.frc.team5803.robot.commands.armCommands;
 
 import org.usfirst.frc.team5803.robot.Robot;
 import org.usfirst.frc.team5803.robot.RobotMap;
+import org.usfirst.frc.team5803.robot.subsystems.Arm;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -23,9 +24,9 @@ public class HoldArmPosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    
+    	System.out.println("Holding position");
 //    	double angle = RobotMap.Arm1.getClosedLoopTarget(0);
-    	double angle = RobotMap.Arm1.getSelectedSensorPosition(0);
+    	double angle = RobotMap.Arm1.getSelectedSensorPosition(0)*360/4096;
     	Robot.arm.moveTo(ControlMode.MotionMagic, angle);
     }
 

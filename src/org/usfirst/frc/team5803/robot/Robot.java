@@ -93,6 +93,7 @@ RobotMap.Arm1.setSelectedSensorPosition(absolutePosition, 0, 0);
     @Override
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Arm 1 encoder position", RobotMap.Arm1.getSelectedSensorPosition(0));
     }
 
     @Override

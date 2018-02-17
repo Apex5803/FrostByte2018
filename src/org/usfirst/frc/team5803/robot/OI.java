@@ -75,12 +75,12 @@ public class OI {
 //            RT.whenInactive(new HoldArmPosition());
         	
         	
-        /* POVTrigger UP=new POVTrigger(xbox2, 0, 0);
+         POVTrigger UP=new POVTrigger(xbox2, 0, 0);
         	UP.whenActive(new LockArm());
        
         POVTrigger DOWN=new POVTrigger(xbox2, 0, 180);
         	DOWN.whenActive(new ReleaseArm());
-        */
+        
         //this.operatorController.rightTriggerButton.whenPressed(new CubeCollectorGoToPosition());
         //this.operatorController.leftTriggerButton.whenPressed(new CubeCollectorGoToZero());        
         // SmartDashboard Buttons

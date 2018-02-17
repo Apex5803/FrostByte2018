@@ -14,7 +14,7 @@ public LockArm() {
 	}
 	
 	protected void execute() {
-		//Robot.kArm.secure();
+		Robot.arm.secure();
 	}
 	
 	protected boolean isFinished() {
@@ -22,7 +22,7 @@ public LockArm() {
 	}
 	
 	protected void end() {
-		//Robot.kArm.end();
+		Robot.arm.end();
 	}
 	
 	protected void interrupted() {
