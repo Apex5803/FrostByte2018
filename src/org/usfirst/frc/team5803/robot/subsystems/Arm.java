@@ -36,15 +36,15 @@ public class Arm extends Subsystem {
 	}
 	
 	public void secure() {
-		//ArmBrake.set(Value.kForward);
+		ArmBrake.set(Value.kReverse);
 	}
 	
 	public void unsecure() {
-		//ArmBrake.set(Value.kReverse);
+		ArmBrake.set(Value.kForward);
 	}
 	
 	public void endSecurer() {
-		ArmBrake.set(Value.kOff);
+		ArmBrake.free();
 	}
 	
 	public void endExtender() {

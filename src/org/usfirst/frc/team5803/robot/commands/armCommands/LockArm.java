@@ -22,10 +22,10 @@ public LockArm() {
 	}
 	
 	protected void end() {
-		Robot.arm.end();
+//		Robot.arm.endSecurer();
 	}
 	
 	protected void interrupted() {
-	
+	end();
 	}
 }

@@ -66,6 +66,7 @@ public class Robot extends TimedRobot {
         int absolutePosition = RobotMap.Arm1.getSensorCollection().getPulseWidthPosition();
 		/* mask out overflows, keep bottom 12 bits */
 		absolutePosition &= 0xFFF;
+//		absolutePosition *= -1;
 //		if (Constants.kSensorPhase)
 //			absolutePosition *= -1;
 //		if (Constants.kMotorInvert)
@@ -93,7 +94,12 @@ RobotMap.Arm1.setSelectedSensorPosition(absolutePosition, 0, 0);
     @Override
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("Arm 1 encoder position", RobotMap.Arm1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Arm 1 encoderPosition", RobotMap.Arm1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Arm1 encoder speed", RobotMap.Arm1.getSelectedSensorVelocity(0));
+        SmartDashboard.putNumber("L1 encoderPosition", RobotMap.L1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("R1 encoderPosition", RobotMap.R1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Extender2 encoderPosition", RobotMap.Extender2.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Extender1 encoderPosition", RobotMap.Extender1.getSelectedSensorPosition(0));
     }
 
     @Override

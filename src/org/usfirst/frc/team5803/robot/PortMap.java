@@ -14,8 +14,8 @@ public class PortMap {
 	public static final int ARM_FOLLOWER = 4;
 	public static final int ARM_EXTENDER_LEAD = 6;
 	public static final int ARM_EXTENDER_FOLLOWER = 5;
-	public static final int ARM_BRAKE_FORWARD_CHANNEL = 4;
-	public static final int ARM_BRAKE_REVERSE_CHANNEL = 0;
+	public static final int ARM_BRAKE_FORWARD_CHANNEL = 0;
+	public static final int ARM_BRAKE_REVERSE_CHANNEL = 7;
 		
 		//cube eater ports
 	public static final int TOP_ROLLER_LEAD = 3;

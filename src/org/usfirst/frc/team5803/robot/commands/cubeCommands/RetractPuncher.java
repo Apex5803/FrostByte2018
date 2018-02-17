@@ -1,21 +1,18 @@
-package org.usfirst.frc.team5803.robot.commands.armCommands;
+package org.usfirst.frc.team5803.robot.commands.cubeCommands;
 
 import org.usfirst.frc.team5803.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ReleaseArm extends Command{
+public class RetractPuncher extends Command{
 
-public ReleaseArm() {
-		
-	}
 	
 	protected void initialize() {
 		
 	}
 	
 	protected void execute() {
-		Robot.arm.unsecure();
+		Robot.kCubeEater.retractPuncher();
 	}
 	
 	protected boolean isFinished() {
@@ -23,10 +20,15 @@ public ReleaseArm() {
 	}
 	
 	protected void end() {
-//		Robot.arm.endSecurer();
+//		Robot.kCubeEater.retractPuncher();
 	}
 	
 	protected void interrupted() {
-	 end();
+		end();
 	}
+	
+	
+	
 }
+
+

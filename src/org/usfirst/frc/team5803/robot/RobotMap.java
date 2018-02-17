@@ -87,7 +87,7 @@ public class RobotMap {
 		Arm1 = new TalonSRX(PortMap.ARM_LEAD);
 		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 		Arm1.setInverted(true);
-		Arm1.setSensorPhase(true);
+		Arm1.setSensorPhase(false);
 		Arm1.configForwardSoftLimitEnable(false, 0);		
 		//Arm1.configForwardSoftLimitEnable(true, 0);
 		//Arm1.configForwardSoftLimitThreshold(120*4096/360,0);
@@ -104,7 +104,7 @@ public class RobotMap {
 		
 		
 		Extender1 = new TalonSRX(PortMap.ARM_EXTENDER_LEAD);
-		Extender1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		Extender1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 		Extender1.setInverted(true);
 		Extender1.setSensorPhase(true);
 		Extender1.configForwardSoftLimitEnable(false, 0);		
@@ -118,6 +118,7 @@ public class RobotMap {
 		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);
 		Extender2.follow(Extender1);
 		Extender2.setInverted(false);
+		Extender2.configSelectedFeedbackSensor((FeedbackDevice.CTRE_MagEncoder_Absolute), 0, 0);
 		
 		
 		//ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
@@ -132,10 +133,10 @@ public class RobotMap {
 		Puncher2 = new Solenoid(PortMap.PUNCHER2_FORWARD_CHANNEL);
 		RollerB1 = new TalonSRX(PortMap.BOTTOM_ROLLER_LEAD);
 //		RollerB1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
-		RollerB1.setInverted(true);
+		RollerB1.setInverted(false);
 		RollerB2 = new VictorSPX(PortMap.BOTTOM_ROLLER_FOLLOWER);
 		RollerB2.follow(RollerB1);
-//		RollerB2.setInverted(false);
+		RollerB2.setInverted(true);
 //		Puncher1 = new Solenoid(PortMap.PUNCHER1_FORWARD_CHANNEL);
 		
 		//Jaw = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);

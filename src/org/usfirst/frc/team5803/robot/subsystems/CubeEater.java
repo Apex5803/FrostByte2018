@@ -34,22 +34,25 @@ public class CubeEater extends Subsystem {
 	
 	public void punchCube() {
 		Puncher1.set(true);
-		Puncher2.set(true);
+		Puncher2.set(true);		
+		RollerT1.set(ControlMode.PercentOutput, -0.9);
+		RollerB1.set(ControlMode.PercentOutput, -0.9);
 	}
 	
 	public void retractPuncher() {
-		Puncher1.set(false);
+		Puncher1.set(false);;
 		Puncher2.set(false);
+		endRoller();
 	}
 	
 	public void eatCube() {
-		RollerT1.set(ControlMode.PercentOutput, 0.35);
-		RollerB1.set(ControlMode.PercentOutput, 0.35);
+		RollerT1.set(ControlMode.PercentOutput, 0.64);
+		RollerB1.set(ControlMode.PercentOutput, 0.8);
 	}
 	
 	public void spitCube() {
-		RollerT1.set(ControlMode.PercentOutput, -0.35);
-		RollerB1.set(ControlMode.PercentOutput, -0.35);
+		RollerT1.set(ControlMode.PercentOutput, -0.8);
+		RollerB1.set(ControlMode.PercentOutput, -0.8);
 	}
 	
 	public void endRoller() {

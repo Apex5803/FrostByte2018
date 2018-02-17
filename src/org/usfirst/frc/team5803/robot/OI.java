@@ -17,6 +17,7 @@ import org.usfirst.frc.team5803.robot.commands.armCommands.StopArm;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.AutonomousCommand;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.EatCube;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.PunchCube;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.RetractPuncher;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCube;
 import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
 import org.usfirst.frc.team5803.robot.utils.POVTrigger;
@@ -26,6 +27,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //
 /**
@@ -61,25 +63,27 @@ public class OI {
         	 RB.whileHeld(new SpitCube());
         	 
         Button X=new JoystickButton(xbox2,3);
-        	X.whenPressed(new PunchCube());
-        	
+        	X.whileActive(new PunchCube());
+//        	X.whileActive(new SpitCube());
+        	X.whenInactive(new RetractPuncher());
         
    //      Button Y=new JoystickButton(xbox2,4);
         
         TriggerButton LT=new TriggerButton(xbox2, 2);
-        	LT.whenActive(new RotateArmManual());
+        	LT.whileActive(new RotateArmManual());
         	LT.whenInactive(new HoldArmPosition());
         	 
         TriggerButton RT=new TriggerButton(xbox2, 3);
-            RT.whenActive(new ExtendArm());
+            RT.whileActive(new ExtendArm());
 //            RT.whenInactive(new HoldArmPosition());
         	
         	
          POVTrigger UP=new POVTrigger(xbox2, 0, 0);
-        	UP.whenActive(new LockArm());
+        	UP.whileActive(new LockArm());
+        	
        
         POVTrigger DOWN=new POVTrigger(xbox2, 0, 180);
-        	DOWN.whenActive(new ReleaseArm());
+        	DOWN.whileActive(new ReleaseArm());
         
         //this.operatorController.rightTriggerButton.whenPressed(new CubeCollectorGoToPosition());
         //this.operatorController.leftTriggerButton.whenPressed(new CubeCollectorGoToZero());        
