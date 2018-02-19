@@ -54,13 +54,13 @@ public class CubeEater extends Subsystem {
 	
 	public void eatCubeManual() {
 		
-		if (OI.xbox1.getTriggerAxis(Hand.kLeft) <= -0.2) {
-			RollerT1.set(ControlMode.PercentOutput, 0.4 * OI.xbox1.getTriggerAxis(Hand.kLeft));
-			RollerB1.set(ControlMode.PercentOutput, 0.45 * OI.xbox1.getTriggerAxis(Hand.kLeft));
+		if (OI.xbox1.getTriggerAxis(Hand.kLeft) >= 0.2) {
+			RollerT1.set(ControlMode.PercentOutput, 0.5 * OI.xbox1.getTriggerAxis(Hand.kLeft));
+			RollerB1.set(ControlMode.PercentOutput, 0.58 * OI.xbox1.getTriggerAxis(Hand.kLeft));
 			}
-		else if (OI.xbox2.getTriggerAxis(Hand.kLeft) <= -0.2){
-			RollerT1.set(ControlMode.PercentOutput, 0.4 * OI.xbox2.getTriggerAxis(Hand.kLeft));
-			RollerB1.set(ControlMode.PercentOutput, 0.45 * OI.xbox2.getTriggerAxis(Hand.kLeft));
+		else if (OI.xbox2.getTriggerAxis(Hand.kLeft) >= 0.2){
+			RollerT1.set(ControlMode.PercentOutput, 0.5 * OI.xbox2.getTriggerAxis(Hand.kLeft));
+			RollerB1.set(ControlMode.PercentOutput, 0.58 * OI.xbox2.getTriggerAxis(Hand.kLeft));
 			}
 		else {
 			endRoller();
@@ -75,13 +75,13 @@ public class CubeEater extends Subsystem {
 	}
 public void spitCubeManual() {
 		
-		if (OI.xbox1.getTriggerAxis(Hand.kRight) <= -0.2) {
-			RollerT1.set(ControlMode.PercentOutput, 0.4 * OI.xbox1.getTriggerAxis(Hand.kRight));
-			RollerB1.set(ControlMode.PercentOutput, 0.45 * OI.xbox1.getTriggerAxis(Hand.kRight));
+		if (OI.xbox1.getTriggerAxis(Hand.kRight) >= 0.2) {
+			RollerT1.set(ControlMode.PercentOutput, -0.5 * OI.xbox1.getTriggerAxis(Hand.kRight));
+			RollerB1.set(ControlMode.PercentOutput, -0.5 * OI.xbox1.getTriggerAxis(Hand.kRight));
 			}
-		else if (OI.xbox2.getTriggerAxis(Hand.kRight) <= -0.2){
-			RollerT1.set(ControlMode.PercentOutput, 0.4 * OI.xbox2.getTriggerAxis(Hand.kRight));
-			RollerB1.set(ControlMode.PercentOutput, 0.45 * OI.xbox2.getTriggerAxis(Hand.kRight));
+		else if (OI.xbox2.getTriggerAxis(Hand.kRight) >= 0.2){
+			RollerT1.set(ControlMode.PercentOutput, 0.5 * OI.xbox2.getTriggerAxis(Hand.kRight));
+			RollerB1.set(ControlMode.PercentOutput, 0.5 * OI.xbox2.getTriggerAxis(Hand.kRight));
 			}
 		else {
 			endRoller();

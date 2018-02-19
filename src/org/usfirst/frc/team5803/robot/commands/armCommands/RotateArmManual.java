@@ -38,7 +38,7 @@ public class RotateArmManual extends Command {
 //			Robot.arm.move(0.3 * OI.xbox2.getY(Hand.kLeft));
 //			System.out.println("if statement achieved");
 			}
-			else Robot.arm.move(0);
+			else end();
 		}		
 //		else Robot.arm.move(0);
 //	}

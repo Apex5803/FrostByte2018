@@ -25,7 +25,7 @@ public class Arm extends Subsystem {
 	public static DoubleSolenoid ArmBrake = RobotMap.ArmBrake;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	
+	public boolean IsSecured;
 	public void extend(double speed) {
 		Extender1.set(ControlMode.PercentOutput, speed);
 		//Extender2.set(ControlMode.PercentOutput, speed);
@@ -38,10 +38,12 @@ public class Arm extends Subsystem {
 	
 	public void secure() {
 		ArmBrake.set(Value.kReverse);
+		IsSecured = true;
 	}
 	
 	public void unsecure() {
 		ArmBrake.set(Value.kForward);
+		IsSecured = false;
 	}
 	
 	public void endSecurer() {

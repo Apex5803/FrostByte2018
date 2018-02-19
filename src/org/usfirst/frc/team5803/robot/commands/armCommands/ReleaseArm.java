@@ -15,7 +15,13 @@ public ReleaseArm() {
 	}
 	
 	protected void execute() {
-		Robot.arm.unsecure();
+		if (Robot.arm.IsSecured = true) {
+			Robot.arm.unsecure();
+			Robot.arm.IsSecured = false;
+		}
+		else {
+			end();
+		}
 	}
 	
 	protected boolean isFinished() {

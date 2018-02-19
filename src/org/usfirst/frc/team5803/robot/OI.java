@@ -47,13 +47,13 @@ public class OI {
         //pickup angle
 //        Button A2=new JoystickButton(xbox2,1);
 //        A.whileHeld(new RotateArmManual());
-//        A2.whenPressed(new RotateArmAngle(20));
+//        0 A2.whenPressed(new RotateArmAngle(20));
 //        A.whenInactive(new HoldArmPosition());
         //A.whenPressed(new RotateArmManual());
         Button RPT2=new JoystickButton(xbox2, 2 );  //Change this to appropriate paddle value after testing
-        	RPT2.whenActive(new RotateArmManual());
+        	RPT2.whileHeld(new RotateArmManual());
         Button LPT2=new JoystickButton(xbox2, 1 );  //Change this to appropriate paddle value after testing
-        	LPT2.whenActive(new ExtendArm());
+        	LPT2.whileHeld(new ExtendArm());
         	
         Button LPB2=new JoystickButton(xbox2, 3 );  //Change this to appropriate paddle value after testing
         	LPB2.whenActive(new LockArm());
@@ -101,14 +101,14 @@ public class OI {
          POVTrigger DPAD_UP2=new POVTrigger(xbox2, 0, 0);
         	DPAD_UP2.whenActive(new RotateArmAngle(75));
         
-        POVTrigger DPAD_UP_LEFT2=new POVTrigger(xbox2, 0, 315);
-        	DPAD_UP_LEFT2.whenActive(new RotateArmAngle(90));
-        	
         POVTrigger DPAD_UP_RIGHT2=new POVTrigger(xbox2, 0, 45);
-        	DPAD_UP_RIGHT2.whenActive(new RotateArmAngle(25));
+        	DPAD_UP_RIGHT2.whenActive(new RotateArmAngle(90));
         	
-        POVTrigger DPAD_R2=new POVTrigger(xbox2, 0, 90);
-        	DPAD_R2.whenActive(new RotateArmAngle(6));
+        POVTrigger DPAD_UP_LEFT2=new POVTrigger(xbox2, 0, 315);
+        	DPAD_UP_LEFT2.whenActive(new RotateArmAngle(25));
+        	
+        POVTrigger DPAD_L2=new POVTrigger(xbox2, 0, 270);
+        	DPAD_L2.whenActive(new RotateArmAngle(5.5));
         	
         
         	

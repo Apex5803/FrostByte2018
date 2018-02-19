@@ -90,7 +90,7 @@ public class RobotMap {
 		Arm1.setSensorPhase(true);
 //		Arm1.configForwardSoftLimitEnable(false, 0);		
 		Arm1.configForwardSoftLimitEnable(true, 0);
-		Arm1.configForwardSoftLimitThreshold(700,0); //max = ~1100 
+		Arm1.configForwardSoftLimitThreshold(880,0); //max = ~1100 
 //		Arm1.configReverseSoftLimitEnable(false, 0);		
 		Arm1.configReverseSoftLimitEnable(true, 0);
 		Arm1.configReverseSoftLimitThreshold(0,0);

@@ -65,7 +65,7 @@ public class Robot extends TimedRobot {
         // constructed yet. Thus, their requires() statements may grab null
         // pointers. Bad news. Don't move it.
         oi = new OI();
-        int absolutePosition = RobotMap.Arm1.getSensorCollection().getPulseWidthPosition() - 7132;
+        int absolutePosition = RobotMap.Arm1.getSensorCollection().getPulseWidthPosition() - 9230;
 		/* mask out overflows, keep bottom 12 bits */
 		absolutePosition &= 0xFFF;
 //		absolutePosition *= -1;
