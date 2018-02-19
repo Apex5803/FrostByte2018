@@ -15,10 +15,12 @@ import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmAngle;
 import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmManual;
 import org.usfirst.frc.team5803.robot.commands.armCommands.StopArm;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.AutonomousCommand;
-import org.usfirst.frc.team5803.robot.commands.cubeCommands.EatCube;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.EatCubeManual;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.EatCubeStandard;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.PunchCube;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.RetractPuncher;
-import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCube;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeManual;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeStandard;
 import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
 import org.usfirst.frc.team5803.robot.utils.POVTrigger;
 import org.usfirst.frc.team5803.robot.utils.TriggerButton;
@@ -43,47 +45,76 @@ public class OI {
         xbox2 = new XboxController(1);
         
         //pickup angle
-        Button A=new JoystickButton(xbox2,1);
+//        Button A2=new JoystickButton(xbox2,1);
 //        A.whileHeld(new RotateArmManual());
-        A.whenPressed(new RotateArmAngle(20));
+//        A2.whenPressed(new RotateArmAngle(20));
 //        A.whenInactive(new HoldArmPosition());
         //A.whenPressed(new RotateArmManual());
-        
+        Button RPT2=new JoystickButton(xbox2, 2 );  //Change this to appropriate paddle value after testing
+        	RPT2.whenActive(new RotateArmManual());
+        Button LPT2=new JoystickButton(xbox2, 1 );  //Change this to appropriate paddle value after testing
+        	LPT2.whenActive(new ExtendArm());
+        	
+        Button LPB2=new JoystickButton(xbox2, 3 );  //Change this to appropriate paddle value after testing
+        	LPB2.whenActive(new LockArm());
+        	LPB2.whenInactive(new ReleaseArm());
         //climb angle
-        Button B=new JoystickButton(xbox2,2);
-        B.whenPressed(new RotateArmAngle(60));
+        Button B2=new JoystickButton(xbox2,2);
+        B2.whenPressed(new RotateArmAngle(60));
 //        B.whenInactive(new HoldArmPosition());
         
   
-        
-        Button LB=new JoystickButton(xbox2,5);
-        	LB.whileHeld(new EatCube());
-        	
-        Button RB=new JoystickButton(xbox2,6);
-        	 RB.whileHeld(new SpitCube());
+        Button LB1=new JoystickButton(xbox1,5);
+    		LB1.whileHeld(new EatCubeStandard());
+        Button LB2=new JoystickButton(xbox2,5);
+        	LB2.whileHeld(new EatCubeStandard());
+        	  
+//        TriggerButton LT2=new TriggerButton(xbox2, 2);
+//        	LT2.whileActive(new RotateArmManual());
+        Button RB1=new JoystickButton(xbox2,6);
+         	RB1.whileHeld(new SpitCubeStandard());
+        Button RB2=new JoystickButton(xbox2,6);
+        	 RB2.whileHeld(new SpitCubeStandard());
         	 
-        Button X=new JoystickButton(xbox2,3);
-        	X.whileActive(new PunchCube());
-//        	X.whileActive(new SpitCube());
-        	X.whenInactive(new RetractPuncher());
+        Button Y1=new JoystickButton(xbox1,4);
+        	Y1.whileActive(new PunchCube());
+        	Y1.whenInactive(new RetractPuncher());
+        Button Y2=new JoystickButton(xbox2,4);
+         	Y2.whileActive(new PunchCube());
+         	Y2.whenInactive(new RetractPuncher());
         
-   //      Button Y=new JoystickButton(xbox2,4);
-        
-        TriggerButton LT=new TriggerButton(xbox2, 2);
-        	LT.whileActive(new RotateArmManual());
-//        	LT.whenInactive(new HoldArmPosition());
+//         Button Y=new JoystickButton(xbox2,4);
+      
         	 
-        TriggerButton RT=new TriggerButton(xbox2, 3);
-            RT.whileActive(new ExtendArm());
+       TriggerButton RT1=new TriggerButton(xbox1, 3);
+       		RT1.whileActive(new SpitCubeManual());	
+       TriggerButton RT2=new TriggerButton(xbox2, 3);
+       		RT2.whileActive(new SpitCubeManual());
+       
+       TriggerButton LT1=new TriggerButton(xbox1, 3);
+       	 	LT1.whileActive(new EatCubeManual());
+       TriggerButton LT2=new TriggerButton(xbox2, 3);
+       	 	LT2.whileActive(new EatCubeManual());
 //            RT.whenInactive(new HoldArmPosition());
         	
         	
-         POVTrigger UP=new POVTrigger(xbox2, 0, 0);
-        	UP.whileActive(new LockArm());
+         POVTrigger DPAD_UP2=new POVTrigger(xbox2, 0, 0);
+        	DPAD_UP2.whenActive(new RotateArmAngle(75));
+        
+        POVTrigger DPAD_UP_LEFT2=new POVTrigger(xbox2, 0, 315);
+        	DPAD_UP_LEFT2.whenActive(new RotateArmAngle(90));
+        	
+        POVTrigger DPAD_UP_RIGHT2=new POVTrigger(xbox2, 0, 45);
+        	DPAD_UP_RIGHT2.whenActive(new RotateArmAngle(25));
+        	
+        POVTrigger DPAD_R2=new POVTrigger(xbox2, 0, 90);
+        	DPAD_R2.whenActive(new RotateArmAngle(6));
+        	
+        
         	
        
-        POVTrigger DOWN=new POVTrigger(xbox2, 0, 180);
-        	DOWN.whileActive(new ReleaseArm());
+//        POVTrigger DOWN2=new POVTrigger(xbox2, 0, 180);
+//        	DOWN2.whileActive(new ReleaseArm());
         
         //this.operatorController.rightTriggerButton.whenPressed(new CubeCollectorGoToPosition());
         //this.operatorController.leftTriggerButton.whenPressed(new CubeCollectorGoToZero());        

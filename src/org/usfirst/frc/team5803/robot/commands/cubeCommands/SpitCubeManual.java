@@ -4,14 +4,14 @@ import org.usfirst.frc.team5803.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SpitCube extends Command {
+public class SpitCubeManual extends Command {
 	
 	protected void initialize() {
 		
 	}
 	
 	protected void execute() {
-		Robot.kCubeEater.spitCube();
+		Robot.kCubeEater.spitCubeManual();
 	}
 	
 	protected boolean isFinished() {

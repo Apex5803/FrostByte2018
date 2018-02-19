@@ -3,7 +3,7 @@ import org.usfirst.frc.team5803.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class EatCube extends Command{
+public class EatCubeManual extends Command{
 	
 	
 	protected void initialize() {
@@ -11,7 +11,7 @@ public class EatCube extends Command{
 	}
 	
 	protected void execute() {
-		Robot.kCubeEater.eatCube();
+		Robot.kCubeEater.eatCubeManual();
 	}
 	
 	protected boolean isFinished() {

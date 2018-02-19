@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5803.robot.subsystems;
 
+import org.usfirst.frc.team5803.robot.OI;
 import org.usfirst.frc.team5803.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -9,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -45,14 +47,45 @@ public class CubeEater extends Subsystem {
 		endRoller();
 	}
 	
-	public void eatCube() {
+	public void eatCubeStandard() {
 		RollerT1.set(ControlMode.PercentOutput, 0.4);
 		RollerB1.set(ControlMode.PercentOutput, 0.45);
 	}
 	
-	public void spitCube() {
+	public void eatCubeManual() {
+		
+		if (OI.xbox1.getTriggerAxis(Hand.kLeft) <= -0.2) {
+			RollerT1.set(ControlMode.PercentOutput, 0.4 * OI.xbox1.getTriggerAxis(Hand.kLeft));
+			RollerB1.set(ControlMode.PercentOutput, 0.45 * OI.xbox1.getTriggerAxis(Hand.kLeft));
+			}
+		else if (OI.xbox2.getTriggerAxis(Hand.kLeft) <= -0.2){
+			RollerT1.set(ControlMode.PercentOutput, 0.4 * OI.xbox2.getTriggerAxis(Hand.kLeft));
+			RollerB1.set(ControlMode.PercentOutput, 0.45 * OI.xbox2.getTriggerAxis(Hand.kLeft));
+			}
+		else {
+			endRoller();
+		}
+		
+	}
+	
+	
+	public void spitCubeStandard() {
 		RollerT1.set(ControlMode.PercentOutput, -0.8);
 		RollerB1.set(ControlMode.PercentOutput, -0.8);
+	}
+public void spitCubeManual() {
+		
+		if (OI.xbox1.getTriggerAxis(Hand.kRight) <= -0.2) {
+			RollerT1.set(ControlMode.PercentOutput, 0.4 * OI.xbox1.getTriggerAxis(Hand.kRight));
+			RollerB1.set(ControlMode.PercentOutput, 0.45 * OI.xbox1.getTriggerAxis(Hand.kRight));
+			}
+		else if (OI.xbox2.getTriggerAxis(Hand.kRight) <= -0.2){
+			RollerT1.set(ControlMode.PercentOutput, 0.4 * OI.xbox2.getTriggerAxis(Hand.kRight));
+			RollerB1.set(ControlMode.PercentOutput, 0.45 * OI.xbox2.getTriggerAxis(Hand.kRight));
+			}
+		else {
+			endRoller();
+		}
 	}
 	
 	public void endRoller() {
