@@ -27,12 +27,12 @@ public class Arm extends Subsystem {
 	
 	public void extend(double speed) {
 		Extender1.set(ControlMode.PercentOutput, speed);
-		Extender2.set(ControlMode.PercentOutput, speed);
+		//Extender2.set(ControlMode.PercentOutput, speed);
 	}
 	
 	public void retract() {
 		Extender1.set(ControlMode.PercentOutput, -0.2);
-		Extender2.set(ControlMode.PercentOutput, -0.2);
+		//Extender2.set(ControlMode.PercentOutput, -0.2);
 	}
 	
 	public void secure() {
@@ -49,18 +49,18 @@ public class Arm extends Subsystem {
 	
 	public void endExtender() {
 		Extender1.set(ControlMode.PercentOutput, 0.0);
-		Extender2.set(ControlMode.PercentOutput, 0.0);
+		//Extender2.set(ControlMode.PercentOutput, 0.0);
 	}
 	
 	public void end() {
 //		ArmBrake.set(Value.kOff);
 		Extender1.set(ControlMode.PercentOutput, 0.0);
-		Extender2.set(ControlMode.PercentOutput, 0.0);
+		//Extender2.set(ControlMode.PercentOutput, 0.0);
 	}
 	
 		 public void configPIDF(double p, double i, double d, double f) {
 
-		    	this.Arm1.config_kP(0, p, 0);
+		    	this.Arm1.config_kP( 0, p, 0);
 		    	this.Arm1.config_kI(0, i, 0);
 		    	this.Arm1.config_kD(0, d, 0);
 		    	this.Arm1.config_kF(0, f, 0);
@@ -74,9 +74,9 @@ public class Arm extends Subsystem {
 		 }
 		 public void moveTo(ControlMode controlMode, double angle){
 			 //angle*4096 tics per rev./total degrees per revolution 
-			 double setPoint= angle*4096/360;
+			 double setPoint= angle*4096/360 + 68;
 			 this.Arm1.set(ControlMode.MotionMagic, setPoint);
-			 //System.out.println(angle + ": target angle");
+			 System.out.println(angle + ": target angle");
 			 System.out.println( Arm1.getSelectedSensorPosition(0)*360/4096 + ": actual angle");
 		 }
 		 public void End() {

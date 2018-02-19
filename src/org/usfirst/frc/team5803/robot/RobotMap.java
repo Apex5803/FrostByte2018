@@ -86,45 +86,77 @@ public class RobotMap {
 		
 		Arm1 = new TalonSRX(PortMap.ARM_LEAD);
 		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
-		Arm1.setInverted(true);
-		Arm1.setSensorPhase(false);
-		Arm1.configForwardSoftLimitEnable(false, 0);		
-		//Arm1.configForwardSoftLimitEnable(true, 0);
-		//Arm1.configForwardSoftLimitThreshold(120*4096/360,0);
+		Arm1.setInverted(false);
+		Arm1.setSensorPhase(true);
+//		Arm1.configForwardSoftLimitEnable(false, 0);		
+		Arm1.configForwardSoftLimitEnable(true, 0);
+		Arm1.configForwardSoftLimitThreshold(700,0); //max = ~1100 
 //		Arm1.configReverseSoftLimitEnable(false, 0);		
-		//Arm1.configReverseSoftLimitEnable(true, 0);
-		//Arm1.configReverseSoftLimitThreshold(0*4096,0);
-//		Arm1.configMotionCruiseVelocity(3092,0);
-//		Arm1.configMotionAcceleration(3092,0);
+		Arm1.configReverseSoftLimitEnable(true, 0);
+		Arm1.configReverseSoftLimitThreshold(0,0);
+		Arm1.configMotionCruiseVelocity(3092,0);
+		Arm1.configMotionAcceleration(3092,0);
+		Arm1.configNominalOutputForward(0, 0);
+		Arm1.configNominalOutputReverse(0, 0);
+		Arm1.configPeakOutputForward(1, 0);
+		Arm1.configPeakOutputReverse(-1, 0);
+		Arm1.configAllowableClosedloopError(0, 0, 0);
 		//ARM2 RUNS THE SAME DIRECTION AS ARM1
 		Arm2 = new VictorSPX(PortMap.ARM_FOLLOWER);
 		Arm2.follow(Arm1);
-		Arm2.setInverted(true);
+		Arm2.setInverted(false);
 		ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		
-		
+		/* Soft limits not working
 		Extender1 = new TalonSRX(PortMap.ARM_EXTENDER_LEAD);
-		Extender1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		Extender1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		Extender1.setInverted(true);
-		Extender1.setSensorPhase(true);
-		Extender1.configForwardSoftLimitEnable(false, 0);		
-		//Extender1.configForwardSoftLimitEnable(true, 0);
-		//Extender1.configForwardSoftLimitThreshold(120*4096/360,0);
-		Extender1.configReverseSoftLimitEnable(false, 0);	
-		//Extender1.configReverseSoftLimitEnable(true, 0);
-		//Extender1.configReverseSoftLimitThreshold(0*4096,0);
+		Extender1.setSensorPhase(false);
+		//Extender1.configForwardSoftLimitEnable(false, 0);		
+		Extender1.configForwardSoftLimitThreshold(15000,0); //max = ~27000 
+		Extender1.configForwardSoftLimitEnable(true, 0);
+		//Extender1.configReverseSoftLimitEnable(false, 0);	
+		Extender1.configReverseSoftLimitThreshold(4000,0);
+		Extender1.configReverseSoftLimitEnable(true, 0);
 		
 		//EXTENDER2 RUNS THE OPPOSITE DIRECTION FROM EXTENDER1
 		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);
 		Extender2.follow(Extender1);
 		Extender2.setInverted(false);
-		Extender2.configSelectedFeedbackSensor((FeedbackDevice.CTRE_MagEncoder_Absolute), 0, 0);
-		
-		
+		//Extender2.configSelectedFeedbackSensor((FeedbackDevice.CTRE_MagEncoder_Absolute), 0, 0);
+		*/
+		Extender1 = new TalonSRX(PortMap.ARM_EXTENDER_LEAD);
+		/* choose the sensor and sensor direction */
+		Extender1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+
+		/* choose to ensure sensor is positive when output is positive */
+		Extender1.setSensorPhase(true);
+
+		/* choose based on what direction you want forward/positive to be.
+		 * This does not affect sensor phase. */ 
+		Extender1.setInverted(false);
+
+		/* set the peak and nominal outputs, 12V means full */
+		Extender1.configNominalOutputForward(0, 0);
+		Extender1.configNominalOutputReverse(0, 0);
+		Extender1.configPeakOutputForward(1, 0);
+		Extender1.configPeakOutputReverse(-1, 0);
+		/*
+		 * set the allowable closed-loop error, Closed-Loop output will be
+		 * neutral within this range. See Table in Section 17.2.1 for native
+		 * units per rotation.
+		 */
+		Extender1.configAllowableClosedloopError(0, 0, 0);
+		//Extender1.configForwardSoftLimitEnable(false, 0);		
+		Extender1.configForwardSoftLimitThreshold(15000,0); //max = ~27000 
+		Extender1.configForwardSoftLimitEnable(true, 0);
+		//Extender1.configReverseSoftLimitEnable(false, 0);	
+		Extender1.configReverseSoftLimitThreshold(4000,0);
+		Extender1.configReverseSoftLimitEnable(true, 0);
 		//ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		
 		RollerT1 = new TalonSRX(PortMap.TOP_ROLLER_LEAD);
-//		RollerT1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		RollerT1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 		RollerT1.setInverted(false);
 		RollerT2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER);
 		RollerT2.follow(RollerT1);

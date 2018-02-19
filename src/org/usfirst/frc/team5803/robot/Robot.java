@@ -12,6 +12,7 @@
 package org.usfirst.frc.team5803.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -55,6 +56,7 @@ public class Robot extends TimedRobot {
         arm = new Arm();
         kCubeEater = new CubeEater();
         compressor.setClosedLoopControl(true);
+        arm.configPIDF(1.8, 0, 0, 0);
         
         
 
@@ -63,7 +65,7 @@ public class Robot extends TimedRobot {
         // constructed yet. Thus, their requires() statements may grab null
         // pointers. Bad news. Don't move it.
         oi = new OI();
-        int absolutePosition = RobotMap.Arm1.getSensorCollection().getPulseWidthPosition();
+        int absolutePosition = RobotMap.Arm1.getSensorCollection().getPulseWidthPosition() - 7132;
 		/* mask out overflows, keep bottom 12 bits */
 		absolutePosition &= 0xFFF;
 //		absolutePosition *= -1;
@@ -73,6 +75,21 @@ public class Robot extends TimedRobot {
 //			absolutePosition *= -1;
 		/* set the quadrature (relative) sensor to match absolute */
 RobotMap.Arm1.setSelectedSensorPosition(absolutePosition, 0, 0);
+//RobotMap.Extender1.setSelectedSensorPosition(0, 0, 0);
+
+/*
+ * lets grab the 360 degree position of the MagEncoder's absolute
+ * position, and intitally set the relative sensor to match.
+ */
+int absolutePosition1 = RobotMap.Extender1.getSensorCollection().getPulseWidthPosition();
+/* mask out overflows, keep bottom 12 bits */
+absolutePosition1 &= 0xFFF;
+//if (0)
+//	absolutePosition1 *= -1;
+//if (0)
+	absolutePosition1 *= -1;
+/* set the quadrature (relative) sensor to match absolute */
+RobotMap.Extender1.setSelectedSensorPosition(absolutePosition1, 0, 0);
 
         // Add commands to Autonomous Sendable Chooser
 
@@ -98,8 +115,11 @@ RobotMap.Arm1.setSelectedSensorPosition(absolutePosition, 0, 0);
         SmartDashboard.putNumber("Arm1 encoder speed", RobotMap.Arm1.getSelectedSensorVelocity(0));
         SmartDashboard.putNumber("L1 encoderPosition", RobotMap.L1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("R1 encoderPosition", RobotMap.R1.getSelectedSensorPosition(0));
-        SmartDashboard.putNumber("Extender2 encoderPosition", RobotMap.Extender2.getSelectedSensorPosition(0));
+        //SmartDashboard.putNumber("Extender2 encoderPosition", RobotMap.Extender2.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("Extender1 encoderPosition", RobotMap.Extender1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("RollerT1 encoder Postion", RobotMap.RollerT1.getSelectedSensorPosition(0));
+//		SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;
+
     }
 
     @Override
@@ -143,5 +163,9 @@ RobotMap.Arm1.setSelectedSensorPosition(absolutePosition, 0, 0);
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         SmartDashboard.putNumber("Arm 1 encoder position", RobotMap.Arm1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Extender1 encoderPosition", RobotMap.Extender1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("RollerT1 encoder position", RobotMap.RollerT1.getSelectedSensorPosition(0));
+//		SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;
+
     }
 }

@@ -2,6 +2,8 @@ package org.usfirst.frc.team5803.robot.commands.armCommands;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team5803.robot.subsystems.Arm;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -26,13 +28,15 @@ public class RotateArmManual extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-//		System.out.println("Executing Manual Arm Rotation");
+		System.out.println("Executing Manual Arm Rotation");
 		
 //		if(OI.xbox1.getTriggerAxis(Hand.kLeft) > 0.75) {
 //			System.out.println("running full manual test");
-			if(OI.xbox2.getY(Hand.kLeft) >= 0.2 || OI.xbox2.getY(Hand.kLeft) < -0.2) {
-			Robot.arm.moveTo(ControlMode.MotionMagic, 50. * OI.xbox2.getY(Hand.kLeft)); 		
-//			System.out.println("if statement achieved");
+			if(OI.xbox2.getY(Hand.kLeft) >= 0.2  || OI.xbox2.getY(Hand.kLeft) <= -0.2) {
+			Robot.arm.moveTo(ControlMode.MotionMagic, -50. * OI.xbox2.getY(Hand.kLeft));
+//			SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;
+//			Robot.arm.move(0.3 * OI.xbox2.getY(Hand.kLeft));
+			System.out.println("if statement achieved");
 			}
 			else Robot.arm.move(0);
 		}		

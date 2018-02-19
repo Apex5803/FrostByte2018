@@ -46,13 +46,13 @@ public class OI {
         Button A=new JoystickButton(xbox2,1);
 //        A.whileHeld(new RotateArmManual());
         A.whenPressed(new RotateArmAngle(20));
-        A.whenInactive(new HoldArmPosition());
+//        A.whenInactive(new HoldArmPosition());
         //A.whenPressed(new RotateArmManual());
         
         //climb angle
         Button B=new JoystickButton(xbox2,2);
         B.whenPressed(new RotateArmAngle(60));
-        B.whenInactive(new HoldArmPosition());
+//        B.whenInactive(new HoldArmPosition());
         
   
         
@@ -71,7 +71,7 @@ public class OI {
         
         TriggerButton LT=new TriggerButton(xbox2, 2);
         	LT.whileActive(new RotateArmManual());
-        	LT.whenInactive(new HoldArmPosition());
+//        	LT.whenInactive(new HoldArmPosition());
         	 
         TriggerButton RT=new TriggerButton(xbox2, 3);
             RT.whileActive(new ExtendArm());
