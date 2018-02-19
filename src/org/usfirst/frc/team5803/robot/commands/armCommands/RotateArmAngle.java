@@ -46,8 +46,8 @@ public class RotateArmAngle extends Command {
 	
 	@Override
 	protected void end() {
-		Robot.arm.move(0);
-		
+		//Robot.arm.move(0);
+		new HoldArmPosition(); 
 	}
 
 	// Called when another command which requires one or more of the same
