@@ -56,8 +56,8 @@ public class Robot extends TimedRobot {
         arm = new Arm();
         kCubeEater = new CubeEater();
         compressor.setClosedLoopControl(true);
-        arm.configPIDF(1.8, 0, 0, 0);
-        
+        arm.configPIDF(2.2, 0, 0, 1.6);
+        // p = 1.8 
         
 
         // OI must be constructed after subsystems. If the OI creates Commands
@@ -112,7 +112,7 @@ RobotMap.Extender1.setSelectedSensorPosition(absolutePosition1, 0, 0);
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
         SmartDashboard.putNumber("Arm 1 encoderPosition", RobotMap.Arm1.getSelectedSensorPosition(0));
-        SmartDashboard.putNumber("Arm1 encoder speed", RobotMap.Arm1.getSelectedSensorVelocity(0));
+        //3SmartDashboard.putNumber("Arm1 encoder speed", RobotMap.Arm1.getSelectedSensorVelocity(0));
         SmartDashboard.putNumber("L1 encoderPosition", RobotMap.L1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("R1 encoderPosition", RobotMap.R1.getSelectedSensorPosition(0));
         //SmartDashboard.putNumber("Extender2 encoderPosition", RobotMap.Extender2.getSelectedSensorPosition(0));
@@ -165,6 +165,9 @@ RobotMap.Extender1.setSelectedSensorPosition(absolutePosition1, 0, 0);
         SmartDashboard.putNumber("Arm 1 encoder position", RobotMap.Arm1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("Extender1 encoderPosition", RobotMap.Extender1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("RollerT1 encoder position", RobotMap.RollerT1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Arm1 encoder speed", RobotMap.Arm1.getSelectedSensorVelocity(0));
+       
+        //SmartDashboard.putNumber("Arm 1 error", RobotMap.Arm1.get)
 //		SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;
 
     }

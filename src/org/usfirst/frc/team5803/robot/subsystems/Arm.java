@@ -3,6 +3,7 @@ package org.usfirst.frc.team5803.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5803.robot.Robot;
 import org.usfirst.frc.team5803.robot.RobotMap;
@@ -78,6 +79,7 @@ public class Arm extends Subsystem {
 			 this.Arm1.set(ControlMode.MotionMagic, setPoint);
 			 System.out.println(angle + ": target angle");
 			 System.out.println( Arm1.getSelectedSensorPosition(0)*360/4096 + ": actual angle");
+			 SmartDashboard.putNumber("Arm 1 error", angle -  Arm1.getSelectedSensorPosition(0)*360/4096); 
 		 }
 		 public void End() {
 				this.move(0);

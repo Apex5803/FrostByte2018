@@ -94,12 +94,12 @@ public class RobotMap {
 //		Arm1.configReverseSoftLimitEnable(false, 0);		
 		Arm1.configReverseSoftLimitEnable(true, 0);
 		Arm1.configReverseSoftLimitThreshold(0,0);
-		Arm1.configMotionCruiseVelocity(3092,0);
-		Arm1.configMotionAcceleration(3092,0);
+		Arm1.configMotionCruiseVelocity(1000,0);
+		Arm1.configMotionAcceleration(1000,0);
 		Arm1.configNominalOutputForward(0, 0);
 		Arm1.configNominalOutputReverse(0, 0);
 		Arm1.configPeakOutputForward(1, 0);
-		Arm1.configPeakOutputReverse(-1, 0);
+		Arm1.configPeakOutputReverse(-0.1, 0);
 		Arm1.configAllowableClosedloopError(0, 0, 0);
 		//ARM2 RUNS THE SAME DIRECTION AS ARM1
 		Arm2 = new VictorSPX(PortMap.ARM_FOLLOWER);

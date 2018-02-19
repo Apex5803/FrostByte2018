@@ -28,7 +28,7 @@ public class RotateArmManual extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		System.out.println("Executing Manual Arm Rotation");
+//		System.out.println("Executing Manual Arm Rotation");
 		
 //		if(OI.xbox1.getTriggerAxis(Hand.kLeft) > 0.75) {
 //			System.out.println("running full manual test");
@@ -36,7 +36,7 @@ public class RotateArmManual extends Command {
 			Robot.arm.moveTo(ControlMode.MotionMagic, -50. * OI.xbox2.getY(Hand.kLeft));
 //			SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;
 //			Robot.arm.move(0.3 * OI.xbox2.getY(Hand.kLeft));
-			System.out.println("if statement achieved");
+//			System.out.println("if statement achieved");
 			}
 			else Robot.arm.move(0);
 		}		
