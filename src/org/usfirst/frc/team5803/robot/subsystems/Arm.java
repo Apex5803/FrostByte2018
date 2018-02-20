@@ -26,8 +26,8 @@ public class Arm extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public boolean IsSecured;
-	public void extend(double speed) {
-		Extender1.set(ControlMode.PercentOutput, speed);
+	public void extend(ControlMode controlmode, double position) {
+		Extender1.set(controlmode, position);
 		//Extender2.set(ControlMode.PercentOutput, speed);
 	}
 	
@@ -67,8 +67,13 @@ public class Arm extends Subsystem {
 		    	this.Arm1.config_kI(0, i, 0);
 		    	this.Arm1.config_kD(0, d, 0);
 		    	this.Arm1.config_kF(0, f, 0);
-
-		    }
+		 }   	
+		 public void configPIDFextender(double p, double i, double d, double f) {
+		    	this.Extender1.config_kP(0, p, 0); 
+		    	this.Extender1.config_kI(0, i, 0); 
+		    	this.Extender1.config_kD(0, d, 0); 
+		    	this.Extender1.config_kF(0, f, 0); 
+		    	}
 		 public double vgiver(){
 			 return this.Arm1.getSelectedSensorPosition(0);
 		 }

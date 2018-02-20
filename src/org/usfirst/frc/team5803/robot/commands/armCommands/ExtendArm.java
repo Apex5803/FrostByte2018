@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5803.robot.OI;
 import org.usfirst.frc.team5803.robot.Robot;
+import org.usfirst.frc.team5803.robot.RobotMap;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -25,12 +28,17 @@ public class ExtendArm extends Command {
 
 		
 //		if(OI.xbox2.getTriggerAxis(Hand.kRight) > 0.75) {
-			//System.out.println("running full manual test");
-			if(OI.xbox2.getY(Hand.kRight) >= 0.2 || OI.xbox2.getY(Hand.kRight) <= 0.2) {
-				Robot.arm.extend(0.2 * OI.xbox2.getY(Hand.kRight)); 						
+//			System.out.println("running full manual test");
+			if(OI.xbox2.getY(Hand.kRight) >= 0.2 || OI.xbox2.getY(Hand.kRight) <= -0.2) {
+				Robot.arm.extend(ControlMode.PercentOutput, -0.4 * OI.xbox2.getY(Hand.kRight)); 						
+//				System.out.println("running extension in manual");
+				
 			}
-			else Robot.arm.extend(0);
-		}		
+			else {
+			double Extension = RobotMap.Extender1.getSelectedSensorPosition(0);
+	    	Robot.arm.extend(ControlMode.MotionMagic, Extension);
+			}
+			}		
 //		else Robot.arm.extend(0);
 //	}
 	

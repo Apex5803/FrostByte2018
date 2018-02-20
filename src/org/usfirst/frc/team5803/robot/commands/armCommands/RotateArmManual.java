@@ -32,8 +32,9 @@ public class RotateArmManual extends Command {
 		
 //		if(OI.xbox1.getTriggerAxis(Hand.kLeft) > 0.75) {
 //			System.out.println("running full manual test");
+		new ReleaseArm();
 			if(OI.xbox2.getY(Hand.kLeft) >= 0.2  || OI.xbox2.getY(Hand.kLeft) <= -0.2) {
-			Robot.arm.moveTo(ControlMode.MotionMagic, -50. * OI.xbox2.getY(Hand.kLeft));
+			Robot.arm.moveTo(ControlMode.MotionMagic, -98. * OI.xbox2.getY(Hand.kLeft));
 //			SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;
 //			Robot.arm.move(0.3 * OI.xbox2.getY(Hand.kLeft));
 //			System.out.println("if statement achieved");
@@ -53,6 +54,7 @@ public class RotateArmManual extends Command {
 	@Override
 	protected void end() {
 		new HoldArmPosition(); 
+		new LockArm();
 	}
 
 	// Called when another command which requires one or more of the same

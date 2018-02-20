@@ -90,10 +90,10 @@ public class RobotMap {
 		Arm1.setSensorPhase(true);
 //		Arm1.configForwardSoftLimitEnable(false, 0);		
 		Arm1.configForwardSoftLimitEnable(true, 0);
-		Arm1.configForwardSoftLimitThreshold(880,0); //max = ~1100 
+		Arm1.configForwardSoftLimitThreshold(1100,0); //max = ~1100 
 //		Arm1.configReverseSoftLimitEnable(false, 0);		
 		Arm1.configReverseSoftLimitEnable(true, 0);
-		Arm1.configReverseSoftLimitThreshold(0,0);
+		Arm1.configReverseSoftLimitThreshold(20,0);
 		Arm1.configMotionCruiseVelocity(1000,0);
 		Arm1.configMotionAcceleration(1000,0);
 		Arm1.configNominalOutputForward(0, 0);
@@ -148,10 +148,10 @@ public class RobotMap {
 		 */
 		Extender1.configAllowableClosedloopError(0, 0, 0);
 		//Extender1.configForwardSoftLimitEnable(false, 0);		
-		Extender1.configForwardSoftLimitThreshold(15000,0); //max = ~27000 
+		Extender1.configForwardSoftLimitThreshold(31000,0); //max = ~27000 
 		Extender1.configForwardSoftLimitEnable(true, 0);
 		//Extender1.configReverseSoftLimitEnable(false, 0);	
-		Extender1.configReverseSoftLimitThreshold(4000,0);
+		Extender1.configReverseSoftLimitThreshold(-10,0);
 		Extender1.configReverseSoftLimitEnable(true, 0);
 		//ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		

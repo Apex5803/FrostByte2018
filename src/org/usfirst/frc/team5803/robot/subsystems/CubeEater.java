@@ -58,7 +58,7 @@ public class CubeEater extends Subsystem {
 			RollerT1.set(ControlMode.PercentOutput, 0.5 * OI.xbox1.getTriggerAxis(Hand.kLeft));
 			RollerB1.set(ControlMode.PercentOutput, 0.58 * OI.xbox1.getTriggerAxis(Hand.kLeft));
 			}
-		else if (OI.xbox2.getTriggerAxis(Hand.kLeft) >= 0.2){
+		else if (OI.xbox2.getTriggerAxis(Hand.kLeft) >= -0.2){
 			RollerT1.set(ControlMode.PercentOutput, 0.5 * OI.xbox2.getTriggerAxis(Hand.kLeft));
 			RollerB1.set(ControlMode.PercentOutput, 0.58 * OI.xbox2.getTriggerAxis(Hand.kLeft));
 			}
@@ -80,8 +80,8 @@ public void spitCubeManual() {
 			RollerB1.set(ControlMode.PercentOutput, -0.5 * OI.xbox1.getTriggerAxis(Hand.kRight));
 			}
 		else if (OI.xbox2.getTriggerAxis(Hand.kRight) >= 0.2){
-			RollerT1.set(ControlMode.PercentOutput, 0.5 * OI.xbox2.getTriggerAxis(Hand.kRight));
-			RollerB1.set(ControlMode.PercentOutput, 0.5 * OI.xbox2.getTriggerAxis(Hand.kRight));
+			RollerT1.set(ControlMode.PercentOutput, -0.5 * OI.xbox2.getTriggerAxis(Hand.kRight));
+			RollerB1.set(ControlMode.PercentOutput, -0.5 * OI.xbox2.getTriggerAxis(Hand.kRight));
 			}
 		else {
 			endRoller();

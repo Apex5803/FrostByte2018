@@ -56,16 +56,16 @@ public class OI {
         	LPT2.whileHeld(new ExtendArm());
         	
         Button LPB2=new JoystickButton(xbox2, 3 );  //Change this to appropriate paddle value after testing
-        	LPB2.whenActive(new LockArm());
-        	LPB2.whenInactive(new ReleaseArm());
+        	LPB2.whenActive(new ReleaseArm());
+        	LPB2.whenInactive(new LockArm());
         //climb angle
-        Button B2=new JoystickButton(xbox2,2);
-        B2.whenPressed(new RotateArmAngle(60));
+//        Button B2=new JoystickButton(xbox2,2);
+//        B2.whenPressed(new RotateArmAngle(60));
 //        B.whenInactive(new HoldArmPosition());
         
   
-        Button LB1=new JoystickButton(xbox1,5);
-    		LB1.whileHeld(new EatCubeStandard());
+//        Button LB1=new JoystickButton(xbox1,5);
+//    		LB1.whileHeld(new EatCubeStandard());
         Button LB2=new JoystickButton(xbox2,5);
         	LB2.whileHeld(new EatCubeStandard());
         	  
@@ -75,6 +75,12 @@ public class OI {
          	RB1.whileHeld(new SpitCubeStandard());
         Button RB2=new JoystickButton(xbox2,6);
         	 RB2.whileHeld(new SpitCubeStandard());
+        	 
+         Button START2 = new JoystickButton(xbox2, 8);
+         	START2.whenPressed(new LockArm());
+         	
+         Button SELECT2 = new JoystickButton(xbox2, 7);
+         	SELECT2.whenPressed(new LockArm());
         	 
         Button Y1=new JoystickButton(xbox1,4);
         	Y1.whileActive(new PunchCube());
@@ -91,9 +97,9 @@ public class OI {
        TriggerButton RT2=new TriggerButton(xbox2, 3);
        		RT2.whileActive(new SpitCubeManual());
        
-       TriggerButton LT1=new TriggerButton(xbox1, 3);
+       TriggerButton LT1=new TriggerButton(xbox1, 2);
        	 	LT1.whileActive(new EatCubeManual());
-       TriggerButton LT2=new TriggerButton(xbox2, 3);
+       TriggerButton LT2=new TriggerButton(xbox2, 2);
        	 	LT2.whileActive(new EatCubeManual());
 //            RT.whenInactive(new HoldArmPosition());
         	
@@ -101,14 +107,14 @@ public class OI {
          POVTrigger DPAD_UP2=new POVTrigger(xbox2, 0, 0);
         	DPAD_UP2.whenActive(new RotateArmAngle(75));
         
-        POVTrigger DPAD_UP_RIGHT2=new POVTrigger(xbox2, 0, 45);
-        	DPAD_UP_RIGHT2.whenActive(new RotateArmAngle(90));
+        POVTrigger DPAD_RIGHT2=new POVTrigger(xbox2, 0, 90);
+        	DPAD_RIGHT2.whenActive(new RotateArmAngle(90));
         	
-        POVTrigger DPAD_UP_LEFT2=new POVTrigger(xbox2, 0, 315);
-        	DPAD_UP_LEFT2.whenActive(new RotateArmAngle(25));
+        POVTrigger DPAD_LEFT2=new POVTrigger(xbox2, 0, 270);
+        	DPAD_LEFT2.whenActive(new RotateArmAngle(40));
         	
-        POVTrigger DPAD_L2=new POVTrigger(xbox2, 0, 270);
-        	DPAD_L2.whenActive(new RotateArmAngle(5.5));
+        POVTrigger DPAD_DOWN2=new POVTrigger(xbox2, 0, 180);
+        	DPAD_DOWN2.whenActive(new RotateArmAngle(4.0));
         	
         
         	

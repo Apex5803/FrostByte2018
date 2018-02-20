@@ -58,6 +58,7 @@ public class Robot extends TimedRobot {
         compressor.setClosedLoopControl(true);
         arm.configPIDF(2.2, 0, 0, 1.6);
         // p = 1.8 
+        arm.configPIDFextender(0.2, 0, 0, 0); 
         
 
         // OI must be constructed after subsystems. If the OI creates Commands
@@ -81,13 +82,13 @@ RobotMap.Arm1.setSelectedSensorPosition(absolutePosition, 0, 0);
  * lets grab the 360 degree position of the MagEncoder's absolute
  * position, and intitally set the relative sensor to match.
  */
-int absolutePosition1 = RobotMap.Extender1.getSensorCollection().getPulseWidthPosition();
+int absolutePosition1 = RobotMap.Extender1.getSensorCollection().getPulseWidthPosition() - 5030;
 /* mask out overflows, keep bottom 12 bits */
 absolutePosition1 &= 0xFFF;
 //if (0)
 //	absolutePosition1 *= -1;
 //if (0)
-	absolutePosition1 *= -1;
+//	absolutePosition1 *= -1;
 /* set the quadrature (relative) sensor to match absolute */
 RobotMap.Extender1.setSelectedSensorPosition(absolutePosition1, 0, 0);
 
@@ -154,6 +155,8 @@ RobotMap.Extender1.setSelectedSensorPosition(absolutePosition1, 0, 0);
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        arm.secure();
+        arm.IsSecured = true;
     }
 
     /**
