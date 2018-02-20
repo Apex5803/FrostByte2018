@@ -60,7 +60,7 @@ public class RobotMap {
 	//public static DoubleSolenoid WheelieBar;
 	
 	public static void init() {
-		System.out.println("INITIALIZING ROBOT SPEED CONTROLLERS11!!!!!1@1!!1");
+		System.out.println("INITIALIZING ROBOT!!!11!!!!!1@1!!1");
 
 		L1 = new TalonSRX(PortMap.DRIVE_BASE_LEFT_1);
 		L1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
@@ -118,13 +118,11 @@ public class RobotMap {
 		//Extender1.configReverseSoftLimitEnable(false, 0);	
 		Extender1.configReverseSoftLimitThreshold(4000,0);
 		Extender1.configReverseSoftLimitEnable(true, 0);
-		
-		//EXTENDER2 RUNS THE OPPOSITE DIRECTION FROM EXTENDER1
-		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);
-		Extender2.follow(Extender1);
-		Extender2.setInverted(false);
-		//Extender2.configSelectedFeedbackSensor((FeedbackDevice.CTRE_MagEncoder_Absolute), 0, 0);
 		*/
+//		EXTENDER2 RUNS THE OPPOSITE DIRECTION FROM EXTENDER1
+		
+		//Extender2.configSelectedFeedbackSensor((FeedbackDevice.CTRE_MagEncoder_Absolute), 0, 0);
+		
 		Extender1 = new TalonSRX(PortMap.ARM_EXTENDER_LEAD);
 		/* choose the sensor and sensor direction */
 		Extender1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
@@ -141,6 +139,7 @@ public class RobotMap {
 		Extender1.configNominalOutputReverse(0, 0);
 		Extender1.configPeakOutputForward(1, 0);
 		Extender1.configPeakOutputReverse(-1, 0);
+	
 		/*
 		 * set the allowable closed-loop error, Closed-Loop output will be
 		 * neutral within this range. See Table in Section 17.2.1 for native
@@ -153,6 +152,9 @@ public class RobotMap {
 		//Extender1.configReverseSoftLimitEnable(false, 0);	
 		Extender1.configReverseSoftLimitThreshold(-10,0);
 		Extender1.configReverseSoftLimitEnable(true, 0);
+		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);
+		Extender2.follow(Extender1);
+		Extender2.setInverted(true);
 		//ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		
 		RollerT1 = new TalonSRX(PortMap.TOP_ROLLER_LEAD);

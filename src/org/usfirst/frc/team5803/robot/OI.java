@@ -51,9 +51,9 @@ public class OI {
 //        A.whenInactive(new HoldArmPosition());
         //A.whenPressed(new RotateArmManual());
         Button RPT2=new JoystickButton(xbox2, 2 );  //Change this to appropriate paddle value after testing
-        	RPT2.whileHeld(new RotateArmManual());
+        	RPT2.whileHeld(new ExtendArm());
         Button LPT2=new JoystickButton(xbox2, 1 );  //Change this to appropriate paddle value after testing
-        	LPT2.whileHeld(new ExtendArm());
+        	LPT2.whileHeld(new RotateArmManual());
         	
         Button LPB2=new JoystickButton(xbox2, 3 );  //Change this to appropriate paddle value after testing
         	LPB2.whenActive(new ReleaseArm());
