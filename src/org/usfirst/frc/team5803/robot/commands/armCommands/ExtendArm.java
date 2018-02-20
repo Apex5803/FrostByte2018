@@ -30,7 +30,7 @@ public class ExtendArm extends Command {
 //		if(OI.xbox2.getTriggerAxis(Hand.kRight) > 0.75) {
 //			System.out.println("running full manual test");
 			if(OI.xbox2.getY(Hand.kRight) >= 0.2 || OI.xbox2.getY(Hand.kRight) <= -0.2) {
-				Robot.arm.extend(ControlMode.PercentOutput, -0.4 * OI.xbox2.getY(Hand.kRight)); 						
+				Robot.arm.extend(ControlMode.PercentOutput, -1.0 * OI.xbox2.getY(Hand.kRight)); 						
 //				System.out.println("running extension in manual");
 				
 			}
