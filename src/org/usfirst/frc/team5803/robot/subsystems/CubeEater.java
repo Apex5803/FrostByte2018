@@ -88,8 +88,8 @@ public void spitCubeManual() {
 		}
 	}
 	public void intakeCreep() {
-	RollerT1.set(ControlMode.PercentOutput, 0.05);
-	RollerB1.set(ControlMode.PercentOutput, 0.05);
+	RollerT1.set(ControlMode.PercentOutput, 0.1);
+	RollerB1.set(ControlMode.PercentOutput, 0.1);
 	}
 	
 	public void endRoller() {
