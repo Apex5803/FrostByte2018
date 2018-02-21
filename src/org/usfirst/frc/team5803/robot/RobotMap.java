@@ -37,8 +37,7 @@ public class RobotMap {
 	public static VictorSPX R3;
 	
 	//Arm stuff
-	public static TalonSRX Arm1;
-	public static VictorSPX Arm2;
+
 	public static TalonSRX Extender1;
 	public static TalonSRX Extender2;
 	public static DoubleSolenoid ArmBrake;
@@ -84,27 +83,6 @@ public class RobotMap {
 		R3.follow(R1);
 		
 		
-		Arm1 = new TalonSRX(PortMap.ARM_LEAD);
-		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
-		Arm1.setInverted(false);
-		Arm1.setSensorPhase(true);
-//		Arm1.configForwardSoftLimitEnable(false, 0);		
-		Arm1.configForwardSoftLimitEnable(true, 0);
-		Arm1.configForwardSoftLimitThreshold(1100,0); //max = ~1100 
-//		Arm1.configReverseSoftLimitEnable(false, 0);		
-		Arm1.configReverseSoftLimitEnable(true, 0);
-		Arm1.configReverseSoftLimitThreshold(20,0);
-		Arm1.configMotionCruiseVelocity(1000,0);
-		Arm1.configMotionAcceleration(1000,0);
-		Arm1.configNominalOutputForward(0, 0);
-		Arm1.configNominalOutputReverse(0, 0);
-		Arm1.configPeakOutputForward(1, 0);
-		Arm1.configPeakOutputReverse(-0.1, 0);
-		Arm1.configAllowableClosedloopError(0, 0, 0);
-		//ARM2 RUNS THE SAME DIRECTION AS ARM1
-		Arm2 = new VictorSPX(PortMap.ARM_FOLLOWER);
-		Arm2.follow(Arm1);
-		Arm2.setInverted(false);
 		ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		
 		/* Soft limits not working

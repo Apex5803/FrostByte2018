@@ -22,7 +22,9 @@ import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
 //import org.usfirst.frc5803.RobotTestBench.commands.autonomous.DriveForwardFiveFeet;
 import org.usfirst.frc.team5803.robot.subsystems.*;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,7 +37,9 @@ public class Robot extends TimedRobot {
 
     Command autonomousCommand;
     SendableChooser<Command> chooser = new SendableChooser<>();
-
+	public static TalonSRX Arm1;
+	public static VictorSPX Arm2;
+	
     public static OI oi;
     public static DriveBase driveTrain;
     public static Arm arm;
@@ -51,7 +55,38 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        RobotMap.init();
+
+    	
+    	RobotMap.init();
+        
+        Arm1 = new TalonSRX(PortMap.ARM_LEAD);
+		int absolutePosition = Arm1.getSensorCollection().getPulseWidthPosition();
+		absolutePosition &= 0xFFF;
+		Arm1.setSelectedSensorPosition(absolutePosition - 3168, 0, 0);
+		
+		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		Arm1.setInverted(false);
+		Arm1.setSensorPhase(true);
+//		Arm1.configForwardSoftLimitEnable(false, 0);		
+		Arm1.configForwardSoftLimitEnable(true, 0);
+		Arm1.configForwardSoftLimitThreshold(1100,0); //max = ~1100 
+//		Arm1.configReverseSoftLimitEnable(false, 0);		
+		Arm1.configReverseSoftLimitEnable(true, 0);
+		Arm1.configReverseSoftLimitThreshold(20,0);
+		Arm1.configMotionCruiseVelocity(1000,0);
+		Arm1.configMotionAcceleration(1000,0);
+		Arm1.configNominalOutputForward(0, 0);
+		Arm1.configNominalOutputReverse(0, 0);
+		Arm1.configPeakOutputForward(1, 0);
+		Arm1.configPeakOutputReverse(-0.1, 0);
+		Arm1.configAllowableClosedloopError(0, 0, 0);
+		//ARM2 RUNS THE SAME DIRECTION AS ARM1
+		Arm2 = new VictorSPX(PortMap.ARM_FOLLOWER);
+		Arm2.follow(Arm1);
+		Arm2.setInverted(false);
+	
+        
+        
         driveTrain = new DriveBase();
         arm = new Arm();
         kCubeEater = new CubeEater();
@@ -66,16 +101,16 @@ public class Robot extends TimedRobot {
         // constructed yet. Thus, their requires() statements may grab null
         // pointers. Bad news. Don't move it.
         oi = new OI();
-        int absolutePosition = RobotMap.Arm1.getSensorCollection().getPulseWidthPosition() - 9230;
+//        int absolutePosition = RobotMap.Arm1.getSensorCollection().getPulseWidthPosition() - 9230;
 		/* mask out overflows, keep bottom 12 bits */
-		absolutePosition &= 0xFFF;
+//		absolutePosition &= 0xFFF;
 //		absolutePosition *= -1;
 //		if (Constants.kSensorPhase)
 //			absolutePosition *= -1;
 //		if (Constants.kMotorInvert)
 //			absolutePosition *= -1;
 		/* set the quadrature (relative) sensor to match absolute */
-		RobotMap.Arm1.setSelectedSensorPosition(absolutePosition, 0, 0);
+//		RobotMap.Arm1.setSelectedSensorPosition(absolutePosition, 0, 0);
 //RobotMap.Extender1.setSelectedSensorPosition(0, 0, 0);
 
 /*
@@ -112,7 +147,7 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("Arm 1 encoderPosition", RobotMap.Arm1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Arm 1 encoderPosition", Arm1.getSelectedSensorPosition(0));
         //3SmartDashboard.putNumber("Arm1 encoder speed", RobotMap.Arm1.getSelectedSensorVelocity(0));
         SmartDashboard.putNumber("L1 encoderPosition", RobotMap.L1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("R1 encoderPosition", RobotMap.R1.getSelectedSensorPosition(0));
@@ -165,10 +200,10 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("Arm 1 encoder position", RobotMap.Arm1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Arm 1 encoder position", Arm1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("Extender1 encoderPosition", RobotMap.Extender1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("RollerT1 encoder position", RobotMap.RollerT1.getSelectedSensorPosition(0));
-        SmartDashboard.putNumber("Arm1 encoder speed", RobotMap.Arm1.getSelectedSensorVelocity(0));
+        SmartDashboard.putNumber("Arm1 encoder speed", Arm1.getSelectedSensorVelocity(0));
        
         //SmartDashboard.putNumber("Arm 1 error", RobotMap.Arm1.get)
 //		SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;

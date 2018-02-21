@@ -26,7 +26,7 @@ public class HoldArmPosition extends Command {
     protected void execute() {
     	System.out.println("Holding position");
 //    	double angle = RobotMap.Arm1.getClosedLoopTarget(0);
-    	double angle = RobotMap.Arm1.getSelectedSensorPosition(0)*360/4096;
+    	double angle = Robot.Arm1.getSelectedSensorPosition(0)*360/4096;
     	Robot.arm.moveTo(ControlMode.MotionMagic, angle);
     }
 

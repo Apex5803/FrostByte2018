@@ -18,8 +18,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class Arm extends Subsystem {
-	public TalonSRX Arm1 = RobotMap.Arm1;
-	public VictorSPX Arm2 = RobotMap.Arm2;
+	public TalonSRX Arm1 = Robot.Arm1;
+	public VictorSPX Arm2 = Robot.Arm2;
 	public TalonSRX Extender1 = RobotMap.Extender1;
 	public TalonSRX Extender2 = RobotMap.Extender2;
 	public static DoubleSolenoid ArmBrake = RobotMap.ArmBrake;
