@@ -17,6 +17,7 @@ import org.usfirst.frc.team5803.robot.commands.armCommands.StopArm;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.AutonomousCommand;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.EatCubeManual;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.EatCubeStandard;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.IntakeCreep;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.PunchCube;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.RetractPuncher;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeManual;
@@ -73,8 +74,10 @@ public class OI {
 //        	LT2.whileActive(new RotateArmManual());
         Button RB1=new JoystickButton(xbox2,6);
          	RB1.whileHeld(new SpitCubeStandard());
+         	RB1.whenInactive(new IntakeCreep());
         Button RB2=new JoystickButton(xbox2,6);
         	 RB2.whileHeld(new SpitCubeStandard());
+        	 RB2.whenInactive(new IntakeCreep());
         	 
          Button START2 = new JoystickButton(xbox2, 8);
          	START2.whenPressed(new LockArm());
@@ -93,14 +96,18 @@ public class OI {
       
         	 
        TriggerButton RT1=new TriggerButton(xbox1, 3);
-       		RT1.whileActive(new SpitCubeManual());	
+       		RT1.whileActive(new SpitCubeManual());
+       		RT1.whenInactive(new IntakeCreep());
        TriggerButton RT2=new TriggerButton(xbox2, 3);
        		RT2.whileActive(new SpitCubeManual());
+       		RT2.whenInactive(new IntakeCreep());
        
        TriggerButton LT1=new TriggerButton(xbox1, 2);
        	 	LT1.whileActive(new EatCubeManual());
+       	 	LT1.whenInactive(new IntakeCreep());
        TriggerButton LT2=new TriggerButton(xbox2, 2);
        	 	LT2.whileActive(new EatCubeManual());
+       	 	LT2.whenInactive(new IntakeCreep());
 //            RT.whenInactive(new HoldArmPosition());
         	
         	
