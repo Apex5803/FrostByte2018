@@ -66,7 +66,7 @@ public class Robot extends TimedRobot {
         // constructed yet. Thus, their requires() statements may grab null
         // pointers. Bad news. Don't move it.
         oi = new OI();
-        int absolutePosition = RobotMap.Arm1.getSensorCollection().getPulseWidthPosition() - 9230;
+        int absolutePosition = RobotMap.Arm1.getSensorCollection().getPulseWidthPosition() - 11230;
 		/* mask out overflows, keep bottom 12 bits */
 		absolutePosition &= 0xFFF;
 //		absolutePosition *= -1;
@@ -166,7 +166,7 @@ RobotMap.Extender1.setSelectedSensorPosition(0, 0, 0);
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("Arm 1 encoder position", RobotMap.Arm1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Arm 1 encoderPosition", RobotMap.Arm1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("Extender1 encoderPosition", RobotMap.Extender1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("RollerT1 encoder position", RobotMap.RollerT1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("Arm1 encoder speed", RobotMap.Arm1.getSelectedSensorVelocity(0));
