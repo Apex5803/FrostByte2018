@@ -121,7 +121,7 @@ public class OI {
         	DPAD_LEFT2.whenActive(new RotateArmAngle(40));
         	
         POVTrigger DPAD_DOWN2=new POVTrigger(xbox2, 0, 180);
-        	DPAD_DOWN2.whenActive(new RotateArmAngle(4.0));
+        	DPAD_DOWN2.whenActive(new RotateArmAngle(5.0));
         	
         
         	

@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -48,19 +49,20 @@ public class CubeEater extends Subsystem {
 	}
 	
 	public void eatCubeStandard() {
-		RollerT1.set(ControlMode.PercentOutput, 0.4);
-		RollerB1.set(ControlMode.PercentOutput, 0.45);
+		RollerT1.set(ControlMode.PercentOutput, 1);
+		RollerB1.set(ControlMode.PercentOutput, 1);
 	}
 	
 	public void eatCubeManual() {
 		
 		if (OI.xbox1.getTriggerAxis(Hand.kLeft) >= 0.2) {
-			RollerT1.set(ControlMode.PercentOutput, 0.5 * OI.xbox1.getTriggerAxis(Hand.kLeft));
-			RollerB1.set(ControlMode.PercentOutput, 0.58 * OI.xbox1.getTriggerAxis(Hand.kLeft));
+			RollerT1.set(ControlMode.PercentOutput, 1 * OI.xbox1.getTriggerAxis(Hand.kLeft));
+			RollerB1.set(ControlMode.PercentOutput, 1 * OI.xbox1.getTriggerAxis(Hand.kLeft));
 			}
 		else if (OI.xbox2.getTriggerAxis(Hand.kLeft) >= -0.2){
-			RollerT1.set(ControlMode.PercentOutput, 0.5 * OI.xbox2.getTriggerAxis(Hand.kLeft));
-			RollerB1.set(ControlMode.PercentOutput, 0.58 * OI.xbox2.getTriggerAxis(Hand.kLeft));
+			RollerT1.set(ControlMode.PercentOutput, 1 * OI.xbox2.getTriggerAxis(Hand.kLeft));
+			RollerB1.set(ControlMode.PercentOutput, 1 * OI.xbox2.getTriggerAxis(Hand.kLeft));
+			//System.out.println("Trigger Speed"+OI.xbox2.getTriggerAxis(Hand.kLeft));
 			}
 		else {
 			endRoller();
@@ -68,7 +70,7 @@ public class CubeEater extends Subsystem {
 		
 	}
 	
-	
+	//Vegeta what does the scouter say about his power level?
 	public void spitCubeStandard() {
 		RollerT1.set(ControlMode.PercentOutput, -0.8);
 		RollerB1.set(ControlMode.PercentOutput, -0.8);
@@ -97,7 +99,7 @@ public void spitCubeManual() {
 		RollerB1.set(ControlMode.PercentOutput, 0.0);
 	}
 
-	
+	//	Vegeta what does the scouter say about his power level?
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());

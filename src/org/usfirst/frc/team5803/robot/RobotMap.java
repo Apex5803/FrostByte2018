@@ -139,17 +139,17 @@ public class RobotMap {
 		RollerT1 = new TalonSRX(PortMap.TOP_ROLLER_LEAD);
 		RollerT1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 		RollerT1.setInverted(false);
-		RollerT2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER);
-		RollerT2.follow(RollerT1);
+		//RollerT2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER);
+		//RollerT2.follow(RollerT1);
 //		RollerT2.setInverted(true);
 		Puncher1 = new Solenoid(PortMap.PUNCHER1_FORWARD_CHANNEL);
 		Puncher2 = new Solenoid(PortMap.PUNCHER2_FORWARD_CHANNEL);
 		RollerB1 = new TalonSRX(PortMap.BOTTOM_ROLLER_LEAD);
 //		RollerB1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
-		RollerB1.setInverted(false);
-		RollerB2 = new VictorSPX(PortMap.BOTTOM_ROLLER_FOLLOWER);
-		RollerB2.follow(RollerB1);
-		RollerB2.setInverted(true);
+		RollerB1.setInverted(false); //True for competition bot, false for practice bot
+		//RollerB2 = new VictorSPX(PortMap.BOTTOM_ROLLER_FOLLOWER);
+		//RollerB2.follow(RollerB1);
+		//RollerB2.setInverted(true);
 //		Puncher1 = new Solenoid(PortMap.PUNCHER1_FORWARD_CHANNEL);
 		
 		//Jaw = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);

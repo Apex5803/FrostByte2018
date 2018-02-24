@@ -10,6 +10,7 @@
 
 
 package org.usfirst.frc.team5803.robot;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -58,11 +59,17 @@ public class Robot extends TimedRobot {
 
     	
     	RobotMap.init();
-        
+
+
+
+    	CameraServer.getInstance().startAutomaticCapture();
+	    //camera->SetResolution(320., 240.);
+    	  
         Arm1 = new TalonSRX(PortMap.ARM_LEAD);
 		int absolutePosition = Arm1.getSensorCollection().getPulseWidthPosition();
 		absolutePosition &= 0xFFF;
-		Arm1.setSelectedSensorPosition(absolutePosition - 3218, 0, 0);
+		Arm1.setSelectedSensorPosition(absolutePosition - 3228, 0, 0);
+		System.out.println("Set arm encoder 0");
 		
 		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		Arm1.setInverted(false);
@@ -205,6 +212,8 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("RollerT1 encoder position", RobotMap.RollerT1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("Arm1 encoder speed", Arm1.getSelectedSensorVelocity(0));
        
+		SmartDashboard.putNumber("Intake Power", OI.xbox2.getTriggerAxis(Hand.kLeft));
+
         //SmartDashboard.putNumber("Arm 1 error", RobotMap.Arm1.get)
 //		SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;
 
