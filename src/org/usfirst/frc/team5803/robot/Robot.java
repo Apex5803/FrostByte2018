@@ -154,7 +154,7 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("Arm 1 encoder position", Arm1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Arm 1 encoderPosition", Arm1.getSelectedSensorPosition(0));
         //3SmartDashboard.putNumber("Arm1 encoder speed", RobotMap.Arm1.getSelectedSensorVelocity(0));
         SmartDashboard.putNumber("L1 encoderPosition", RobotMap.L1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("R1 encoderPosition", RobotMap.R1.getSelectedSensorPosition(0));
