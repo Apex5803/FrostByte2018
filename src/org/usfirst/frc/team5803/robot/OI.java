@@ -53,6 +53,7 @@ public class OI {
         //A.whenPressed(new RotateArmManual());
         Button RPT2=new JoystickButton(xbox2, 1 );  
         	RPT2.whileHeld(new RotateArmManual());
+        	RPT2.whenInactive(new HoldArmPosition());
         Button LPT2=new JoystickButton(xbox2, 2 );  
         	LPT2.whileHeld(new ExtendArm());
         	
@@ -121,7 +122,7 @@ public class OI {
         	DPAD_LEFT2.whenActive(new RotateArmAngle(40));
         	
         POVTrigger DPAD_DOWN2=new POVTrigger(xbox2, 0, 180);
-        	DPAD_DOWN2.whenActive(new RotateArmAngle(5.0));
+        	DPAD_DOWN2.whenActive(new RotateArmAngle(6));
         	
         
         	

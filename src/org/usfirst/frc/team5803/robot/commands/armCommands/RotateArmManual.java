@@ -19,6 +19,7 @@ public class RotateArmManual extends Command {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.arm);
 	}
+	
 
 	// Called just before this Command runs the first time
 	@Override
@@ -32,11 +33,13 @@ public class RotateArmManual extends Command {
 		
 //		if(OI.xbox1.getTriggerAxis(Hand.kLeft) > 0.75) {
 //			System.out.println("running full manual test");
-		new ReleaseArm();
+			new ReleaseArm();
+			int position = Robot.Arm1.getSelectedSensorPosition(0)*360/4096;
+			double targetAngle = position + (-30 * OI.xbox2.getY(Hand.kLeft));
 			if(OI.xbox2.getY(Hand.kLeft) >= 0.2  || OI.xbox2.getY(Hand.kLeft) <= -0.2) {
-//			Robot.arm.moveTo(ControlMode.MotionMagic, -98. * OI.xbox2.getY(Hand.kLeft));
+			Robot.arm.moveTo(ControlMode.MotionMagic, targetAngle  );
 //			SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;
-			Robot.arm.move(0.4 * OI.xbox2.getY(Hand.kLeft));
+//			Robot.arm.move(-0.4 * OI.xbox2.getY(Hand.kLeft));
 //			System.out.println("if statement achieved");
 			}
 			else end();
@@ -53,8 +56,9 @@ public class RotateArmManual extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		new HoldArmPosition(); 
-		new LockArm();
+//		Robot.arm.move(0);
+//		new HoldArmPosition(); 
+//		new LockArm();
 	}
 
 	// Called when another command which requires one or more of the same

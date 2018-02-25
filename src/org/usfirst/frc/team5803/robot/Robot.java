@@ -79,7 +79,7 @@ public class Robot extends TimedRobot {
 		Arm1.configForwardSoftLimitThreshold(1200,0); //max = ~1100 
 //		Arm1.configReverseSoftLimitEnable(false, 0);		
 		Arm1.configReverseSoftLimitEnable(true, 0);
-		Arm1.configReverseSoftLimitThreshold(0,0);
+		Arm1.configReverseSoftLimitThreshold(-20,0);
 		Arm1.configMotionCruiseVelocity(1000,0);
 		Arm1.configMotionAcceleration(1000,0);
 		Arm1.configNominalOutputForward(0, 0);
@@ -207,7 +207,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("Arm 1 encoder position", Arm1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Arm 1 encoderPosition", Arm1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("Extender1 encoderPosition", RobotMap.Extender1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("RollerT1 encoder position", RobotMap.RollerT1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("Arm1 encoder speed", Arm1.getSelectedSensorVelocity(0));
