@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
     	
     	RobotMap.init();
 
-    	CameraServer.getInstance().startAutomaticCapture();
+    	//CameraServer.getInstance().startAutomaticCapture();
 	    //camera->SetResolution(320., 240.);
     	  
         Arm1 = new TalonSRX(PortMap.ARM_LEAD);
