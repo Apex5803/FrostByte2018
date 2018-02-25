@@ -39,7 +39,8 @@ public class RobotMap {
 	//Arm stuff
 
 	public static TalonSRX Extender1;
-	public static TalonSRX Extender2;
+//	public static TalonSRX Extender2;
+	public static VictorSPX Extender2;
 	public static DoubleSolenoid ArmBrake;
 	
 	//Cube Eater stuff
@@ -131,7 +132,8 @@ public class RobotMap {
 		//Extender1.configReverseSoftLimitEnable(false, 0);	
 		Extender1.configReverseSoftLimitThreshold(-10,0);
 		Extender1.configReverseSoftLimitEnable(true, 0);
-		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);
+//		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);
+		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER);
 		Extender2.follow(Extender1);
 		Extender2.setInverted(true);
 		//ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);

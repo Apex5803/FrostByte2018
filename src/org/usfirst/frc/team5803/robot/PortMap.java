@@ -19,9 +19,9 @@ public class PortMap {
 		
 		//cube eater ports
 	public static final int TOP_ROLLER_LEAD = 3;
-	public static final int TOP_ROLLER_FOLLOWER = 5;
+	public static final int TOP_ROLLER_FOLLOWER = 6;
 	public static final int BOTTOM_ROLLER_LEAD = 4;
-	public static final int BOTTOM_ROLLER_FOLLOWER = 6;
+	public static final int BOTTOM_ROLLER_FOLLOWER = 5;
 	public static final int PUNCHER1_FORWARD_CHANNEL = 1;
 //	public static final int	PUNCHER1_REVERSE_CHANNEL = 7;
 	public static final int PUNCHER2_FORWARD_CHANNEL = 2;
