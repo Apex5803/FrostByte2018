@@ -60,15 +60,13 @@ public class Robot extends TimedRobot {
     	
     	RobotMap.init();
 
-
-
     	CameraServer.getInstance().startAutomaticCapture();
 	    //camera->SetResolution(320., 240.);
     	  
         Arm1 = new TalonSRX(PortMap.ARM_LEAD);
 		int absolutePosition = Arm1.getSensorCollection().getPulseWidthPosition();
 		absolutePosition &= 0xFFF;
-		Arm1.setSelectedSensorPosition(absolutePosition - 3228, 0, 0);
+		Arm1.setSelectedSensorPosition(absolutePosition - 4071, 0, 0);
 		System.out.println("Set arm encoder 0");
 		
 		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
