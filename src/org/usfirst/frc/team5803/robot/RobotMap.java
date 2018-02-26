@@ -130,8 +130,8 @@ public class RobotMap {
 		Extender1.configForwardSoftLimitThreshold(31000,0); //max = ~27000 
 		Extender1.configForwardSoftLimitEnable(true, 0);
 		//Extender1.configReverseSoftLimitEnable(false, 0);	
-		Extender1.configReverseSoftLimitThreshold(-10,0);
-		Extender1.configReverseSoftLimitEnable(true, 0);
+		//Extender1.configReverseSoftLimitThreshold(-10,0);
+		Extender1.configReverseSoftLimitEnable(false, 0);
 //		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);
 		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER);
 		Extender2.follow(Extender1);
