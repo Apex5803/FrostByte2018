@@ -66,14 +66,14 @@ public class OI {
 //        B.whenInactive(new HoldArmPosition());
         
   
-//        Button LB1=new JoystickButton(xbox1,5);
-//    		LB1.whileHeld(new EatCubeStandard());
+        Button LB1=new JoystickButton(xbox1,5);
+    		LB1.whileHeld(new EatCubeStandard());
         Button LB2=new JoystickButton(xbox2,5);
         	LB2.whileHeld(new EatCubeStandard());
         	  
 //        TriggerButton LT2=new TriggerButton(xbox2, 2);
 //        	LT2.whileActive(new RotateArmManual());
-        Button RB1=new JoystickButton(xbox2,6);
+        Button RB1=new JoystickButton(xbox1,6);
          	RB1.whileHeld(new SpitCubeStandard());
          	RB1.whenInactive(new IntakeCreep());
         Button RB2=new JoystickButton(xbox2,6);
@@ -119,7 +119,9 @@ public class OI {
         	DPAD_RIGHT2.whenActive(new RotateArmAngle(90));
         	
         POVTrigger DPAD_LEFT2=new POVTrigger(xbox2, 0, 270);
-        	DPAD_LEFT2.whenActive(new RotateArmAngle(40));
+        	DPAD_LEFT2.whenActive(new RotateArmAngle(30));
+        	//DPAD_LEFT2.whenInactive(new RotateArmAngle(40));
+        	
         	
         POVTrigger DPAD_DOWN2=new POVTrigger(xbox2, 0, 180);
         	DPAD_DOWN2.whenActive(new RotateArmAngle(6));

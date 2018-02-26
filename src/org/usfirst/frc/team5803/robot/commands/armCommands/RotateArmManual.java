@@ -36,8 +36,23 @@ public class RotateArmManual extends Command {
 			new ReleaseArm();
 			int position = Robot.Arm1.getSelectedSensorPosition(0)*360/4096;
 			double targetAngle = position + (-30 * OI.xbox2.getY(Hand.kLeft));
+			/* TRY THIS LATER
+			if(targetAngle > 100){
+				targetAngle = 99;
+			}
+			else if(targetAngle < 5){
+				targetAngle = 6;
+			}
+			*/
 			if(OI.xbox2.getY(Hand.kLeft) >= 0.2  || OI.xbox2.getY(Hand.kLeft) <= -0.2) {
-			Robot.arm.moveTo(ControlMode.MotionMagic, targetAngle  );
+				//NOT WORKING
+			if(targetAngle > 100){
+				Robot.arm.moveTo(ControlMode.MotionMagic, 100);
+			}
+			else if(targetAngle < 5){
+				Robot.arm.moveTo(ControlMode.MotionMagic, 5);				
+			}
+			else Robot.arm.moveTo(ControlMode.MotionMagic, targetAngle);
 //			SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;
 //			Robot.arm.move(-0.4 * OI.xbox2.getY(Hand.kLeft));
 //			System.out.println("if statement achieved");

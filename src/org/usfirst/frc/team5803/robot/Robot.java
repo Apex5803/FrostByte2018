@@ -68,7 +68,7 @@ public class Robot extends TimedRobot {
         Arm1 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);
 		int absolutePosition = Arm1.getSensorCollection().getPulseWidthPosition();
 		absolutePosition &= 0xFFF;
-		Arm1.setSelectedSensorPosition(absolutePosition - 3200, 0, 0);
+		Arm1.setSelectedSensorPosition(absolutePosition - 3220, 0, 0);
 		System.out.println("Set arm encoder 0");
 		
 		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
@@ -76,7 +76,7 @@ public class Robot extends TimedRobot {
 		Arm1.setSensorPhase(true);
 //		Arm1.configForwardSoftLimitEnable(false, 0);		
 		Arm1.configForwardSoftLimitEnable(true, 0);
-		Arm1.configForwardSoftLimitThreshold(1200,0); //max = ~1100 
+		Arm1.configForwardSoftLimitThreshold(1350,0); //max = ~1100 
 //		Arm1.configReverseSoftLimitEnable(false, 0);		
 		Arm1.configReverseSoftLimitEnable(true, 0);
 		Arm1.configReverseSoftLimitThreshold(-20,0);
@@ -86,7 +86,7 @@ public class Robot extends TimedRobot {
 		Arm1.configNominalOutputReverse(0, 0);
 		Arm1.configPeakOutputForward(1, 0);
 		Arm1.configPeakOutputReverse(-0.1, 0);
-		Arm1.configAllowableClosedloopError(0, 0, 0);
+		Arm1.configAllowableClosedloopError(10, 0, 0);
 		//ARM2 RUNS THE SAME DIRECTION AS ARM1
 		Arm2 = new VictorSPX(PortMap.ARM_FOLLOWER);
 		Arm2.follow(Arm1);
