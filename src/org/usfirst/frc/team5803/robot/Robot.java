@@ -19,7 +19,14 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5803.robot.commands.*;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveForwardFiveFeet;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleLeft;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleRight;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleRightStartLeft;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchLeft;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchRight;
 import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
+import org.usfirst.frc.team5803.robot.models.GameState;
 //import org.usfirst.frc5803.RobotTestBench.commands.autonomous.DriveForwardFiveFeet;
 import org.usfirst.frc.team5803.robot.subsystems.*;
 
@@ -37,7 +44,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 public class Robot extends TimedRobot {
 
     Command autonomousCommand;
-    SendableChooser<Command> chooser = new SendableChooser<>();
+//    SendableChooser<Command> chooser = new SendableChooser<>();
 	public static TalonSRX Arm1;
 	public static VictorSPX Arm2;
 	
@@ -46,7 +53,8 @@ public class Robot extends TimedRobot {
     public static Arm arm;
     public static CubeEater kCubeEater;
     
-    
+    public GameState gameState;
+    SendableChooser<String> autoChooser;
     
     Compressor compressor = new Compressor (0);
     
@@ -60,6 +68,16 @@ public class Robot extends TimedRobot {
     	
     	RobotMap.init();
 
+    	autoChooser= new SendableChooser<String>();
+    	autoChooser.addDefault("CommandA", "CommandA");
+    	autoChooser.addObject("FiveFeet", "FiveFeet");
+    	autoChooser.addObject("SwitchLeft", "SwitchLeft");
+    	autoChooser.addObject("SwitchRight", "SwitchRight");
+    	autoChooser.addObject("ScaleLeft", "ScaleLeft");
+    	autoChooser.addObject("ScaleRight", "ScaleRight");
+    	autoChooser.addObject("ScaleRightStartLeft", "ScaleRightStartLeft");
+    	SmartDashboard.putData("Auto Mode Chooser", autoChooser);
+    	
 
 
     	CameraServer.getInstance().startAutomaticCapture();
@@ -91,7 +109,7 @@ public class Robot extends TimedRobot {
 		Arm2 = new VictorSPX(PortMap.ARM_FOLLOWER);
 		Arm2.follow(Arm1);
 		Arm2.setInverted(false);
-	
+		
         
         
         driveTrain = new DriveBase();
@@ -102,7 +120,9 @@ public class Robot extends TimedRobot {
         // p = 1.8 
         arm.configPIDFextender(0.2, 0, 0, 0); 
         
-
+        driveTrain.L1.setSelectedSensorPosition(0, 0, 0);
+        driveTrain.configPIDF(0.2, 0, 40, 0.5);
+        driveTrain.R1.setSelectedSensorPosition(0, 0, 0);
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
         // constructed yet. Thus, their requires() statements may grab null
@@ -139,7 +159,7 @@ public class Robot extends TimedRobot {
         //chooser.addDefault("Autonomous Command", new AutonomousCommand());
         //chooser.addObject("other auto", new AutonomousCommand());
 
-        SmartDashboard.putData("Auto mode", chooser);
+//        SmartDashboard.putData("Auto mode", autoChooser);
     }
 
     /**
@@ -167,6 +187,29 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+    	String selectedAuto = (String)autoChooser.getSelected();
+		switch (selectedAuto) {
+		case "FiveFeet": 
+			autonomousCommand = new DriveForwardFiveFeet();
+			 break;
+		case "SwitchLeft":
+			autonomousCommand = new SwitchLeft();
+			break;
+		case "SwitchRight":
+			autonomousCommand = new SwitchRight();
+			break;
+		case "ScaleLeft":
+			autonomousCommand = new ScaleLeft();
+			break;
+		case "ScaleRight":
+			autonomousCommand = new ScaleRight();
+			break;
+		case "ScaleRightStartLeft" :
+			autonomousCommand = new ScaleRightStartLeft();
+		default:
+//			autonomousCommand = new CommandA();
+			break; 
+		}
     	/*
         autonomousCommand = chooser.getSelected();
         // schedule the autonomous command (example)
@@ -183,10 +226,10 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousPeriodic() {
     	Scheduler.getInstance().run();
-    	 //SmartDashboard.putNumber("Left Encoder Position", RobotMap.driveTrainDriveTrainL1.getSelectedSensorPosition(0));
-         //SmartDashboard.putNumber("Left Encoder Velocity", RobotMap.driveTrainDriveTrainL1.getSelectedSensorVelocity(0));
-         //SmartDashboard.putNumber("Right Encoder Position", RobotMap.driveTrainDriveTrainR1.getSelectedSensorPosition(0));
-         //SmartDashboard.putNumber("Right Encoder Velocity", RobotMap.driveTrainDriveTrainR1.getSelectedSensorVelocity(0));
+    	 SmartDashboard.putNumber("L1 encoderPosition", RobotMap.L1.getSelectedSensorPosition(0));
+         SmartDashboard.putNumber("L1 encoderVelocity", RobotMap.L1.getSelectedSensorVelocity(0));
+         SmartDashboard.putNumber("R1 encoderPosition", RobotMap.R1.getSelectedSensorPosition(0));
+         SmartDashboard.putNumber("R1 encoderVelocity", RobotMap.R1.getSelectedSensorVelocity(0));
 
     }
 

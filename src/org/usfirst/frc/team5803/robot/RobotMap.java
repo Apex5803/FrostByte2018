@@ -64,24 +64,32 @@ public class RobotMap {
 
 		L1 = new TalonSRX(PortMap.DRIVE_BASE_LEFT_1);
 		L1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
-		L1.setInverted(true);
+//		L1.setInverted(true);
+		L1.setInverted(false);
+		L1.setSensorPhase(true);
 		
 		L2 = new VictorSPX(PortMap.DRIVE_BASE_LEFT_2);
 		L2.follow(L1);
-		L2.setInverted(true);
+//		L2.setInverted(true);
+		L2.setInverted(false);
 		
 		L3 = new VictorSPX(PortMap.DRIVE_BASE_LEFT_3);
 		L3.follow(L1);
-		L3.setInverted(true);
+//		L3.setInverted(true);
+		L2.setInverted(false);
 		
 		R1 = new TalonSRX(PortMap.DRIVE_BASE_RIGHT_1);
 		R1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		R1.setInverted(true);
+		R1.setSensorPhase(true);
 		
 		R2 = new VictorSPX(PortMap.DRIVE_BASE_RIGHT_2);
 		R2.follow(R1);
+		R2.setInverted(true);
 		
 		R3 = new VictorSPX(PortMap.DRIVE_BASE_RIGHT_3);
 		R3.follow(R1);
+		R3.setInverted(true);
 		
 		
 		ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
@@ -126,9 +134,9 @@ public class RobotMap {
 		 * units per rotation.
 		 */
 		Extender1.configAllowableClosedloopError(0, 0, 0);
-		//Extender1.configForwardSoftLimitEnable(false, 0);		
-		Extender1.configForwardSoftLimitThreshold(31000,0); //max = ~27000 
-		Extender1.configForwardSoftLimitEnable(true, 0);
+		Extender1.configForwardSoftLimitEnable(false, 0);		
+//		Extender1.configForwardSoftLimitThreshold(31000,0); //max = ~27000 
+//		Extender1.configForwardSoftLimitEnable(true, 0);
 		//Extender1.configReverseSoftLimitEnable(false, 0);	
 		//Extender1.configReverseSoftLimitThreshold(-10,0);
 		Extender1.configReverseSoftLimitEnable(false, 0);
