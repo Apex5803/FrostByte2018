@@ -19,20 +19,20 @@ import org.usfirst.frc.team5803.robot.models.*;
  * This autonomous routine is used for tuning the FollowTrajectory command with motion profiling.
  * It will drive forward 5 feet. 
  */
-public class ScaleRightStartLeft extends CommandGroup {
+public class ScaleLeftStartRight extends CommandGroup {
 	SrxTrajectoryImporter importer = new SrxTrajectoryImporter("/home/lvuser/Autos");
 	SrxTrajectory toFollow = null;
-    public ScaleRightStartLeft() {
+    public ScaleLeftStartRight() {
         	try {
-    			this.toFollow = importer.importSrxTrajectory("ScaleRightStartLeft");
+    			this.toFollow = importer.importSrxTrajectory("ScaleLeftStartRight");
     			System.out.println("import" + this.toFollow); 
     		} catch (IOException | ParseException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
         	
-        	addSequential(new FollowTrajectory("ScaleRightStartLeft"));
-        	System.out.println("Driving ScaleRightStartLeft");
+        	addSequential(new FollowTrajectory("ScaleLeftStartRight"));
+        	System.out.println("Driving ScaleLeftStartRight");
         	addSequential(new Drive(), 1);
         	addSequential(new PunchCube(), 2);
         	addSequential(new RetractPuncher());

@@ -21,8 +21,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5803.robot.commands.*;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveForwardFiveFeet;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleLeft;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleLeftStartLeft;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleLeftStartRight;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleRight;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleRightStartLeft;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleRightStartRight;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchLeft;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchRight;
 import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
@@ -76,6 +79,9 @@ public class Robot extends TimedRobot {
     	autoChooser.addObject("ScaleLeft", "ScaleLeft");
     	autoChooser.addObject("ScaleRight", "ScaleRight");
     	autoChooser.addObject("ScaleRightStartLeft", "ScaleRightStartLeft");
+    	autoChooser.addObject("ScaleLeftStartLeft", "ScaleLeftStartLeft");
+    	autoChooser.addObject("ScaleLeftStartRight", "ScaleLeftStartRight");
+    	autoChooser.addObject("ScaleRightStartRight", "ScaleRightStartRight");
     	SmartDashboard.putData("Auto Mode Chooser", autoChooser);
     	
 
@@ -206,6 +212,16 @@ public class Robot extends TimedRobot {
 			break;
 		case "ScaleRightStartLeft" :
 			autonomousCommand = new ScaleRightStartLeft();
+			break;
+		case "ScaleLeftStartLeft" :
+			autonomousCommand = new ScaleLeftStartLeft();
+			break;
+		case "ScaleLeftStartRight" :
+			autonomousCommand = new ScaleLeftStartRight();
+			break;
+		case "ScaleRightStartRight" :
+			autonomousCommand = new ScaleRightStartRight();
+			break;
 		default:
 //			autonomousCommand = new CommandA();
 			break; 
@@ -225,6 +241,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
+    	compressor.setClosedLoopControl(false);
     	Scheduler.getInstance().run();
     	 SmartDashboard.putNumber("L1 encoderPosition", RobotMap.L1.getSelectedSensorPosition(0));
          SmartDashboard.putNumber("L1 encoderVelocity", RobotMap.L1.getSelectedSensorVelocity(0));
@@ -249,6 +266,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+    	compressor.setClosedLoopControl(true);
         Scheduler.getInstance().run();
         SmartDashboard.putNumber("Arm 1 encoderPosition", Arm1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("Extender1 encoderPosition", RobotMap.Extender1.getSelectedSensorPosition(0));
