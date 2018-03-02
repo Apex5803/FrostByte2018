@@ -14,7 +14,7 @@ public LockArm() {
 	}
 	
 	protected void execute() {
-		if (Robot.arm.IsSecured = false) {
+		if (Robot.arm.IsSecured == false) {
 		Robot.arm.secure();
 		Robot.arm.IsSecured = true;
 		}

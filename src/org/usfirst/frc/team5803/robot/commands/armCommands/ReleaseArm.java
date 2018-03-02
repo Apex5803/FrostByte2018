@@ -15,7 +15,7 @@ public ReleaseArm() {
 	}
 	
 	protected void execute() {
-		if (Robot.arm.IsSecured = true) {
+		if (Robot.arm.IsSecured == true) {
 			Robot.arm.unsecure();
 			Robot.arm.IsSecured = false;
 		}

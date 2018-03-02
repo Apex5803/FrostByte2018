@@ -6,6 +6,7 @@ import org.json.simple.parser.ParseException;
 import org.usfirst.frc.team5803.robot.models.SrxTrajectory;
 import org.usfirst.frc.team5803.robot.utils.SrxTrajectoryImporter;
 import org.usfirst.frc.team5803.robot.commands.FollowTrajectory;
+import org.usfirst.frc.team5803.robot.commands.armCommands.LockArm;
 import org.usfirst.frc.team5803.robot.commands.armCommands.ReleaseArm;
 import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmAngle;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.IntakeCreep;
@@ -34,11 +35,13 @@ public class SwitchRight extends CommandGroup {
     			e.printStackTrace();
     		}
         	
-        	addSequential(new IntakeCreep());        	
+        	        	
         	addParallel(new FollowTrajectory("SwitchRight"));
+        	addSequential(new IntakeCreep(), 1);
         	System.out.println("Driving SwitchRight");
-//        	addSequential(new IntakeCreep());
-        	addSequential(new RotateArmAngle(40), 1);
+        	addSequential(new ReleaseArm() , 0.5);
+        	addSequential(new RotateArmAngle(40), 2);
+        	addSequential(new LockArm() , 0.5);
         	addSequential(new SpitCubeAuto(), 2);
         	addSequential(new IntakeCreep());
     }

@@ -26,7 +26,7 @@ public class RotateArmAngle extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		new ReleaseArm();
+		Robot.arm.unsecure();
 		Robot.arm.moveTo(ControlMode.MotionMagic, this.angle);
 	}
 	
@@ -50,7 +50,7 @@ public class RotateArmAngle extends Command {
 		//Robot.arm.move(0);
 		System.out.println("Reached setpoint, locking arm");
 		new HoldArmPosition();
-		new LockArm();
+		Robot.arm.secure();
 	}
 
 	// Called when another command which requires one or more of the same

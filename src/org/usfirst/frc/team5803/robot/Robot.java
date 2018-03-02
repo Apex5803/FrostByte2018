@@ -12,6 +12,7 @@
 package org.usfirst.frc.team5803.robot;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
@@ -90,27 +91,27 @@ public class Robot extends TimedRobot {
     	CameraServer.getInstance().startAutomaticCapture();
 	    //camera->SetResolution(320., 240.);
     	  
-        Arm1 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);
+        Arm1 = new TalonSRX(PortMap.ARM_LEAD);
 		int absolutePosition = Arm1.getSensorCollection().getPulseWidthPosition();
 		absolutePosition &= 0xFFF;
-		Arm1.setSelectedSensorPosition(absolutePosition - 3220, 0, 0);
+		Arm1.setSelectedSensorPosition(absolutePosition - 4068, 0, 0);
 		System.out.println("Set arm encoder 0");
 		
 		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		Arm1.setInverted(false);
 		Arm1.setSensorPhase(true);
-//		Arm1.configForwardSoftLimitEnable(false, 0);		
-		Arm1.configForwardSoftLimitEnable(true, 0);
-		Arm1.configForwardSoftLimitThreshold(1350,0); //max = ~1100 
-//		Arm1.configReverseSoftLimitEnable(false, 0);		
-		Arm1.configReverseSoftLimitEnable(true, 0);
-		Arm1.configReverseSoftLimitThreshold(-20,0);
+		Arm1.configForwardSoftLimitEnable(false, 0);		
+//		Arm1.configForwardSoftLimitEnable(true, 0);
+//		Arm1.configForwardSoftLimitThreshold(1350,0); //max = ~1100 
+		Arm1.configReverseSoftLimitEnable(false, 0);		
+//		Arm1.configReverseSoftLimitEnable(true, 0);
+//		Arm1.configReverseSoftLimitThreshold(-20,0);
 		Arm1.configMotionCruiseVelocity(1000,0);
 		Arm1.configMotionAcceleration(1000,0);
 		Arm1.configNominalOutputForward(0, 0);
 		Arm1.configNominalOutputReverse(0, 0);
 		Arm1.configPeakOutputForward(1, 0);
-		Arm1.configPeakOutputReverse(-0.1, 0);
+		Arm1.configPeakOutputReverse(-0.20, 0);
 		Arm1.configAllowableClosedloopError(10, 0, 0);
 		//ARM2 RUNS THE SAME DIRECTION AS ARM1
 		Arm2 = new VictorSPX(PortMap.ARM_FOLLOWER);
@@ -180,6 +181,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledPeriodic() {
+    	this.gameState = new GameState(DriverStation.getInstance().getGameSpecificMessage());
         Scheduler.getInstance().run();
         SmartDashboard.putNumber("Arm 1 encoderPosition", Arm1.getSelectedSensorPosition(0));
         //3SmartDashboard.putNumber("Arm1 encoder speed", RobotMap.Arm1.getSelectedSensorVelocity(0));
@@ -196,6 +198,8 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
     	System.out.println("Game Specific Message: "+this.gameState.toString());
 		
+    
+    	
     	String selectedAuto = (String)autoChooser.getSelected();
 		switch (selectedAuto) {
 		case "SwitchFromCenter":
@@ -225,6 +229,11 @@ public class Robot extends TimedRobot {
     	//autonomousCommand = new DriveForwardFiveFeet();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
+    
+    
+    
+        arm.secure();
+        arm.IsSecured = true;
     }
 
     /**
