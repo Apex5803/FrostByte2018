@@ -21,8 +21,8 @@ public class Arm extends Subsystem {
 	public TalonSRX Arm1 = Robot.Arm1;
 	public VictorSPX Arm2 = Robot.Arm2;
 	public TalonSRX Extender1 = RobotMap.Extender1;
-//	public TalonSRX Extender2 = RobotMap.Extender2;
-	public VictorSPX Extender2 = RobotMap.Extender2;
+	public TalonSRX Extender2 = RobotMap.Extender2;
+//	public VictorSPX Extender2 = RobotMap.Extender2;
 	public static DoubleSolenoid ArmBrake = RobotMap.ArmBrake;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -92,11 +92,7 @@ public class Arm extends Subsystem {
 		 public void End() {
 				this.move(0);
 			}
-		 
-	
-	
-	//TODO: implement arm code once it's finished by other team
-	
+		 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());

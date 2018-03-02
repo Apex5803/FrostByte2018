@@ -75,6 +75,11 @@ public class CubeEater extends Subsystem {
 		RollerT1.set(ControlMode.PercentOutput, -1);
 		RollerB1.set(ControlMode.PercentOutput, -1);
 	}
+	
+	public void spitCubeAuto() {
+		RollerT1.set(ControlMode.PercentOutput, -.5);
+		RollerB1.set(ControlMode.PercentOutput, -.5);		
+	}
 public void spitCubeManual() {
 		
 		if (OI.xbox1.getTriggerAxis(Hand.kRight) >= 0.2) {

@@ -6,6 +6,9 @@ import org.json.simple.parser.ParseException;
 import org.usfirst.frc.team5803.robot.models.SrxTrajectory;
 import org.usfirst.frc.team5803.robot.utils.SrxTrajectoryImporter;
 import org.usfirst.frc.team5803.robot.commands.FollowTrajectory;
+import org.usfirst.frc.team5803.robot.commands.armCommands.ReleaseArm;
+import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmAngle;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.IntakeCreep;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.PunchCube;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.RetractPuncher;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeManual;
@@ -30,12 +33,11 @@ public class ScaleRightStartRight extends CommandGroup {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
-        	
-        	addSequential(new FollowTrajectory("ScaleRightStartRight"));
+        	addSequential(new IntakeCreep());
+        	addParallel(new FollowTrajectory("ScaleRightStartRight"));
         	System.out.println("Driving ScaleRightStartRight");
-        	addSequential(new Drive(), 1);
+        	addSequential(new RotateArmAngle(75), 2);
         	addSequential(new PunchCube(), 2);
         	addSequential(new RetractPuncher());
-        	addParallel(new SpitCubeManual());
     }
 }

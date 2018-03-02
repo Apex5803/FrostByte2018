@@ -6,6 +6,14 @@ import org.json.simple.parser.ParseException;
 import org.usfirst.frc.team5803.robot.models.SrxTrajectory;
 import org.usfirst.frc.team5803.robot.utils.SrxTrajectoryImporter;
 import org.usfirst.frc.team5803.robot.commands.FollowTrajectory;
+import org.usfirst.frc.team5803.robot.commands.armCommands.ReleaseArm;
+import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmAngle;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.IntakeCreep;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.PunchCube;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.RetractPuncher;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeAuto;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeStandard;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team5803.robot.utils.*;
 import org.usfirst.frc.team5803.robot.models.*;
@@ -26,7 +34,12 @@ public class SwitchRight extends CommandGroup {
     			e.printStackTrace();
     		}
         	
-        	addSequential(new FollowTrajectory("SwitchRight"));
+        	addSequential(new IntakeCreep());        	
+        	addParallel(new FollowTrajectory("SwitchRight"));
         	System.out.println("Driving SwitchRight");
+//        	addSequential(new IntakeCreep());
+        	addSequential(new RotateArmAngle(40), 1);
+        	addSequential(new SpitCubeAuto(), 2);
+        	addSequential(new IntakeCreep());
     }
 }

@@ -39,8 +39,8 @@ public class RobotMap {
 	//Arm stuff
 
 	public static TalonSRX Extender1;
-//	public static TalonSRX Extender2;
-	public static VictorSPX Extender2;
+	public static TalonSRX Extender2; //FOR COMP BOT
+//	public static VictorSPX Extender2; //FOR PRACTICE BOT
 	public static DoubleSolenoid ArmBrake;
 	
 	//Cube Eater stuff
@@ -93,25 +93,7 @@ public class RobotMap {
 		
 		
 		ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
-		
-		/* Soft limits not working
-		Extender1 = new TalonSRX(PortMap.ARM_EXTENDER_LEAD);
-		Extender1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
-		Extender1.setInverted(true);
-		Extender1.setSensorPhase(false);
-		//Extender1.configForwardSoftLimitEnable(false, 0);		
-		Extender1.configForwardSoftLimitThreshold(15000,0); //max = ~27000 
-		Extender1.configForwardSoftLimitEnable(true, 0);
-		//Extender1.configReverseSoftLimitEnable(false, 0);	
-		Extender1.configReverseSoftLimitThreshold(4000,0);
-		Extender1.configReverseSoftLimitEnable(true, 0);
-		
-		//EXTENDER2 RUNS THE OPPOSITE DIRECTION FROM EXTENDER1
-		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);
-		Extender2.follow(Extender1);
-		Extender2.setInverted(false);
-		//Extender2.configSelectedFeedbackSensor((FeedbackDevice.CTRE_MagEncoder_Absolute), 0, 0);
-		*/
+
 		Extender1 = new TalonSRX(PortMap.ARM_EXTENDER_LEAD);
 		/* choose the sensor and sensor direction */
 		Extender1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
@@ -140,8 +122,8 @@ public class RobotMap {
 		//Extender1.configReverseSoftLimitEnable(false, 0);	
 		//Extender1.configReverseSoftLimitThreshold(-10,0);
 		Extender1.configReverseSoftLimitEnable(false, 0);
-//		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);
-		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER);
+		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER); //FOR COMP BOT
+//		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
 		Extender2.follow(Extender1);
 		Extender2.setInverted(true);
 		//ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
@@ -160,23 +142,13 @@ public class RobotMap {
 		//RollerB2 = new VictorSPX(PortMap.BOTTOM_ROLLER_FOLLOWER);
 		//RollerB2.follow(RollerB1);
 		//RollerB2.setInverted(true);
-//		Puncher1 = new Solenoid(PortMap.PUNCHER1_FORWARD_CHANNEL);
 		
 		//Jaw = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		
 		//ClimbMin = new DigitalInput(PortMap.CLIMBER_MIN);
 		//ClimbMax = new DigitalInput(PortMap.CLIMBER_MAX);
-		
-//		System.out.println("INITIALIZING ROBOT SPEED CONTROLLERS2222222");
+
 		
 	}
-	// For example to map the left and right motors, you could define the
-	// following variables to use with your drivetrain subsystem.
-	// public static int leftMotor = 1;
-	// public static int rightMotor = 2;
 
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	// public static int rangefinderPort = 1;
-	// public static int rangefinderModule = 1;
 }

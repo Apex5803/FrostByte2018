@@ -48,6 +48,7 @@ public class RotateArmAngle extends Command {
 	@Override
 	protected void end() {
 		//Robot.arm.move(0);
+		System.out.println("Reached setpoint, locking arm");
 		new HoldArmPosition();
 		new LockArm();
 	}
