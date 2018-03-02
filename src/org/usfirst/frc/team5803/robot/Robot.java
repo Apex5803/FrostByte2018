@@ -19,13 +19,18 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5803.robot.commands.*;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveForward;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveForwardFiveFeet;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromCenter;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromLeft;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromRight;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleLeft;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleLeftStartLeft;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleLeftStartRight;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleRight;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleRightStartLeft;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleRightStartRight;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchFromCenter;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchLeft;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchRight;
 import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
@@ -73,15 +78,11 @@ public class Robot extends TimedRobot {
 
     	autoChooser= new SendableChooser<String>();
     	autoChooser.addDefault("CommandA", "CommandA");
-    	autoChooser.addObject("FiveFeet", "FiveFeet");
-    	autoChooser.addObject("SwitchLeft", "SwitchLeft");
-    	autoChooser.addObject("SwitchRight", "SwitchRight");
-    	autoChooser.addObject("ScaleLeft", "ScaleLeft");
-    	autoChooser.addObject("ScaleRight", "ScaleRight");
-    	autoChooser.addObject("ScaleRightStartLeft", "ScaleRightStartLeft");
-    	autoChooser.addObject("ScaleLeftStartLeft", "ScaleLeftStartLeft");
-    	autoChooser.addObject("ScaleLeftStartRight", "ScaleLeftStartRight");
-    	autoChooser.addObject("ScaleRightStartRight", "ScaleRightStartRight");
+    	autoChooser.addObject("DriveForward", "DriveForward");
+    	autoChooser.addObject("SwitchFromCenter", "SwitchFromCenter");
+    	autoChooser.addObject("ScaleFromCenter", "ScaleFromCenter");
+    	autoChooser.addObject("ScaleFromLeft", "ScaleFromLeft");
+    	autoChooser.addObject("ScaleFromRight", "ScaleFromRight");
     	SmartDashboard.putData("Auto Mode Chooser", autoChooser);
     	
 
@@ -193,34 +194,24 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+    	System.out.println("Game Specific Message: "+this.gameState.toString());
+		
     	String selectedAuto = (String)autoChooser.getSelected();
 		switch (selectedAuto) {
-		case "FiveFeet": 
-			autonomousCommand = new DriveForwardFiveFeet();
-			 break;
-		case "SwitchLeft":
-			autonomousCommand = new SwitchLeft();
+		case "SwitchFromCenter":
+			autonomousCommand = new SwitchFromCenter(gameState);
 			break;
-		case "SwitchRight":
-			autonomousCommand = new SwitchRight();
+		case "ScaleFromCenter":
+			autonomousCommand = new ScaleFromCenter(gameState);
 			break;
-		case "ScaleLeft":
-			autonomousCommand = new ScaleLeft();
+		case "ScaleFromLeft" :
+			autonomousCommand = new ScaleFromLeft(gameState);
 			break;
-		case "ScaleRight":
-			autonomousCommand = new ScaleRight();
+		case "ScaleFromRight" :
+			autonomousCommand = new ScaleFromRight(gameState);
 			break;
-		case "ScaleRightStartLeft" :
-			autonomousCommand = new ScaleRightStartLeft();
-			break;
-		case "ScaleLeftStartLeft" :
-			autonomousCommand = new ScaleLeftStartLeft();
-			break;
-		case "ScaleLeftStartRight" :
-			autonomousCommand = new ScaleLeftStartRight();
-			break;
-		case "ScaleRightStartRight" :
-			autonomousCommand = new ScaleRightStartRight();
+		case "DriveForward" :
+			autonomousCommand = new DriveForward();
 			break;
 		default:
 //			autonomousCommand = new CommandA();

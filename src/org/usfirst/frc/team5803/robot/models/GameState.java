@@ -8,6 +8,7 @@ public class GameState {
 	
 	public GameState(String gameSpecificMessage) {
 		
+		
 		if(gameSpecificMessage.charAt(0) == 'L') {
 			this.mySwitchSide = Side.LEFT;
 		}else {
