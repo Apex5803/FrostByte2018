@@ -52,7 +52,9 @@ public class RotateArmManual extends Command {
 			//else if(targetAngle < 5){
 				//Robot.arm.moveTo(ControlMode.MotionMagic, 5);				
 			//}
-			else Robot.arm.moveTo(ControlMode.MotionMagic, targetAngle);
+			else if(targetAngle < 100) {
+				Robot.arm.moveTo(ControlMode.MotionMagic, targetAngle);
+			}
 //			SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;
 //			Robot.arm.move(-0.4 * OI.xbox2.getY(Hand.kLeft));
 //			System.out.println("if statement achieved");

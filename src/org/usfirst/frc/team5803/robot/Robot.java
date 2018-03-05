@@ -107,19 +107,32 @@ public class Robot extends TimedRobot {
 //		Arm1.configReverseSoftLimitEnable(true, 0);
 //		Arm1.configReverseSoftLimitThreshold(-20,0);
 		Arm1.configMotionCruiseVelocity(1000,0);
-		Arm1.configMotionAcceleration(1000,0);
+		Arm1.configMotionAcceleration(700,0);
 		Arm1.configNominalOutputForward(0, 0);
 		Arm1.configNominalOutputReverse(0, 0);
 		Arm1.configPeakOutputForward(1, 0);
-		Arm1.configPeakOutputReverse(-0.20, 0);
+		Arm1.configPeakOutputReverse(-0.60, 0);
 		Arm1.configAllowableClosedloopError(10, 0, 0);
 		//ARM2 RUNS THE SAME DIRECTION AS ARM1
 		Arm2 = new VictorSPX(PortMap.ARM_FOLLOWER);
 		Arm2.follow(Arm1);
 		Arm2.setInverted(false);
 		
+		//REMOVE THIS WHEN WE HAVE TIME TO TEST
+		
+		Arm2.configMotionCruiseVelocity(1000,0);
+		Arm2.configMotionAcceleration(700,0);
+		Arm2.configNominalOutputForward(0, 0);
+		Arm2.configNominalOutputReverse(0, 0);
+		Arm2.configPeakOutputForward(1, 0);
+		Arm2.configPeakOutputReverse(-0.60, 0);
+		Arm2.configAllowableClosedloopError(10, 0, 0);        
         
-        
+		
+		Arm2.configReverseSoftLimitEnable(false, 0);		
+		Arm2.configForwardSoftLimitEnable(false, 0);		
+
+		
         driveTrain = new DriveBase();
         arm = new Arm();
         kCubeEater = new CubeEater();

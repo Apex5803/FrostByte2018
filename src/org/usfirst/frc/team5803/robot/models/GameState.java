@@ -8,7 +8,7 @@ public class GameState {
 	
 	public GameState(String gameSpecificMessage) {
 		
-		
+		if(gameSpecificMessage != null && gameSpecificMessage .length() == 3) {
 		if(gameSpecificMessage.charAt(0) == 'L') {
 			this.mySwitchSide = Side.LEFT;
 		}else {
@@ -25,6 +25,7 @@ public class GameState {
 			this.theirSwitchSide = Side.LEFT;
 		}else {
 			this.theirSwitchSide = Side.RIGHT;
+		}
 		}
 			
 	}

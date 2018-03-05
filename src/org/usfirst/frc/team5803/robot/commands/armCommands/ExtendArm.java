@@ -31,12 +31,12 @@ public class ExtendArm extends Command {
 //			System.out.println("running full manual test");
 			if(OI.xbox2.getY(Hand.kRight) >= 0.2 || OI.xbox2.getY(Hand.kRight) <= -0.2) {
 				Robot.arm.extend(ControlMode.PercentOutput, -1.0 * OI.xbox2.getY(Hand.kRight)); 						
-//				System.out.println("running extension in manual");
-				
+				System.out.println("running extension in manual");
 			}
 			else {
 			double Extension = RobotMap.Extender1.getSelectedSensorPosition(0);
 	    	Robot.arm.extend(ControlMode.MotionMagic, Extension);
+	    	System.out.println("in manual extension with no controller input, holding position");
 			}
 			}		
 //		else Robot.arm.extend(0);

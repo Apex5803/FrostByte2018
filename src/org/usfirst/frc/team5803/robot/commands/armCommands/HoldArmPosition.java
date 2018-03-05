@@ -33,7 +33,7 @@ public class HoldArmPosition extends Command {
 		else if(angle < 5){
 			Robot.arm.moveTo(ControlMode.MotionMagic, 5);				
 		}
-    	Robot.arm.moveTo(ControlMode.MotionMagic, angle);
+		else Robot.arm.moveTo(ControlMode.MotionMagic, angle);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -67,30 +67,55 @@ public class RobotMap {
 //		L1.setInverted(true);
 		L1.setInverted(false);
 		L1.setSensorPhase(true);
+		L1.configNominalOutputForward(0, 0);
+		L1.configNominalOutputReverse(0, 0);
+		L1.configPeakOutputForward(1, 0);
+		L1.configPeakOutputReverse(-1, 0);
+		
 		
 		L2 = new VictorSPX(PortMap.DRIVE_BASE_LEFT_2);
 		L2.follow(L1);
 //		L2.setInverted(true);
 		L2.setInverted(false);
+		L2.configNominalOutputForward(0, 0);
+		L2.configNominalOutputReverse(0, 0);
+		L2.configPeakOutputForward(1, 0);
+		L2.configPeakOutputReverse(-1, 0);
+		
 		
 		L3 = new VictorSPX(PortMap.DRIVE_BASE_LEFT_3);
 		L3.follow(L1);
 //		L3.setInverted(true);
-		L2.setInverted(false);
+		L3.setInverted(false);
+		L3.configNominalOutputForward(0, 0);
+		L3.configNominalOutputReverse(0, 0);
+		L3.configPeakOutputForward(1, 0);
+		L3.configPeakOutputReverse(-1, 0);
 		
 		R1 = new TalonSRX(PortMap.DRIVE_BASE_RIGHT_1);
 		R1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		R1.setInverted(true);
 		R1.setSensorPhase(true);
+		R1.configNominalOutputForward(0, 0);
+		R1.configNominalOutputReverse(0, 0);
+		R1.configPeakOutputForward(1, 0);
+		R1.configPeakOutputReverse(-1, 0);
 		
 		R2 = new VictorSPX(PortMap.DRIVE_BASE_RIGHT_2);
 		R2.follow(R1);
 		R2.setInverted(true);
+		R2.configNominalOutputForward(0, 0);
+		R2.configNominalOutputReverse(0, 0);
+		R2.configPeakOutputForward(1, 0);
+		R2.configPeakOutputReverse(-1, 0);
 		
 		R3 = new VictorSPX(PortMap.DRIVE_BASE_RIGHT_3);
 		R3.follow(R1);
 		R3.setInverted(true);
-		
+		R3.configNominalOutputForward(0, 0);
+		R3.configNominalOutputReverse(0, 0);
+		R3.configPeakOutputForward(1, 0);
+		R3.configPeakOutputReverse(-1, 0);
 		
 		ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 
@@ -123,14 +148,28 @@ public class RobotMap {
 		//Extender1.configReverseSoftLimitThreshold(-10,0);
 		Extender1.configReverseSoftLimitEnable(false, 0);
 		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER); //FOR COMP BOT
+
 //		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
 		Extender2.follow(Extender1);
 		Extender2.setInverted(true);
+		
+		Extender2.configReverseSoftLimitEnable(false, 0);
+		Extender2.configForwardSoftLimitEnable(false, 0);
+		
+		Extender2.configNominalOutputForward(0, 0);
+		Extender2.configNominalOutputReverse(0, 0);
+		Extender2.configPeakOutputForward(1, 0);
+		Extender2.configPeakOutputReverse(-1, 0);
+
 		//ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		
 		RollerT1 = new TalonSRX(PortMap.TOP_ROLLER_LEAD);
 		RollerT1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 		RollerT1.setInverted(false);
+		RollerT1.configNominalOutputForward(0, 0);
+		RollerT1.configNominalOutputReverse(0, 0);
+		RollerT1.configPeakOutputForward(1, 0);
+		RollerT1.configPeakOutputReverse(-1, 0);
 		//RollerT2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER);
 		//RollerT2.follow(RollerT1);
 //		RollerT2.setInverted(true);
@@ -139,6 +178,10 @@ public class RobotMap {
 		RollerB1 = new TalonSRX(PortMap.BOTTOM_ROLLER_LEAD);
 //		RollerB1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		RollerB1.setInverted(true); //True for competition bot, false for practice bot
+		RollerB1.configNominalOutputForward(0, 0);
+		RollerB1.configNominalOutputReverse(0, 0);
+		RollerB1.configPeakOutputForward(1, 0);
+		RollerB1.configPeakOutputReverse(-1, 0);
 		//RollerB2 = new VictorSPX(PortMap.BOTTOM_ROLLER_FOLLOWER);
 		//RollerB2.follow(RollerB1);
 		//RollerB2.setInverted(true);

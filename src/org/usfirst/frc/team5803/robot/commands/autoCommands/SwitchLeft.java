@@ -37,7 +37,7 @@ public class SwitchLeft extends CommandGroup {
         	System.out.println("Driving SwitchLeft");
         	addSequential(new ReleaseArm() , 0.5);
         	addSequential(new RotateArmAngle(40), 2);
-        	addSequential(new LockArm() , 0.5);
+        	addSequential(new LockArm() , 1.5);
         	addSequential(new SpitCubeAuto(), 2);
         	addSequential(new IntakeCreep());
     }
