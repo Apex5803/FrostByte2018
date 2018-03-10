@@ -8,6 +8,8 @@
 package org.usfirst.frc.team5803.robot;
 //import org.usfirst.frc.team5803.robot.subsystems.*;
 
+import org.usfirst.frc.team5803.robot.utils.TalonSRXFactory;
+
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -39,8 +41,8 @@ public class RobotMap {
 	//Arm stuff
 
 	public static TalonSRX Extender1;
-	public static TalonSRX Extender2; //FOR COMP BOT
-//	public static VictorSPX Extender2; //FOR PRACTICE BOT
+//	public static TalonSRX Extender2; //FOR COMP BOT
+	public static VictorSPX Extender2; //FOR PRACTICE BOT
 	public static DoubleSolenoid ArmBrake;
 	
 	//Cube Eater stuff
@@ -62,7 +64,7 @@ public class RobotMap {
 	public static void init() {
 		System.out.println("INITIALIZING ROBOT SPEED CONTROLLERS11!!!!!1@1!!1");
 
-		L1 = new TalonSRX(PortMap.DRIVE_BASE_LEFT_1);
+		L1 = TalonSRXFactory.createDefaultTalon(PortMap.DRIVE_BASE_LEFT_1);
 		L1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 //		L1.setInverted(true);
 		L1.setInverted(false);
@@ -92,7 +94,7 @@ public class RobotMap {
 		L3.configPeakOutputForward(1, 0);
 		L3.configPeakOutputReverse(-1, 0);
 		
-		R1 = new TalonSRX(PortMap.DRIVE_BASE_RIGHT_1);
+		R1 = TalonSRXFactory.createDefaultTalon(PortMap.DRIVE_BASE_RIGHT_1);
 		R1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		R1.setInverted(true);
 		R1.setSensorPhase(true);
@@ -119,7 +121,7 @@ public class RobotMap {
 		
 		ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 
-		Extender1 = new TalonSRX(PortMap.ARM_EXTENDER_LEAD);
+		Extender1 = TalonSRXFactory.createDefaultTalon(PortMap.ARM_EXTENDER_LEAD);
 		/* choose the sensor and sensor direction */
 		Extender1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 
@@ -147,9 +149,9 @@ public class RobotMap {
 		//Extender1.configReverseSoftLimitEnable(false, 0);	
 		//Extender1.configReverseSoftLimitThreshold(-10,0);
 		Extender1.configReverseSoftLimitEnable(false, 0);
-		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER); //FOR COMP BOT
+//		Extender2 = TalonSRXFactory.createDefaultTalon(PortMap.ARM_EXTENDER_FOLLOWER); //FOR COMP BOT
 
-//		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
+		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
 		Extender2.follow(Extender1);
 		Extender2.setInverted(true);
 		
@@ -163,7 +165,7 @@ public class RobotMap {
 
 		//ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		
-		RollerT1 = new TalonSRX(PortMap.TOP_ROLLER_LEAD);
+		RollerT1 = TalonSRXFactory.createDefaultTalon(PortMap.TOP_ROLLER_LEAD);
 		RollerT1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 		RollerT1.setInverted(false);
 		RollerT1.configNominalOutputForward(0, 0);
@@ -175,7 +177,7 @@ public class RobotMap {
 //		RollerT2.setInverted(true);
 		Puncher1 = new Solenoid(PortMap.PUNCHER1_FORWARD_CHANNEL);
 		Puncher2 = new Solenoid(PortMap.PUNCHER2_FORWARD_CHANNEL);
-		RollerB1 = new TalonSRX(PortMap.BOTTOM_ROLLER_LEAD);
+		RollerB1 = TalonSRXFactory.createDefaultTalon(PortMap.BOTTOM_ROLLER_FOLLOWER);
 //		RollerB1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		RollerB1.setInverted(true); //True for competition bot, false for practice bot
 		RollerB1.configNominalOutputForward(0, 0);
