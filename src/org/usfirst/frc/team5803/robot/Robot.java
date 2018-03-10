@@ -38,6 +38,8 @@ import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
 import org.usfirst.frc.team5803.robot.models.GameState;
 //import org.usfirst.frc5803.RobotTestBench.commands.autonomous.DriveForwardFiveFeet;
 import org.usfirst.frc.team5803.robot.subsystems.*;
+import org.usfirst.frc.team5803.robot.utils.TalonSRXFactory;
+import org.usfirst.frc.team5803.robot.utils.VictorSPXFactory;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -91,7 +93,7 @@ public class Robot extends TimedRobot {
     	CameraServer.getInstance().startAutomaticCapture();
 	    //camera->SetResolution(320., 240.);
     	  
-        Arm1 = new TalonSRX(PortMap.ARM_LEAD);
+        Arm1 = TalonSRXFactory.createDefaultTalon(PortMap.ARM_LEAD);
 		int absolutePosition = Arm1.getSensorCollection().getPulseWidthPosition();
 		absolutePosition &= 0xFFF;
 		Arm1.setSelectedSensorPosition(absolutePosition - 4068, 0, 0);
@@ -114,7 +116,7 @@ public class Robot extends TimedRobot {
 		Arm1.configPeakOutputReverse(-0.60, 0);
 		Arm1.configAllowableClosedloopError(10, 0, 0);
 		//ARM2 RUNS THE SAME DIRECTION AS ARM1
-		Arm2 = new VictorSPX(PortMap.ARM_FOLLOWER);
+		Arm2 = VictorSPXFactory.createDefaultVictor(PortMap.ARM_FOLLOWER);
 		Arm2.follow(Arm1);
 		Arm2.setInverted(false);
 		

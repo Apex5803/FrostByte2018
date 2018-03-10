@@ -9,6 +9,7 @@ package org.usfirst.frc.team5803.robot;
 //import org.usfirst.frc.team5803.robot.subsystems.*;
 
 import org.usfirst.frc.team5803.robot.utils.TalonSRXFactory;
+import org.usfirst.frc.team5803.robot.utils.VictorSPXFactory;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -75,7 +76,7 @@ public class RobotMap {
 		L1.configPeakOutputReverse(-1, 0);
 		
 		
-		L2 = new VictorSPX(PortMap.DRIVE_BASE_LEFT_2);
+		L2 = VictorSPXFactory.createDefaultVictor(PortMap.DRIVE_BASE_LEFT_2);
 		L2.follow(L1);
 //		L2.setInverted(true);
 		L2.setInverted(false);
@@ -85,7 +86,7 @@ public class RobotMap {
 		L2.configPeakOutputReverse(-1, 0);
 		
 		
-		L3 = new VictorSPX(PortMap.DRIVE_BASE_LEFT_3);
+		L3 = VictorSPXFactory.createDefaultVictor(PortMap.DRIVE_BASE_LEFT_3);
 		L3.follow(L1);
 //		L3.setInverted(true);
 		L3.setInverted(false);
@@ -103,7 +104,7 @@ public class RobotMap {
 		R1.configPeakOutputForward(1, 0);
 		R1.configPeakOutputReverse(-1, 0);
 		
-		R2 = new VictorSPX(PortMap.DRIVE_BASE_RIGHT_2);
+		R2 = VictorSPXFactory.createDefaultVictor(PortMap.DRIVE_BASE_RIGHT_1);
 		R2.follow(R1);
 		R2.setInverted(true);
 		R2.configNominalOutputForward(0, 0);
@@ -111,7 +112,7 @@ public class RobotMap {
 		R2.configPeakOutputForward(1, 0);
 		R2.configPeakOutputReverse(-1, 0);
 		
-		R3 = new VictorSPX(PortMap.DRIVE_BASE_RIGHT_3);
+		R3 = VictorSPXFactory.createDefaultVictor(PortMap.DRIVE_BASE_RIGHT_3);
 		R3.follow(R1);
 		R3.setInverted(true);
 		R3.configNominalOutputForward(0, 0);
@@ -151,7 +152,7 @@ public class RobotMap {
 		Extender1.configReverseSoftLimitEnable(false, 0);
 //		Extender2 = TalonSRXFactory.createDefaultTalon(PortMap.ARM_EXTENDER_FOLLOWER); //FOR COMP BOT
 
-		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
+		Extender2 = VictorSPXFactory.createDefaultVictor(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
 		Extender2.follow(Extender1);
 		Extender2.setInverted(true);
 		
