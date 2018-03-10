@@ -39,8 +39,8 @@ public class RobotMap {
 	//Arm stuff
 
 	public static TalonSRX Extender1;
-	public static TalonSRX Extender2; //FOR COMP BOT
-//	public static VictorSPX Extender2; //FOR PRACTICE BOT
+//	public static TalonSRX Extender2; //FOR COMP BOT
+	public static VictorSPX Extender2; //FOR PRACTICE BOT
 	public static DoubleSolenoid ArmBrake;
 	
 	//Cube Eater stuff
@@ -71,6 +71,12 @@ public class RobotMap {
 		L1.configNominalOutputReverse(0, 0);
 		L1.configPeakOutputForward(1, 0);
 		L1.configPeakOutputReverse(-1, 0);
+//		L1.configContinuousCurrentLimit(30, 0); //THIS WORKS TO LIMIT DRIVE TRAIN CURRENT
+//		L1.configPeakCurrentLimit(30,0); //THIS WORKS TO LIMIT DRIVE TRAIN CURRENT
+		L1.configContinuousCurrentLimit(0, 0);
+		L1.configPeakCurrentLimit(0,0);
+		L1.configPeakCurrentDuration(0, 0);
+		L1.enableCurrentLimit(false);
 		
 		
 		L2 = new VictorSPX(PortMap.DRIVE_BASE_LEFT_2);
@@ -100,6 +106,12 @@ public class RobotMap {
 		R1.configNominalOutputReverse(0, 0);
 		R1.configPeakOutputForward(1, 0);
 		R1.configPeakOutputReverse(-1, 0);
+//		R1.configContinuousCurrentLimit(30, 0); //THIS WORKS TO LIMIT DRIVE TRAIN CURRENT
+//		R1.configPeakCurrentLimit(30, 0); //THIS WORKS TO LIMIT DRIVE TRAIN CURRENT
+		R1.configContinuousCurrentLimit(0, 0);
+		R1.configPeakCurrentLimit(0, 0);
+		R1.configPeakCurrentDuration(0, 0);
+		R1.enableCurrentLimit(false);
 		
 		R2 = new VictorSPX(PortMap.DRIVE_BASE_RIGHT_2);
 		R2.follow(R1);
@@ -147,9 +159,9 @@ public class RobotMap {
 		//Extender1.configReverseSoftLimitEnable(false, 0);	
 		//Extender1.configReverseSoftLimitThreshold(-10,0);
 		Extender1.configReverseSoftLimitEnable(false, 0);
-		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER); //FOR COMP BOT
+//		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER); //FOR COMP BOT
 
-//		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
+		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
 		Extender2.follow(Extender1);
 		Extender2.setInverted(true);
 		
@@ -177,7 +189,7 @@ public class RobotMap {
 		Puncher2 = new Solenoid(PortMap.PUNCHER2_FORWARD_CHANNEL);
 		RollerB1 = new TalonSRX(PortMap.BOTTOM_ROLLER_LEAD);
 //		RollerB1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
-		RollerB1.setInverted(true); //True for competition bot, false for practice bot
+		RollerB1.setInverted(false); //True for competition bot, false for practice bot
 		RollerB1.configNominalOutputForward(0, 0);
 		RollerB1.configNominalOutputReverse(0, 0);
 		RollerB1.configPeakOutputForward(1, 0);

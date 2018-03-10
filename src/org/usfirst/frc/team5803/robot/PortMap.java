@@ -10,7 +10,7 @@ public class PortMap {
 	public static final int DRIVE_BASE_RIGHT_3 = 3;
 	
 		//arm ports
-	public static final int ARM_LEAD = 2; //2 for practice bot, 7 for failstorm testing
+	public static final int ARM_LEAD = 5; //5 for practice bot, 7 for failstorm testing
 	public static final int ARM_FOLLOWER = 4;
 	public static final int ARM_EXTENDER_LEAD = 6;
 	public static final int ARM_EXTENDER_FOLLOWER = 5;
