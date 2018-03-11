@@ -94,7 +94,7 @@ public class Robot extends TimedRobot {
         Arm1 = new TalonSRX(PortMap.ARM_LEAD);
 		int absolutePosition = Arm1.getSensorCollection().getPulseWidthPosition();
 		absolutePosition &= 0xFFF;
-		Arm1.setSelectedSensorPosition(absolutePosition - 4068, 0, 0);
+		Arm1.setSelectedSensorPosition(absolutePosition - 3205, 0, 0);
 		System.out.println("Set arm encoder 0");
 		
 		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
@@ -107,7 +107,7 @@ public class Robot extends TimedRobot {
 //		Arm1.configReverseSoftLimitEnable(true, 0);
 //		Arm1.configReverseSoftLimitThreshold(-20,0);
 		Arm1.configMotionCruiseVelocity(1000,0);
-		Arm1.configMotionAcceleration(700,0);
+		Arm1.configMotionAcceleration(500,0);
 		Arm1.configNominalOutputForward(0, 0);
 		Arm1.configNominalOutputReverse(0, 0);
 		Arm1.configPeakOutputForward(1, 0);
@@ -121,7 +121,7 @@ public class Robot extends TimedRobot {
 		//REMOVE THIS WHEN WE HAVE TIME TO TEST
 		
 		Arm2.configMotionCruiseVelocity(1000,0);
-		Arm2.configMotionAcceleration(700,0);
+		Arm2.configMotionAcceleration(500,0);
 		Arm2.configNominalOutputForward(0, 0);
 		Arm2.configNominalOutputReverse(0, 0);
 		Arm2.configPeakOutputForward(1, 0);
@@ -189,7 +189,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit(){
-
+    		arm.secure();
     }
 
     @Override
@@ -231,6 +231,7 @@ public class Robot extends TimedRobot {
 			autonomousCommand = new DriveForward();
 			break;
 		default:
+			System.out.println("Default no auto");
 //			autonomousCommand = new CommandA();
 			break; 
 		}
