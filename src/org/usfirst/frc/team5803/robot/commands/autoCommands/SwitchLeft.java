@@ -32,13 +32,13 @@ public class SwitchLeft extends CommandGroup {
     			e.printStackTrace();
     		}
         	//addParallel(new IntakeCreep());
-        	addParallel(new FollowTrajectory("SwitchLeft"));
-        	addSequential(new IntakeCreep(), 1);
+        	addSequential(new FollowTrajectory("SwitchLeft"));
+        	//addSequential(new IntakeCreep(), 1);
         	System.out.println("Driving SwitchLeft");
-        	addSequential(new ReleaseArm() , 0.5);
-        	addSequential(new RotateArmAngle(40), 2);
-        	addSequential(new LockArm() , 1.5);
+        	addSequential(new ReleaseArm() , 0.1);
+        	addSequential(new RotateArmAngle(40), 1);        	
         	addSequential(new SpitCubeAuto(), 2);
+        	addSequential(new LockArm() , 0.1);
         	addSequential(new IntakeCreep());
     }
 }

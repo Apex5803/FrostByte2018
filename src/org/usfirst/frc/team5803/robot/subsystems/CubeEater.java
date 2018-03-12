@@ -78,8 +78,8 @@ public class CubeEater extends Subsystem {
 	}
 	
 	public void spitCubeAuto() {
-		RollerT1.set(ControlMode.PercentOutput, -.5);
-		RollerB1.set(ControlMode.PercentOutput, -.5);		
+		RollerT1.set(ControlMode.PercentOutput, -.35);
+		RollerB1.set(ControlMode.PercentOutput, -.35);		
 	}
 public void spitCubeManual() {
 		
