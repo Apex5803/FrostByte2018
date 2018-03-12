@@ -43,9 +43,10 @@ public class CubeEater extends Subsystem {
 	}
 	
 	public void retractPuncher() {
-		Puncher1.set(false);;
+		Puncher1.set(false);
 		Puncher2.set(false);
-		endRoller();
+//		endRoller();
+		intakeCreep();
 	}
 	
 	public void eatCubeStandard() {
@@ -91,7 +92,9 @@ public void spitCubeManual() {
 			RollerB1.set(ControlMode.PercentOutput, -1 * OI.xbox2.getTriggerAxis(Hand.kRight));
 			}
 		else {
-			endRoller();
+			
+			//endRoller();
+			intakeCreep();
 		}
 	}
 	public void intakeCreep() {

@@ -16,7 +16,9 @@ import com.ctre.phoenix.motion.SetValueMotionProfile;
 import com.ctre.phoenix.motion.TrajectoryPoint;
 import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 //import org.usfirst.frc5803.RobotTestBench.models.BobTalonSRX;
 import org.usfirst.frc.team5803.robot.models.SRXMotionProfile;
@@ -26,6 +28,10 @@ public class FollowTrajectory extends Command {
 
 	private TalonSRX rightTalon = RobotMap.R1;
 	private TalonSRX leftTalon = RobotMap.L1;
+	private VictorSPX R2 = RobotMap.R2;
+	private VictorSPX R3 = RobotMap.R3;
+	private VictorSPX L2 = RobotMap.L2;
+	private VictorSPX L3 = RobotMap.L3;
 	
 	private String trajectoryName = "";
 	private int kMinPointsInTalon = 5;
@@ -115,7 +121,14 @@ public class FollowTrajectory extends Command {
 		this.hasPathStarted = false;
 		setUpTalon(rightTalon);
 		setUpTalon(leftTalon);
-
+		System.out.println("Initialized drive motors to brake");
+		rightTalon.setNeutralMode(NeutralMode.Brake);
+		leftTalon.setNeutralMode(NeutralMode.Brake);
+		R2.setNeutralMode(NeutralMode.Brake);
+		R3.setNeutralMode(NeutralMode.Brake);
+		L2.setNeutralMode(NeutralMode.Brake);
+		L3.setNeutralMode(NeutralMode.Brake);
+		
 		setValue = SetValueMotionProfile.Disable;
 
 		leftTalon.set(ControlMode.MotionProfile, setValue.value);

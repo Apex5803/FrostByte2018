@@ -84,6 +84,7 @@ public class Robot extends TimedRobot {
     	autoChooser.addObject("ScaleFromCenter", "ScaleFromCenter");
     	autoChooser.addObject("ScaleFromLeft", "ScaleFromLeft");
     	autoChooser.addObject("ScaleFromRight", "ScaleFromRight");
+    	autoChooser.addObject("TestPath", "TestPath");
     	SmartDashboard.putData("Auto Mode Chooser", autoChooser);
     	
 
@@ -229,6 +230,9 @@ public class Robot extends TimedRobot {
 			break;
 		case "DriveForward" :
 			autonomousCommand = new DriveForward();
+			break;
+		case "TestPath" :
+			autonomousCommand = new DriveForwardFiveFeet();
 			break;
 		default:
 			System.out.println("Default no auto");

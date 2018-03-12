@@ -71,12 +71,12 @@ public class RobotMap {
 		L1.configNominalOutputReverse(0, 0);
 		L1.configPeakOutputForward(1, 0);
 		L1.configPeakOutputReverse(-1, 0);
-//		L1.configContinuousCurrentLimit(30, 0); //THIS WORKS TO LIMIT DRIVE TRAIN CURRENT
-//		L1.configPeakCurrentLimit(30,0); //THIS WORKS TO LIMIT DRIVE TRAIN CURRENT
-		L1.configContinuousCurrentLimit(0, 0);
-		L1.configPeakCurrentLimit(0,0);
+		L1.configContinuousCurrentLimit(30, 0); //THIS WORKS TO LIMIT DRIVE TRAIN CURRENT
+		L1.configPeakCurrentLimit(30,0); //THIS WORKS TO LIMIT DRIVE TRAIN CURRENT
+//		L1.configContinuousCurrentLimit(0, 0);
+//		L1.configPeakCurrentLimit(0,0);
 		L1.configPeakCurrentDuration(0, 0);
-		L1.enableCurrentLimit(false);
+		L1.enableCurrentLimit(true);
 		
 		
 		L2 = new VictorSPX(PortMap.DRIVE_BASE_LEFT_2);
@@ -106,12 +106,12 @@ public class RobotMap {
 		R1.configNominalOutputReverse(0, 0);
 		R1.configPeakOutputForward(1, 0);
 		R1.configPeakOutputReverse(-1, 0);
-//		R1.configContinuousCurrentLimit(30, 0); //THIS WORKS TO LIMIT DRIVE TRAIN CURRENT
-//		R1.configPeakCurrentLimit(30, 0); //THIS WORKS TO LIMIT DRIVE TRAIN CURRENT
-		R1.configContinuousCurrentLimit(0, 0);
-		R1.configPeakCurrentLimit(0, 0);
+		R1.configContinuousCurrentLimit(30, 0); //THIS WORKS TO LIMIT DRIVE TRAIN CURRENT
+		R1.configPeakCurrentLimit(30, 0); //THIS WORKS TO LIMIT DRIVE TRAIN CURRENT
+//		R1.configPeakCurrentLimit(0, 0); //turn these off to turn on current limiting
+//		R1.configContinuousCurrentLimit(0, 0); //turn these off to turn on current limiting
 		R1.configPeakCurrentDuration(0, 0);
-		R1.enableCurrentLimit(false);
+		R1.enableCurrentLimit(true);
 		
 		R2 = new VictorSPX(PortMap.DRIVE_BASE_RIGHT_2);
 		R2.follow(R1);

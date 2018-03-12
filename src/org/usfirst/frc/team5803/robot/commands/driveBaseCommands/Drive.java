@@ -12,10 +12,12 @@
 package org.usfirst.frc.team5803.robot.commands.driveBaseCommands;
 import org.usfirst.frc.team5803.robot.OI;
 import org.usfirst.frc.team5803.robot.Robot;
+import org.usfirst.frc.team5803.robot.RobotMap;
 import org.usfirst.frc.team5803.robot.models.DriveSignal;
 import org.usfirst.frc.team5803.robot.utils.DriveHelper;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
@@ -43,7 +45,13 @@ public class Drive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println("initialized subsystem");
+    	System.out.println("Initialized drive train in coast mode");
+    	RobotMap.L1.setNeutralMode(NeutralMode.Coast);
+    	RobotMap.L2.setNeutralMode(NeutralMode.Coast);
+    	RobotMap.L3.setNeutralMode(NeutralMode.Coast);
+    	RobotMap.R1.setNeutralMode(NeutralMode.Coast);
+    	RobotMap.R2.setNeutralMode(NeutralMode.Coast);
+    	RobotMap.R3.setNeutralMode(NeutralMode.Coast);
     	
     }
 
@@ -58,7 +66,6 @@ public class Drive extends Command {
 		double rotate = OI.xbox1.getX(Hand.kRight);
 		boolean quickTurn = Robot.driveTrain.quickTurnController(); 
 		DriveSignal driveSignal = helper.cheesyDrive(1.0 * -move, 1.0 * rotate, quickTurn, false);
-		//TODO add this fix for making the robot turn the correct direction in teleop
     	Robot.driveTrain.drive(ControlMode.PercentOutput, driveSignal);
         }
 
