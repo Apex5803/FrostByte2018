@@ -121,14 +121,14 @@ public class FollowTrajectory extends Command {
 		this.hasPathStarted = false;
 		setUpTalon(rightTalon);
 		setUpTalon(leftTalon);
-		System.out.println("Initialized drive motors to brake");
+		/*	System.out.println("Initialized drive motors to brake");
 		rightTalon.setNeutralMode(NeutralMode.Brake);
 		leftTalon.setNeutralMode(NeutralMode.Brake);
 		R2.setNeutralMode(NeutralMode.Brake);
 		R3.setNeutralMode(NeutralMode.Brake);
 		L2.setNeutralMode(NeutralMode.Brake);
 		L3.setNeutralMode(NeutralMode.Brake);
-		
+		*/
 		setValue = SetValueMotionProfile.Disable;
 
 		leftTalon.set(ControlMode.MotionProfile, setValue.value);

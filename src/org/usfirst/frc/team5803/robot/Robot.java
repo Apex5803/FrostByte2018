@@ -40,6 +40,7 @@ import org.usfirst.frc.team5803.robot.models.GameState;
 import org.usfirst.frc.team5803.robot.subsystems.*;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
@@ -143,7 +144,7 @@ public class Robot extends TimedRobot {
         arm.configPIDFextender(0.2, 0, 0, 0); 
         
         driveTrain.L1.setSelectedSensorPosition(0, 0, 0);
-        driveTrain.configPIDF(0.2, 0, 40, 0.5);
+        driveTrain.configPIDF(0.2, 0, 50, 0.5);
         driveTrain.R1.setSelectedSensorPosition(0, 0, 0);
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
@@ -211,7 +212,13 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
     	System.out.println("Game Specific Message: "+this.gameState.toString());
-		
+    	System.out.println("Initialized drive motors to brake");
+		RobotMap.R1.setNeutralMode(NeutralMode.Brake);
+		RobotMap.L1.setNeutralMode(NeutralMode.Brake);
+		RobotMap.R2.setNeutralMode(NeutralMode.Brake);
+		RobotMap.R3.setNeutralMode(NeutralMode.Brake);
+		RobotMap.L2.setNeutralMode(NeutralMode.Brake);
+		RobotMap.L3.setNeutralMode(NeutralMode.Brake);
     
     	
     	String selectedAuto = (String)autoChooser.getSelected();
@@ -277,6 +284,14 @@ public class Robot extends TimedRobot {
         if (autonomousCommand != null) autonomousCommand.cancel();
         arm.secure();
         arm.IsSecured = true;
+    	System.out.println("Initialized drive train in coast mode");
+    	RobotMap.L1.setNeutralMode(NeutralMode.Coast);
+    	RobotMap.L2.setNeutralMode(NeutralMode.Coast);
+    	RobotMap.L3.setNeutralMode(NeutralMode.Coast);
+    	RobotMap.R1.setNeutralMode(NeutralMode.Coast);
+    	RobotMap.R2.setNeutralMode(NeutralMode.Coast);
+    	RobotMap.R3.setNeutralMode(NeutralMode.Coast);
+    	
     }
 
     /**

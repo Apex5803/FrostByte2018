@@ -34,6 +34,7 @@ public class ScaleRightStartLeft extends CommandGroup {
     			e.printStackTrace();
     		}
         	//addSequential(new IntakeCreep());
+//        	addParallel(new RotateArmAngle(40));
         	addSequential(new FollowTrajectory("ScaleRightStartLeft"));
         	System.out.println("Driving ScaleRightStartLeft");
         	addSequential(new RotateArmAngle(75), 2);

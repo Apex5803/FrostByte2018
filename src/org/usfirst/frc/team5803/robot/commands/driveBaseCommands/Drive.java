@@ -45,14 +45,14 @@ public class Drive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println("Initialized drive train in coast mode");
+    /*.out.println("Initialized drive train in coast mode");
     	RobotMap.L1.setNeutralMode(NeutralMode.Coast);
     	RobotMap.L2.setNeutralMode(NeutralMode.Coast);
     	RobotMap.L3.setNeutralMode(NeutralMode.Coast);
     	RobotMap.R1.setNeutralMode(NeutralMode.Coast);
     	RobotMap.R2.setNeutralMode(NeutralMode.Coast);
     	RobotMap.R3.setNeutralMode(NeutralMode.Coast);
-    	
+    	*/
     }
 
     // Called repeatedly when this Command is scheduled to run
