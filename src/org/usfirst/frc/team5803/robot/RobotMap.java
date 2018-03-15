@@ -39,8 +39,8 @@ public class RobotMap {
 	//Arm stuff
 
 	public static TalonSRX Extender1;
-//	public static TalonSRX Extender2; //FOR COMP BOT
-	public static VictorSPX Extender2; //FOR PRACTICE BOT
+	public static TalonSRX Extender2; //FOR COMP BOT
+//	public static VictorSPX Extender2; //FOR PRACTICE BOT
 	public static DoubleSolenoid ArmBrake;
 	
 	//Cube Eater stuff
@@ -159,9 +159,9 @@ public class RobotMap {
 		//Extender1.configReverseSoftLimitEnable(false, 0);	
 		//Extender1.configReverseSoftLimitThreshold(-10,0);
 		Extender1.configReverseSoftLimitEnable(false, 0);
-//		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER); //FOR COMP BOT
+		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER); //FOR COMP BOT
 
-		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
+//	?	Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
 		Extender2.follow(Extender1);
 		Extender2.setInverted(true);
 		
