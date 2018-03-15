@@ -189,7 +189,7 @@ public class RobotMap {
 		Puncher2 = new Solenoid(PortMap.PUNCHER2_FORWARD_CHANNEL);
 		RollerB1 = new TalonSRX(PortMap.BOTTOM_ROLLER_LEAD);
 //		RollerB1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
-		RollerB1.setInverted(false); //True for competition bot, false for practice bot
+		RollerB1.setInverted(true); //True for competition bot, false for practice bot
 		RollerB1.configNominalOutputForward(0, 0);
 		RollerB1.configNominalOutputReverse(0, 0);
 		RollerB1.configPeakOutputForward(1, 0);
