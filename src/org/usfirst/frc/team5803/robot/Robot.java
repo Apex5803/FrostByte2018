@@ -22,6 +22,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5803.robot.commands.*;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveForward;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveForwardFiveFeet;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.FiftyFiftyLeft;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.FiftyFiftyRight;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromCenter;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromLeft;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromRight;
@@ -85,6 +87,8 @@ public class Robot extends TimedRobot {
     	autoChooser.addObject("ScaleFromCenter", "ScaleFromCenter");
     	autoChooser.addObject("ScaleFromLeft", "ScaleFromLeft");
     	autoChooser.addObject("ScaleFromRight", "ScaleFromRight");
+    	autoChooser.addObject("50/50FromRight", "50/50FromRight");
+    	autoChooser.addObject("50/50FromLeft", "50/50FromLeft");
     	autoChooser.addObject("TestPath", "TestPath");
     	SmartDashboard.putData("Auto Mode Chooser", autoChooser);
     	
@@ -237,6 +241,12 @@ public class Robot extends TimedRobot {
 			break;
 		case "DriveForward" :
 			autonomousCommand = new DriveForward();
+			break;
+		case "50/50FromRight":
+			autonomousCommand = new FiftyFiftyRight(gameState);
+		    break;
+		case "50/50FromLeft":
+			autonomousCommand = new FiftyFiftyLeft(gameState);
 			break;
 		case "TestPath" :
 			autonomousCommand = new DriveForwardFiveFeet();
