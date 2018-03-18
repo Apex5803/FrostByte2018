@@ -35,9 +35,9 @@ public class SwitchRight extends CommandGroup {
     			e.printStackTrace();
     		}
         	
-        	        	
-        	addParallel(new FollowTrajectory("SwitchRight"));
-        	addSequential(new IntakeCreep(), 1);
+        	addParallel(new IntakeCreep(), 4);
+        	addSequential(new FollowTrajectory("SwitchRight"));
+//        	addSequential(new IntakeCreep(), 1);
         	System.out.println("Driving SwitchRight");
         	addSequential(new ReleaseArm() , 0.1);
         	addSequential(new RotateArmAngle(40), 1);        	

@@ -252,7 +252,7 @@ public class Robot extends TimedRobot {
 			autonomousCommand = new DriveForwardFiveFeet();
 			break;
 		default:
-			System.out.println("Default no auto");
+			System.out.println("Default, no auto");
 //			autonomousCommand = new CommandA();
 			break; 
 		}

@@ -115,7 +115,7 @@ public class OI {
         	
         	
          POVTrigger DPAD_UP2=new POVTrigger(xbox2, 0, 0);
-        	DPAD_UP2.whenActive(new RotateArmAngle(75)); //75 for practice, 80 for comp
+        	DPAD_UP2.whenActive(new RotateArmAngle(80)); //75 for practice, 80 for comp
         
         POVTrigger DPAD_RIGHT2=new POVTrigger(xbox2, 0, 90);
         	DPAD_RIGHT2.whenActive(new RotateArmAngle(90));

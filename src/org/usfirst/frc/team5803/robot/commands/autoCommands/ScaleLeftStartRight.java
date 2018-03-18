@@ -33,10 +33,11 @@ public class ScaleLeftStartRight extends CommandGroup {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
-        	addSequential(new IntakeCreep(), 0.2);
+//        	addSequential(new IntakeCreep(), 0.2);
+        	addParallel(new IntakeCreep(), 10);
         	addSequential(new FollowTrajectory("ScaleLeftStartRight"));
         	System.out.println("Driving ScaleLeftStartRight");
-        	addSequential(new RotateArmAngle(75), 2);
+        	addSequential(new RotateArmAngle(80), 2);
         	addSequential(new PunchCube(), 2);
         	addSequential(new RetractPuncher());
     }

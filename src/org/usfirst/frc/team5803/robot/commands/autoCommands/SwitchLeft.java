@@ -32,6 +32,7 @@ public class SwitchLeft extends CommandGroup {
     			e.printStackTrace();
     		}
         	//addParallel(new IntakeCreep());
+        	addParallel(new IntakeCreep(), 4);
         	addSequential(new FollowTrajectory("SwitchLeft"));
         	//addSequential(new IntakeCreep(), 1);
         	System.out.println("Driving SwitchLeft");

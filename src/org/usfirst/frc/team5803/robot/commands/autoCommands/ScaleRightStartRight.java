@@ -34,10 +34,10 @@ public class ScaleRightStartRight extends CommandGroup {
     			e.printStackTrace();
     		}
 //        	addParallel(new HoldArm)
-        	addSequential(new IntakeCreep(), 0.2);
+        	addParallel(new IntakeCreep(), 6);
         	addSequential(new FollowTrajectory("ScaleRightStartRight"));
         	System.out.println("Driving ScaleRightStartRight");
-        	addSequential(new RotateArmAngle(75), 2);
+        	addSequential(new RotateArmAngle(80), 2);
         	addSequential(new PunchCube(), 2);
         	addSequential(new RetractPuncher());
     }

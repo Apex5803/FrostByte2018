@@ -34,10 +34,11 @@ public class ScaleLeftStartLeft extends CommandGroup {
     			e.printStackTrace();
     		}
         	//addSequential(new IntakeCreep());
+        	addParallel(new IntakeCreep(), 10);
         	addSequential(new FollowTrajectory("ScaleLeftStartLeft"));
         	System.out.println("Driving ScaleLeftStartLeft");
         	//addSequential(new Drive(), 1);
-        	addSequential(new RotateArmAngle(75), 1);
+        	addSequential(new RotateArmAngle(80), 1);
         	addSequential(new PunchCube(), 2);
         	addSequential(new RetractPuncher());
         	//addParallel(new SpitCubeManual());
