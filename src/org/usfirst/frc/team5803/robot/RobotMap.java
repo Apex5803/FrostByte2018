@@ -159,9 +159,15 @@ public class RobotMap {
 		//Extender1.configReverseSoftLimitEnable(false, 0);	
 		//Extender1.configReverseSoftLimitThreshold(-10,0);
 		Extender1.configReverseSoftLimitEnable(false, 0);
-		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER); //FOR COMP BOT
-
-//	?	Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
+		Extender1.configContinuousCurrentLimit(40, 0); //THIS WORKS TO LIMIT EXTENDER CURRENT
+		Extender1.configPeakCurrentLimit(40,0); //THIS WORKS TO LIMIT EXTENDER CURRENT
+		Extender1.configPeakCurrentDuration(0, 0);
+		Extender1.enableCurrentLimit(true);
+		
+		
+		
+		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);//FOR COMP BOT
+//		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
 		Extender2.follow(Extender1);
 		Extender2.setInverted(true);
 		
@@ -172,6 +178,10 @@ public class RobotMap {
 		Extender2.configNominalOutputReverse(0, 0);
 		Extender2.configPeakOutputForward(1, 0);
 		Extender2.configPeakOutputReverse(-1, 0);
+		Extender2.configContinuousCurrentLimit(40, 0); //THIS WORKS TO LIMIT EXTENDER CURRENT
+		Extender2.configPeakCurrentLimit(40,0); //THIS WORKS TO LIMIT EXTENDER CURRENT
+		Extender2.configPeakCurrentDuration(0, 0);
+		Extender2.enableCurrentLimit(true);
 
 		//ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		
