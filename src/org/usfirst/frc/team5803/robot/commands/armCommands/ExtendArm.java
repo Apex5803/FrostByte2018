@@ -12,7 +12,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
  * An example command.  You can replace me with your own command.
  */
 public class ExtendArm extends Command {
+//	double Extension = RobotMap.Extender1.getSelectedSensorPosition(0);
 	public ExtendArm() {
+		
 		// Use requires() here to declare subsystem dependencies
 		//requires(Robot.kArm);
 	}
@@ -34,9 +36,8 @@ public class ExtendArm extends Command {
 				System.out.println("running extension in manual");
 			}
 			else {
-			double Extension = RobotMap.Extender1.getSelectedSensorPosition(0);
-	    	Robot.arm.extend(ControlMode.MotionMagic, Extension);
-	    	System.out.println("in manual extension with no controller input, holding position");
+//			Robot.arm.extend(ControlMode.PercentOutput, 0);
+			end();
 			}
 			}		
 //		else Robot.arm.extend(0);
@@ -51,6 +52,9 @@ public class ExtendArm extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		
+    	new HoldExtenderPosition();
+//    	System.out.println("in manual extension with no controller input, holding position");
 	}
 
 	// Called when another command which requires one or more of the same

@@ -9,6 +9,7 @@ package org.usfirst.frc.team5803.robot;
 
 import org.usfirst.frc.team5803.robot.commands.armCommands.ExtendArm;
 import org.usfirst.frc.team5803.robot.commands.armCommands.HoldArmPosition;
+import org.usfirst.frc.team5803.robot.commands.armCommands.HoldExtenderPosition;
 import org.usfirst.frc.team5803.robot.commands.armCommands.LockArm;
 import org.usfirst.frc.team5803.robot.commands.armCommands.ReleaseArm;
 import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmAngle;
@@ -56,6 +57,7 @@ public class OI {
         	RPT2.whenInactive(new HoldArmPosition());
         Button LPT2=new JoystickButton(xbox2, 2 );  //same as B button
         	LPT2.whileHeld(new ExtendArm());
+        	LPT2.whenInactive(new HoldExtenderPosition());
         	
         Button LPB2=new JoystickButton(xbox2, 3 );  //same as X button
         LPB2.whenActive(new RotateArmAngle(30));
@@ -115,18 +117,17 @@ public class OI {
         	
         	
          POVTrigger DPAD_UP2=new POVTrigger(xbox2, 0, 0);
-        	DPAD_UP2.whenActive(new RotateArmAngle(80)); //75 for practice, 80 for comp
+        	DPAD_UP2.whenPressed(new RotateArmAngle(80)); //75 for practice, 80 for comp
         
         POVTrigger DPAD_RIGHT2=new POVTrigger(xbox2, 0, 90);
-        	DPAD_RIGHT2.whenActive(new RotateArmAngle(90));
+        	DPAD_RIGHT2.whenPressed(new RotateArmAngle(90));
         	
         POVTrigger DPAD_LEFT2=new POVTrigger(xbox2, 0, 270);
-        	DPAD_LEFT2.whenActive(new RotateArmAngle(40));
-        	//DPAD_LEFT2.whenInactive(new RotateArmAngle(40));
-        	
+        DPAD_LEFT2.whileHeld(new RotateArmAngle(30));
+        	DPAD_LEFT2.whenReleased(new RotateArmAngle(40));
         	
         POVTrigger DPAD_DOWN2=new POVTrigger(xbox2, 0, 180);
-        	DPAD_DOWN2.whenActive(new RotateArmAngle(5)); //5 for practice, 7 for comp
+        	DPAD_DOWN2.whenPressed(new RotateArmAngle(5)); //5 for practice, 7 for comp
         	
         
         	
