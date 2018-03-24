@@ -42,6 +42,13 @@ public class CubeEater extends Subsystem {
 		RollerB1.set(ControlMode.PercentOutput, -.2);
 	}
 	
+	public void softPunchCube() {
+		Puncher1.set(true);
+		Puncher2.set(true);
+		RollerT1.set(ControlMode.PercentOutput, 0);
+		RollerB1.set(ControlMode.PercentOutput, 0);
+	}
+	
 	public void retractPuncher() {
 		Puncher1.set(false);
 		Puncher2.set(false);
@@ -71,7 +78,7 @@ public class CubeEater extends Subsystem {
 		
 	}
 	
-	//Vegeta what does the scouter say about his power level?
+
 	public void spitCubeStandard() {
 		RollerT1.set(ControlMode.PercentOutput, -1);
 		RollerB1.set(ControlMode.PercentOutput, -1);

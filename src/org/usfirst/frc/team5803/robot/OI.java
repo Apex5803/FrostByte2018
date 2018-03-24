@@ -21,6 +21,7 @@ import org.usfirst.frc.team5803.robot.commands.cubeCommands.EatCubeStandard;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.IntakeCreep;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.PunchCube;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.RetractPuncher;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.SoftPunchCube;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeManual;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeStandard;
 import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
@@ -60,7 +61,8 @@ public class OI {
         	LPT2.whenInactive(new HoldExtenderPosition());
         	
         Button LPB2=new JoystickButton(xbox2, 3 );  //same as X button
-        LPB2.whenActive(new RotateArmAngle(30));
+        LPB2.whileHeld(new SoftPunchCube());
+        LPB2.whenInactive(new RetractPuncher());
 //        	LPB2.whenInactive(new LockArm());
         //climb angle
 //        Button B2=new JoystickButton(xbox2,2);
@@ -127,7 +129,7 @@ public class OI {
         	DPAD_LEFT2.whenReleased(new RotateArmAngle(40));
         	
         POVTrigger DPAD_DOWN2=new POVTrigger(xbox2, 0, 180);
-        	DPAD_DOWN2.whenPressed(new RotateArmAngle(5)); //5 for practice, 7 for comp
+        	DPAD_DOWN2.whenPressed(new RotateArmAngle(3)); //5 for practice, 3 for comp
         	
         
         	
