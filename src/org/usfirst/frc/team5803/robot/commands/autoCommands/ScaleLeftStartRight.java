@@ -3,9 +3,9 @@ package org.usfirst.frc.team5803.robot.commands.autoCommands;
 import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
-import org.usfirst.frc.team5803.robot.models.SrxTrajectory;
-import org.usfirst.frc.team5803.robot.utils.SrxTrajectoryImporter;
-import org.usfirst.frc.team5803.robot.commands.FollowTrajectory;
+//import org.usfirst.frc.team5803.robot.models.SrxTrajectory;
+//import org.usfirst.frc.team5803.robot.utils.SrxTrajectoryImporter;
+//import org.usfirst.frc.team5803.robot.commands.FollowTrajectory;
 import org.usfirst.frc.team5803.robot.commands.armCommands.ReleaseArm;
 import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmAngle;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.IntakeCreep;
@@ -23,22 +23,22 @@ import org.usfirst.frc.team5803.robot.models.*;
  * It will drive forward 5 feet. 
  */
 public class ScaleLeftStartRight extends CommandGroup {
-	SrxTrajectoryImporter importer = new SrxTrajectoryImporter("/home/lvuser/Autos");
-	SrxTrajectory toFollow = null;
+//	SrxTrajectoryImporter importer = new SrxTrajectoryImporter("/home/lvuser/Autos");
+//	SrxTrajectory toFollow = null;
     public ScaleLeftStartRight() {
-        	try {
-    			this.toFollow = importer.importSrxTrajectory("ScaleLeftStartRight");
-    			System.out.println("import" + this.toFollow); 
-    		} catch (IOException | ParseException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
-//        	addSequential(new IntakeCreep(), 0.2);
-        	addParallel(new IntakeCreep(), 10);
-        	addSequential(new FollowTrajectory("ScaleLeftStartRight"));
+//        	try {
+//    			this.toFollow = importer.importSrxTrajectory("ScaleLeftStartRight");
+//    			System.out.println("import" + this.toFollow); 
+//    		} catch (IOException | ParseException e) {
+//    			// TODO Auto-generated catch block
+//    			e.printStackTrace();
+//    		}
+////        	addSequential(new IntakeCreep(), 0.2);
+//        	addParallel(new IntakeCreep(), 10);
+//        	addSequential(new FollowTrajectory("ScaleLeftStartRight"));
         	System.out.println("Driving ScaleLeftStartRight");
-        	addSequential(new RotateArmAngle(80), 2);
-        	addSequential(new PunchCube(), 2);
-        	addSequential(new RetractPuncher());
+//        	addSequential(new RotateArmAngle(80), 2);
+//        	addSequential(new PunchCube(), 2);
+//        	addSequential(new RetractPuncher());
     }
 }

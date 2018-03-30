@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 
 /**
@@ -21,8 +22,12 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  */
 
 public class DriveBase extends Subsystem {
-	public TalonSRX L1 = RobotMap.L1;
-	public TalonSRX R1 = RobotMap.R1;
+	public BobTalonSRX L1 = RobotMap.L1;
+	public BobTalonSRX R1 = RobotMap.R1;
+	private PigeonIMU pigeon = new PigeonIMU(0);
+	
+	public static int HIGH_GEAR_PROFILE = 1;
+	public static int ROTATION_PROFILE = 2;
 	
 	//public WPI_TalonSRX L1 = RobotMap.driveTrainDriveTrainL1;
     //public WPI_TalonSRX R1 = RobotMap.driveTrainDriveTrainR1;
@@ -159,6 +164,18 @@ public class DriveBase extends Subsystem {
 	
 	public void End() {
 		drive(ControlMode.PercentOutput, 0,0);
+	}
+	
+	
+
+	public double getAngle() {
+		double[] ypr = new double[3];
+		pigeon.getYawPitchRoll(ypr);
+		return ypr[0];
+	}
+
+	public double getDistance() {
+		return R1.getPrimarySensorPosition();
 	}
 
     // Put methods for controlling this subsystem

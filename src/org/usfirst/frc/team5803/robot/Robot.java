@@ -209,6 +209,7 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putNumber("Extender2 encoderPosition", RobotMap.Extender2.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("Extender1 encoderPosition", RobotMap.Extender1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("RollerT1 encoder Postion", RobotMap.RollerT1.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("yaw", Robot.driveTrain.getAngle());
 //		SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;
 
     }
@@ -315,6 +316,8 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Extender1 encoderPosition", RobotMap.Extender1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("RollerT1 encoder position", RobotMap.RollerT1.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("Arm1 encoder speed", Arm1.getSelectedSensorVelocity(0));
+        SmartDashboard.putNumber("yaw", Robot.driveTrain.getAngle());
+
        
 		SmartDashboard.putNumber("Intake Power", OI.xbox2.getTriggerAxis(Hand.kLeft));
 

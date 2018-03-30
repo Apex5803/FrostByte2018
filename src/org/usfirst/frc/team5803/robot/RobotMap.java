@@ -8,6 +8,8 @@
 package org.usfirst.frc.team5803.robot;
 //import org.usfirst.frc.team5803.robot.subsystems.*;
 
+import org.usfirst.frc.team5803.robot.models.BobTalonSRX;
+
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -29,18 +31,18 @@ public class RobotMap {
 	
 	public static DifferentialDrive joystickControl;
 	//Drive Base speed controllers
-	public static TalonSRX L1;
+	public static BobTalonSRX L1;
 	public static VictorSPX L2;
 	public static VictorSPX L3;
-	public static TalonSRX R1;
+	public static BobTalonSRX R1;
 	public static VictorSPX R2;
 	public static VictorSPX R3;
 	
 	//Arm stuff
 
 	public static TalonSRX Extender1;
-	public static TalonSRX Extender2; //FOR COMP BOT
-//	public static VictorSPX Extender2; //FOR PRACTICE BOT
+//	public static TalonSRX Extender2; //FOR COMP BOT
+	public static VictorSPX Extender2; //FOR PRACTICE BOT
 	public static DoubleSolenoid ArmBrake;
 	
 	//Cube Eater stuff
@@ -62,7 +64,7 @@ public class RobotMap {
 	public static void init() {
 		System.out.println("INITIALIZING ROBOT SPEED CONTROLLERS11!!!!!1@1!!1");
 
-		L1 = new TalonSRX(PortMap.DRIVE_BASE_LEFT_1);
+		L1 = new BobTalonSRX(PortMap.DRIVE_BASE_LEFT_1);
 		L1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 //		L1.setInverted(true);
 		L1.setInverted(false);
@@ -98,7 +100,7 @@ public class RobotMap {
 		L3.configPeakOutputForward(1, 0);
 		L3.configPeakOutputReverse(-1, 0);
 		
-		R1 = new TalonSRX(PortMap.DRIVE_BASE_RIGHT_1);
+		R1 = new BobTalonSRX(PortMap.DRIVE_BASE_RIGHT_1);
 		R1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		R1.setInverted(true);
 		R1.setSensorPhase(true);
@@ -166,8 +168,8 @@ public class RobotMap {
 		
 		
 		
-		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);//FOR COMP BOT
-//		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
+//		Extender2 = new TalonSRX(PortMap.ARM_EXTENDER_FOLLOWER);//FOR COMP BOT
+		Extender2 = new VictorSPX(PortMap.TOP_ROLLER_FOLLOWER); //FOR PRACTICE BOT
 		Extender2.follow(Extender1);
 		Extender2.setInverted(true);
 		
@@ -178,10 +180,10 @@ public class RobotMap {
 		Extender2.configNominalOutputReverse(0, 0);
 		Extender2.configPeakOutputForward(1, 0);
 		Extender2.configPeakOutputReverse(-1, 0);
-		Extender2.configContinuousCurrentLimit(40, 0); //THIS WORKS TO LIMIT EXTENDER CURRENT
-		Extender2.configPeakCurrentLimit(40,0); //THIS WORKS TO LIMIT EXTENDER CURRENT
-		Extender2.configPeakCurrentDuration(0, 0);
-		Extender2.enableCurrentLimit(true);
+//		Extender2.configContinuousCurrentLimit(40, 0); //THIS WORKS TO LIMIT EXTENDER CURRENT
+//		Extender2.configPeakCurrentLimit(40,0); //THIS WORKS TO LIMIT EXTENDER CURRENT
+//		Extender2.configPeakCurrentDuration(0, 0);
+//		Extender2.enableCurrentLimit(true);
 
 		//ArmBrake = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		
