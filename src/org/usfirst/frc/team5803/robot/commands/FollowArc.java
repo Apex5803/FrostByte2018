@@ -27,9 +27,7 @@ public class FollowArc extends Command {
 	private int distancePidSlot = DriveBase.HIGH_GEAR_PROFILE;
 	private int rotationPidSlot = DriveBase.ROTATION_PROFILE;
 	
-	private SRXGains highGearGains = new SRXGains(DriveBase.HIGH_GEAR_PROFILE, 0.2, 0.0, 50.0, 0.5, 0); 
-	private SRXGains rotationGains = new SRXGains(DriveBase.ROTATION_PROFILE, 2.5, 0.00, 25.0, 0.0, 0);
-//TODO add actual rotationGains values
+	//DO add actual rotationGains values
 	private int kMinPointsInTalon = 5;
 
 	private boolean isFinished = false;
@@ -85,7 +83,7 @@ public class FollowArc extends Command {
 				if ((lastPointSent + 1) == prof.numPoints) {
 					point.isLastPoint = true; /** set this to true on the last point */
 				}
-				System.out.println(point);
+				//System.out.println(point);
 				talon.pushMotionProfileTrajectory(point);
 				lastPointSent++;
 				hasPathStarted = true;

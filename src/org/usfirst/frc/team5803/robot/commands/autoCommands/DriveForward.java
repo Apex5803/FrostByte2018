@@ -21,6 +21,6 @@ public class DriveForward extends CommandGroup {
 //	SrxTrajectory toFollow = null;
     public DriveForward() {
     	System.out.println("driving forward");
-    	addSequential(new FollowArc(new TuningTestAutoArc()));
+    	addSequential(new FollowArc(new ThreeFeetArc()));
     }
 }

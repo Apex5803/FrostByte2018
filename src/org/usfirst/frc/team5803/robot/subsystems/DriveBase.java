@@ -24,16 +24,17 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 public class DriveBase extends Subsystem {
 	public BobTalonSRX L1 = RobotMap.L1;
 	public BobTalonSRX R1 = RobotMap.R1;
-	public PigeonIMU pigeon = new PigeonIMU(0);
+	public static PigeonIMU pigeon = new PigeonIMU(0);
 	
-	public static int HIGH_GEAR_PROFILE = 1;
-	public static int ROTATION_PROFILE = 2;
+	public static int HIGH_GEAR_PROFILE = 0;
+	public static int ROTATION_PROFILE = 1;
 	
 	//public WPI_TalonSRX L1 = RobotMap.driveTrainDriveTrainL1;
     //public WPI_TalonSRX R1 = RobotMap.driveTrainDriveTrainR1;
 //   private final DifferentialDrive joystickControl = RobotMap.joystickControl;
    StringBuilder _sb = new StringBuilder();
    int _loops = 0;
+   
    
    public void initDefaultCommand() {
        // et the default command for a subsystem here.
@@ -43,6 +44,11 @@ public class DriveBase extends Subsystem {
    	//setDefaultCommand(new DrivetrainVelocityPIDTest());
    }
 
+   public void configGains (SRXGains gains) {
+	   this.L1.setGains(gains);
+	   this.R1.setGains(gains);
+   }
+   
     public void configPIDF(double p, double i, double d, double f) {
 
     	this.L1.config_kP(0, p, 0);

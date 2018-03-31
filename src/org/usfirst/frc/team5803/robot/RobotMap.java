@@ -9,8 +9,11 @@ package org.usfirst.frc.team5803.robot;
 //import org.usfirst.frc.team5803.robot.subsystems.*;
 
 import org.usfirst.frc.team5803.robot.models.BobTalonSRX;
+import org.usfirst.frc.team5803.robot.subsystems.DriveBase;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.RemoteSensorSource;
+import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.*;
@@ -113,6 +116,24 @@ public class RobotMap {
 		R1.configPeakCurrentDuration(0, 0);
 		R1.enableCurrentLimit(true);
 		
+		// configure distance sensor
+		// Remote 0 will be the other side's Talon
+		R1.configRemoteSensor0(L1.getDeviceID(), RemoteSensorSource.TalonSRX_SelectedSensor);
+		R1.configSensorSum(FeedbackDevice.RemoteSensor0, FeedbackDevice.CTRE_MagEncoder_Relative);
+		R1.configPrimaryFeedbackDevice(FeedbackDevice.SensorSum, 0.5); // distances from left and right are
+																				// summed, so average them
+		R1.configMaxIntegralAccumulator(DriveBase.ROTATION_PROFILE, 3000);
+
+		// configure angle sensor
+		// Remote 1 will be a pigeon
+		R1.configRemoteSensor1(DriveBase.pigeon.getDeviceID(), RemoteSensorSource.Pigeon_Yaw);
+		R1.configSecondaryFeedbackDevice(FeedbackDevice.RemoteSensor1, (3600.0 / 8192.0)); // Coefficient for
+																						// Pigeon to
+
+		// convert to 360
+		L1.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 5, 0);
+		R1.configAuxPIDPolarity(false, 0);
+
 		R2 = new VictorSPX(PortMap.DRIVE_BASE_RIGHT_2);
 		R2.follow(R1);
 		R2.setInverted(true);

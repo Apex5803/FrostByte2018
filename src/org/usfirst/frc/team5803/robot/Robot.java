@@ -40,6 +40,7 @@ import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchLeft;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchRight;
 import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
 import org.usfirst.frc.team5803.robot.models.GameState;
+import org.usfirst.frc.team5803.robot.models.SRXGains;
 //import org.usfirst.frc5803.RobotTestBench.commands.autonomous.DriveForwardFiveFeet;
 import org.usfirst.frc.team5803.robot.subsystems.*;
 
@@ -138,8 +139,13 @@ public class Robot extends TimedRobot {
         // p = 1.8 
         arm.configPIDFextender(0.2, 0, 0, 0); 
         
+        SRXGains highGearGains = new SRXGains(DriveBase.HIGH_GEAR_PROFILE, 0.2, 0.0, 50.0, 0.5, 0); 
+    	SRXGains rotationGains = new SRXGains(DriveBase.ROTATION_PROFILE, 2.5, 0.00, 25.0, 0.0, 0);
+    
         driveTrain.L1.setSelectedSensorPosition(0, 0, 0);
 //        driveTrain.configPIDF(0.2, 0, 50, 0.5);
+        driveTrain.configGains(highGearGains);
+        driveTrain.configGains(rotationGains);
         driveTrain.R1.setSelectedSensorPosition(0, 0, 0);
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
@@ -252,6 +258,7 @@ public class Robot extends TimedRobot {
 			autonomousCommand = new ScaleFromRight(gameState);
 			break;
 		case "DriveForward" :
+			System.out.println("Going to drive, pls work");
 			autonomousCommand = new DriveForward();
 			break;
 		case "50/50FromRight":
