@@ -8,7 +8,9 @@ import org.json.simple.parser.ParseException;
 //import org.usfirst.frc.team5803.robot.commands.FollowTrajectory;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team5803.robot.utils.*;
+import org.usfirst.frc.team5803.robot.commands.FollowArc;
 import org.usfirst.frc.team5803.robot.models.*;
+import org.usfirst.frc.team5803.robot.arcs.*;
 
 /**
  * This autonomous routine is used for tuning the FollowTrajectory command with motion profiling.
@@ -18,15 +20,7 @@ public class DriveForward extends CommandGroup {
 //	SrxTrajectoryImporter importer = new SrxTrajectoryImporter("/home/lvuser/Autos");
 //	SrxTrajectory toFollow = null;
     public DriveForward() {
-//        	try {
-//    			this.toFollow = importer.importSrxTrajectory("DriveForwardTwelveFeet");
-//    			System.out.println("import" + this.toFollow); 
-//    		} catch (IOException | ParseException e) {
-//    			// TODO Auto-generated catch block
-//    			e.printStackTrace();
-//    		}
-//        	
-//        	addSequential(new FollowTrajectory("DriveForwardTwelveFeet"));
-        	System.out.println("Driving TwelveFeet");
+    	System.out.println("driving forward");
+    	addSequential(new FollowArc(new TuningTestAutoArc()));
     }
 }

@@ -24,7 +24,7 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 public class DriveBase extends Subsystem {
 	public BobTalonSRX L1 = RobotMap.L1;
 	public BobTalonSRX R1 = RobotMap.R1;
-	private PigeonIMU pigeon = new PigeonIMU(0);
+	public PigeonIMU pigeon = new PigeonIMU(0);
 	
 	public static int HIGH_GEAR_PROFILE = 1;
 	public static int ROTATION_PROFILE = 2;
@@ -175,7 +175,7 @@ public class DriveBase extends Subsystem {
 	}
 
 	public double getDistance() {
-		return R1.getPrimarySensorPosition();
+		return R1.getSelectedSensorPosition(0);
 	}
 
     // Put methods for controlling this subsystem

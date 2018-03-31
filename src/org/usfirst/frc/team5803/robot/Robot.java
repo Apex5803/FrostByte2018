@@ -19,6 +19,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team5803.robot.arcs.CrossTheLineArc;
 import org.usfirst.frc.team5803.robot.commands.*;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveForward;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveForwardFiveFeet;
@@ -45,6 +47,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -80,27 +83,15 @@ public class Robot extends TimedRobot {
     	
     	RobotMap.init();
 
-    	autoChooser= new SendableChooser<String>();
-    	autoChooser.addDefault("CommandA", "CommandA");
-    	autoChooser.addObject("DriveForward", "DriveForward");
-    	autoChooser.addObject("SwitchFromCenter", "SwitchFromCenter");
-    	autoChooser.addObject("ScaleFromCenter", "ScaleFromCenter");
-    	autoChooser.addObject("ScaleFromLeft", "ScaleFromLeft");
-    	autoChooser.addObject("ScaleFromRight", "ScaleFromRight");
-    	autoChooser.addObject("50/50FromRight", "50/50FromRight");
-    	autoChooser.addObject("50/50FromLeft", "50/50FromLeft");
-    	autoChooser.addObject("TestPath", "TestPath");
-    	SmartDashboard.putData("Auto Mode Chooser", autoChooser);
+
     	
-
-
     	CameraServer.getInstance().startAutomaticCapture();
 	    //camera->SetResolution(320., 240.);
     	  
         Arm1 = new TalonSRX(PortMap.ARM_LEAD);
 		int absolutePosition = Arm1.getSensorCollection().getPulseWidthPosition();
 		absolutePosition &= 0xFFF;
-		Arm1.setSelectedSensorPosition(absolutePosition - 4068, 0, 0);
+		Arm1.setSelectedSensorPosition(absolutePosition - 3205, 0, 0);
 		System.out.println("Set arm encoder 0");
 		
 		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
@@ -148,13 +139,15 @@ public class Robot extends TimedRobot {
         arm.configPIDFextender(0.2, 0, 0, 0); 
         
         driveTrain.L1.setSelectedSensorPosition(0, 0, 0);
-        driveTrain.configPIDF(0.2, 0, 50, 0.5);
+//        driveTrain.configPIDF(0.2, 0, 50, 0.5);
         driveTrain.R1.setSelectedSensorPosition(0, 0, 0);
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
         // constructed yet. Thus, their requires() statements may grab null
         // pointers. Bad news. Don't move it.
         oi = new OI();
+    	Robot.driveTrain.pigeon.setYaw(0,0);
+
 //        int absolutePosition = RobotMap.Arm1.getSensorCollection().getPulseWidthPosition() - 9230;
 		/* mask out overflows, keep bottom 12 bits */
 //		absolutePosition &= 0xFFF;
@@ -187,6 +180,19 @@ public class Robot extends TimedRobot {
         //chooser.addObject("other auto", new AutonomousCommand());
 
 //        SmartDashboard.putData("Auto mode", autoChooser);
+	
+	autoChooser= new SendableChooser<String>();
+	autoChooser.addDefault("CommandA", "CommandA");
+	autoChooser.addObject("DriveForward", "DriveForward");
+	autoChooser.addObject("SwitchFromCenter", "SwitchFromCenter");
+	autoChooser.addObject("ScaleFromCenter", "ScaleFromCenter");
+	autoChooser.addObject("ScaleFromLeft", "ScaleFromLeft");
+	autoChooser.addObject("ScaleFromRight", "ScaleFromRight");
+	autoChooser.addObject("50/50FromRight", "50/50FromRight");
+	autoChooser.addObject("50/50FromLeft", "50/50FromLeft");
+	autoChooser.addObject("TestPath", "TestPath");
+	SmartDashboard.putData("Auto Mode Chooser", autoChooser);
+	SmartDashboard.putData("CrossTheLine", new FollowArc(new CrossTheLineArc()));
     }
 
     /**
@@ -216,7 +222,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-    	System.out.println("Game Specific Message: "+this.gameState.toString());
+    	System.out.println("MySwitch: "+this.gameState.mySwitchSide.toString() + ", Scale: " + this.gameState.scaleSide.toString() + ", Their Switch: " + this.gameState.theirSwitchSide.toString());
     	System.out.println("Initialized drive motors to brake");
 		RobotMap.R1.setNeutralMode(NeutralMode.Brake);
 		RobotMap.L1.setNeutralMode(NeutralMode.Brake);
@@ -224,6 +230,11 @@ public class Robot extends TimedRobot {
 		RobotMap.R3.setNeutralMode(NeutralMode.Brake);
 		RobotMap.L2.setNeutralMode(NeutralMode.Brake);
 		RobotMap.L3.setNeutralMode(NeutralMode.Brake);
+    	Robot.driveTrain.pigeon.setYaw(0,0);
+    	driveTrain.L1.setSelectedSensorPosition(0, 0, 0);
+      driveTrain.R1.setSelectedSensorPosition(0, 0, 0);
+
+
     
     	
     	String selectedAuto = (String)autoChooser.getSelected();
@@ -283,7 +294,7 @@ public class Robot extends TimedRobot {
          SmartDashboard.putNumber("L1 encoderVelocity", RobotMap.L1.getSelectedSensorVelocity(0));
          SmartDashboard.putNumber("R1 encoderPosition", RobotMap.R1.getSelectedSensorPosition(0));
          SmartDashboard.putNumber("R1 encoderVelocity", RobotMap.R1.getSelectedSensorVelocity(0));
-
+         SmartDashboard.putNumber("yaw", Robot.driveTrain.getAngle());
     }
 
     @Override
@@ -302,6 +313,8 @@ public class Robot extends TimedRobot {
     	RobotMap.R1.setNeutralMode(NeutralMode.Coast);
     	RobotMap.R2.setNeutralMode(NeutralMode.Coast);
     	RobotMap.R3.setNeutralMode(NeutralMode.Coast);
+    	Robot.driveTrain.pigeon.setYaw(0,0);
+
     	
     }
 
