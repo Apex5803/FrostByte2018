@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
@@ -48,7 +49,7 @@ public class DriveBase extends Subsystem {
 	   this.L1.setGains(gains);
 	   this.R1.setGains(gains);
    }
-   
+ /*  //use config gains instead
     public void configPIDF(double p, double i, double d, double f) {
 
     	this.L1.config_kP(0, p, 0);
@@ -61,7 +62,7 @@ public class DriveBase extends Subsystem {
     	this.R1.config_kD(0, d, 0);
     	this.R1.config_kF(0, f, 0);
     }
-    
+   */ 
     public void drive(ControlMode controlMode, double left, double right){
     	this.L1.set(controlMode, left);
     	this.R1.set(controlMode, right);
@@ -180,8 +181,62 @@ public class DriveBase extends Subsystem {
 		return ypr[0];
 	}
 
+	public double getLeftDriveLeadDistance() {
+		return this.L1.getSelectedSensorPosition();
+	}
+
+	public double getRightDriveLeadDistance() {
+		return this.R1.getSelectedSensorPosition();
+	}
+
+	public double getLeftDriveLeadVelocity() {
+		return this.L1.getSelectedSensorVelocity();
+	}
+
+	public double getRightDriveLeadVelocity() {
+		return this.R1.getSelectedSensorVelocity();
+	}
+
+	public void setDrivetrainPositionToZero() {
+		this.L1.setSelectedSensorPosition(0);
+		this.R1.setSelectedSensorPosition(0);
+	}
+
+	public double getLeftLeadVoltage() {
+		return this.L1.getMotorOutputVoltage();
+	}
+
+	public double getRightLeadVoltage() {
+		return this.R1.getMotorOutputVoltage();
+	}
+
+	public double getLeftClosedLoopError() {
+		return this.L1.getClosedLoopError();
+	}
+
+	public double getRightClosedLoopError() {
+		return this.R1.getClosedLoopError();
+	}
+
+	public TalonSRX getLeftLeadTalon() {
+		return this.getLeftLeadTalon();
+	}
+
+	public TalonSRX getRightLeadTalon() {
+		return this.R1;
+	}
+
+	public void setNeutralMode(NeutralMode neutralMode) {
+		this.L1.setNeutralMode(neutralMode);
+		this.R1.setNeutralMode(neutralMode);
+	}
+
 	public double getDistance() {
-		return R1.getSelectedSensorPosition(0);
+		return R1.getPrimarySensorPosition();
+	}
+
+	public double getVelocity() {
+		return R1.getPrimarySensorVelocity();
 	}
 
     // Put methods for controlling this subsystem

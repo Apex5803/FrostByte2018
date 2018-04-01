@@ -3,21 +3,21 @@ package org.usfirst.frc.team5803.robot.arcs;
 import org.usfirst.frc.team5803.robot.models.SrxMotionProfile;
 import org.usfirst.frc.team5803.robot.utils.SrxTrajectory;
 
-public class ThreeFeetArc extends SrxTrajectory{
+public class CenterToLeftSwitchPt3Arc extends SrxTrajectory{
 	
 	// WAYPOINTS:
 	// (X,Y,degrees)
-	// (0.00,0.00,0.00)
-	// (3.00,0.00,0.00)
+	// (3.63,13.08,0.00)
+	// (6.63,13.08,0.00)
 	
-    public ThreeFeetArc() {
+    public CenterToLeftSwitchPt3Arc() {
 		super();
 		this.highGear = true;
 		centerProfile = new SrxMotionProfile(centerPoints.length, centerPoints);
 	}
 
 	
-    public ThreeFeetArc(boolean flipped) {
+    public CenterToLeftSwitchPt3Arc(boolean flipped) {
 		super();
 		this.highGear = true;
 		this.flipped = flipped;

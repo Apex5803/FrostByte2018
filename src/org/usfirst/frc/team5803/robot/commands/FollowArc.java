@@ -23,19 +23,13 @@ public class FollowArc extends Command {
 
 	private BobTalonSRX rightTalon = Robot.driveTrain.R1;
 	private BobTalonSRX leftTalon = Robot.driveTrain.L1;
-
 	private int distancePidSlot = DriveBase.HIGH_GEAR_PROFILE;
 	private int rotationPidSlot = DriveBase.ROTATION_PROFILE;
-	
 	//DO add actual rotationGains values
 	private int kMinPointsInTalon = 5;
-
 	private boolean isFinished = false;
-
 	private SrxTrajectory trajectoryToFollow = null;
-
 	private MotionProfileStatus status = new MotionProfileStatus();
-
 	private boolean hasPathStarted;
 
 	/**
@@ -128,7 +122,7 @@ public class FollowArc extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		rightTalon.getMotionProfileStatus(status);
-
+		System.out.println("Motion Profile Status: " + status);
 		if (status.isUnderrun) {
 			// if either MP has underrun, stop both
 			System.out.println("Motion profile has underrun!");
