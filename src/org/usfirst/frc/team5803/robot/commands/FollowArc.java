@@ -122,7 +122,7 @@ public class FollowArc extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		rightTalon.getMotionProfileStatus(status);
-		System.out.println("Motion Profile Status: " + status);
+//		System.out.println("Motion Profile Status: " + status);
 		if (status.isUnderrun) {
 			// if either MP has underrun, stop both
 			System.out.println("Motion profile has underrun!");

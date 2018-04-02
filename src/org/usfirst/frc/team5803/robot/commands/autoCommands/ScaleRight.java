@@ -3,6 +3,10 @@ package org.usfirst.frc.team5803.robot.commands.autoCommands;
 import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
+import org.usfirst.frc.team5803.robot.arcs.CenterToLeftSwitchArc;
+import org.usfirst.frc.team5803.robot.arcs.CenterToRightSwitchArc;
+import org.usfirst.frc.team5803.robot.commands.FollowArc;
+import org.usfirst.frc.team5803.robot.commands.armCommands.LockArm;
 //import org.usfirst.frc.team5803.robot.models.SrxTrajectory;
 //import org.usfirst.frc.team5803.robot.utils.SrxTrajectoryImporter;
 //import org.usfirst.frc.team5803.robot.commands.FollowTrajectory;
@@ -11,8 +15,11 @@ import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmAngle;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.IntakeCreep;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.PunchCube;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.RetractPuncher;
+import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeAuto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
+
 import org.usfirst.frc.team5803.robot.utils.*;
 import org.usfirst.frc.team5803.robot.models.*;
 
@@ -21,21 +28,18 @@ import org.usfirst.frc.team5803.robot.models.*;
  * It will drive forward 5 feet. 
  */
 public class ScaleRight extends CommandGroup {
-//	SrxTrajectoryImporter importer = new SrxTrajectoryImporter("/home/lvuser/Autos");
-//	SrxTrajectory toFollow = null;
+
     public ScaleRight() {
-//        	try {
-//    			this.toFollow = importer.importSrxTrajectory("ScaleRight");
-//    			System.out.println("import" + this.toFollow); 
-//    		} catch (IOException | ParseException e) {
-//    			// TODO Auto-generated catch block
-//    			e.printStackTrace();
-//    		}
-//        	addParallel(new IntakeCreep(), 10);
-//        	addSequential(new FollowTrajectory("ScaleRight"));
-        	System.out.println("Driving ScaleRight");
-//        	addSequential(new RotateArmAngle(80), 2);
-//        	addSequential(new PunchCube(), 2);
-//        	addSequential(new RetractPuncher());
+
+//        addParallel(new IntakeCreep(), 4);
+//    	addParallel(new FollowArc(new CenterToRightSwitchArc()));
+////    	//addSequential(new IntakeCreep(), 1);
+//    	System.out.println("Driving SwitchRight");
+//    	addSequential(new WaitCommand(1.5));
+//    	addSequential(new ReleaseArm() , 0.1);
+//    	addSequential(new RotateArmAngle(40), .5);        	
+//    	addSequential(new SpitCubeAuto(), 2);
+//    	addSequential(new LockArm() , 0.1);
+//    	addSequential(new IntakeCreep());
     }
 }

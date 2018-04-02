@@ -3,6 +3,9 @@ package org.usfirst.frc.team5803.robot.commands.autoCommands;
 import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
+import org.usfirst.frc.team5803.robot.arcs.CenterToLeftSwitchArc;
+import org.usfirst.frc.team5803.robot.arcs.CenterToRightSwitchArc;
+import org.usfirst.frc.team5803.robot.commands.FollowArc;
 //import org.usfirst.frc.team5803.robot.models.SrxTrajectory;
 //import org.usfirst.frc.team5803.robot.utils.SrxTrajectoryImporter;
 //import org.usfirst.frc.team5803.robot.commands.FollowTrajectory;
@@ -16,6 +19,8 @@ import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeAuto;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeStandard;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
+
 import org.usfirst.frc.team5803.robot.utils.*;
 import org.usfirst.frc.team5803.robot.models.*;
 
@@ -35,14 +40,15 @@ public class SwitchRight extends CommandGroup {
 //    			e.printStackTrace();
 //    		}
 //        	
-//        	addParallel(new IntakeCreep(), 4);
-//        	addSequential(new FollowTrajectory("SwitchRight"));
-//        	addSequential(new IntakeCreep(), 1);
-        	System.out.println("Driving SwitchRight");
-//        	addSequential(new ReleaseArm() , 0.1);
-//        	addSequential(new RotateArmAngle(40), 1);        	
-//        	addSequential(new SpitCubeAuto(), 2);
-//        	addSequential(new LockArm() , 0.1);
-//        	addSequential(new IntakeCreep());
+        addParallel(new IntakeCreep(), 4);
+    	addParallel(new FollowArc(new CenterToRightSwitchArc()));
+//    	//addSequential(new IntakeCreep(), 1);
+    	System.out.println("Driving SwitchRight");
+    	addSequential(new WaitCommand(1.5));
+    	addSequential(new ReleaseArm() , 0.1);
+    	addSequential(new RotateArmAngle(40), .5);        	
+    	addSequential(new SpitCubeAuto(), 2);
+    	addSequential(new LockArm() , 0.1);
+    	addSequential(new IntakeCreep());
     }
 }

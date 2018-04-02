@@ -7,8 +7,8 @@ public class CenterToLeftScaleArc extends SrxTrajectory{
 	
 	// WAYPOINTS:
 	// (X,Y,degrees)
-	// (2.53,13.08,0.00)
-	// (8.90,21.08,45.00)
+	// (2.53,14.58,0.00)
+	// (8.90,22.58,45.00)
 	
     public CenterToLeftScaleArc() {
 		super();

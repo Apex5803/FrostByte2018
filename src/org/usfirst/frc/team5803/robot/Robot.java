@@ -199,6 +199,7 @@ public class Robot extends TimedRobot {
 	autoChooser.addObject("50/50FromLeft", "50/50FromLeft");
 	autoChooser.addObject("TestPath", "TestPath");
 	SmartDashboard.putData("Auto Mode Chooser", autoChooser);
+	SmartDashboard.putData("New Auto Mode Chooser", autoChooser);
 	SmartDashboard.putData("CrossTheLine", new FollowArc(new CrossTheLineArc()));
     }
 
