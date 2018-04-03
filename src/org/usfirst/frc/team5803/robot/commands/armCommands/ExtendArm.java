@@ -34,6 +34,20 @@ public class ExtendArm extends Command {
 			if(OI.xbox2.getY(Hand.kRight) >= 0.2 || OI.xbox2.getY(Hand.kRight) <= -0.2) {
 				Robot.arm.extend(ControlMode.PercentOutput, -1.0 * OI.xbox2.getY(Hand.kRight)); 						
 				System.out.println("running extension in manual");
+				
+				//THIS IS AN ATTEMPT AT HOLDING IN EXTENSION LOGIC
+				//if arm is below 10 degrees
+				/*
+				if(Robot.arm.vgiver() < 10*360/4096) {
+					if(Robot.arm.HallEffect.get()) {
+						Robot.arm.retract();
+					}
+					else if(Robot.arm.HallEffect.get()) {
+						HoldExtenderPosition();
+						end();
+					}
+				}
+				*/
 			}
 			else {
 //			Robot.arm.extend(ControlMode.PercentOutput, 0);

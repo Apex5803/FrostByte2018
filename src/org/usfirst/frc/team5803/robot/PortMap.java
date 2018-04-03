@@ -29,8 +29,8 @@ public class PortMap {
 //	public static final int JAW_FORWARD_CHANNEL = 2;
 //	public static final int JAW_REVERSE_CHANNEL = 5;
 	
-		//climber ports
-	public static final int CLIMBER = 4;
+		//extension position ports
+	public static final int EXTENSION_MIN = 4;
 //	public static final int	CLIMBER_MIN = 4;
 //	public static final int CLIMBER_MAX = 4;
 	

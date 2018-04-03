@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5803.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -24,6 +25,8 @@ public class Arm extends Subsystem {
 //	public TalonSRX Extender2 = RobotMap.Extender2;
 	public VictorSPX Extender2 = RobotMap.Extender2;
 	public static DoubleSolenoid ArmBrake = RobotMap.ArmBrake;
+//	public DigitalInput HallEffect = RobotMap.HallEffect;
+	
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public boolean IsSecured;
@@ -97,6 +100,4 @@ public class Arm extends Subsystem {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 	}
-
-	
 }

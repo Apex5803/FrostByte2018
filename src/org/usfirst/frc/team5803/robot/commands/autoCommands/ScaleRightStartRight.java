@@ -3,6 +3,8 @@ package org.usfirst.frc.team5803.robot.commands.autoCommands;
 import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
+import org.usfirst.frc.team5803.robot.arcs.ScaleRightStartRightArc;
+import org.usfirst.frc.team5803.robot.commands.FollowArc;
 //import org.usfirst.frc.team5803.robot.models.SrxTrajectory;
 //import org.usfirst.frc.team5803.robot.utils.SrxTrajectoryImporter;
 //import org.usfirst.frc.team5803.robot.commands.FollowTrajectory;
@@ -33,12 +35,12 @@ public class ScaleRightStartRight extends CommandGroup {
 //    			// TODO Auto-generated catch block
 //    			e.printStackTrace();
 //    		}
-////        	addParallel(new HoldArm)
-//        	addParallel(new IntakeCreep(), 6);
-//        	addSequential(new FollowTrajectory("ScaleRightStartRight"));
+//        	addParallel(new HoldArm)
+        	addParallel(new IntakeCreep(), 6);
+        	addSequential(new FollowArc(new ScaleRightStartRightArc()));
         	System.out.println("Driving ScaleRightStartRight");
-//        	addSequential(new RotateArmAngle(80), 2);
-//        	addSequential(new PunchCube(), 2);
-//        	addSequential(new RetractPuncher());
+        	addSequential(new RotateArmAngle(80), 2);
+        	addSequential(new PunchCube(), 2);
+        	addSequential(new RetractPuncher());
     }
 }

@@ -3,6 +3,9 @@ package org.usfirst.frc.team5803.robot.commands.autoCommands;
 import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
+import org.usfirst.frc.team5803.robot.arcs.ScaleLeftStartRightArc;
+import org.usfirst.frc.team5803.robot.arcs.ScaleLeftStartRightpt2Arc;
+import org.usfirst.frc.team5803.robot.commands.FollowArc;
 //import org.usfirst.frc.team5803.robot.models.SrxTrajectory;
 //import org.usfirst.frc.team5803.robot.utils.SrxTrajectoryImporter;
 //import org.usfirst.frc.team5803.robot.commands.FollowTrajectory;
@@ -34,11 +37,12 @@ public class ScaleLeftStartRight extends CommandGroup {
 //    			e.printStackTrace();
 //    		}
 ////        	addSequential(new IntakeCreep(), 0.2);
-//        	addParallel(new IntakeCreep(), 10);
-//        	addSequential(new FollowTrajectory("ScaleLeftStartRight"));
+        	addParallel(new IntakeCreep(), 10);
+        	addSequential(new FollowArc(new ScaleLeftStartRightArc()));
+        	addSequential(new FollowArc(new ScaleLeftStartRightpt2Arc()));
         	System.out.println("Driving ScaleLeftStartRight");
-//        	addSequential(new RotateArmAngle(80), 2);
-//        	addSequential(new PunchCube(), 2);
-//        	addSequential(new RetractPuncher());
+        	addSequential(new RotateArmAngle(80), 2);
+        	addSequential(new PunchCube(), 2);
+        	addSequential(new RetractPuncher());
     }
 }

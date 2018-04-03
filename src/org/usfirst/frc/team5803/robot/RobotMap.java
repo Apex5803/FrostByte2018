@@ -55,6 +55,9 @@ public class RobotMap {
 	public static Solenoid Puncher2;
 	//public static DoubleSolenoid Jaw;
 	
+	//Extension sensors
+	public static DigitalInput HallEffect;
+	
 	//Climber stuff
 	public static DigitalInput ClimbMin;
 	public static DigitalInput ClimbMax;
@@ -231,6 +234,7 @@ public class RobotMap {
 		
 		//Jaw = new DoubleSolenoid(PortMap.ARM_BRAKE_FORWARD_CHANNEL, PortMap.ARM_BRAKE_REVERSE_CHANNEL);
 		
+//		HallEffect = new DigitalInput(PortMap.EXTENSION_MIN);
 		//ClimbMin = new DigitalInput(PortMap.CLIMBER_MIN);
 		//ClimbMax = new DigitalInput(PortMap.CLIMBER_MAX);
 
