@@ -18,6 +18,8 @@ import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeManual;
 import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
+
 import org.usfirst.frc.team5803.robot.utils.*;
 import org.usfirst.frc.team5803.robot.models.*;
 
@@ -38,10 +40,12 @@ public class ScaleLeftStartRight extends CommandGroup {
 //    		}
 ////        	addSequential(new IntakeCreep(), 0.2);
         	addParallel(new IntakeCreep(), 10);
-        	addSequential(new FollowArc(new ScaleLeftStartRightArc()));
-        	addSequential(new FollowArc(new ScaleLeftStartRightpt2Arc()));
+        	addParallel(new FollowArc(new ScaleLeftStartRightArc()));
+        	addSequential(new WaitCommand(.5));
+        	addSequential(new RotateArmAngle(45), 1);
         	System.out.println("Driving ScaleLeftStartRight");
-        	addSequential(new RotateArmAngle(80), 2);
+        	addSequential(new WaitCommand(5));
+        	addSequential(new RotateArmAngle(80), 1);
         	addSequential(new PunchCube(), 2);
         	addSequential(new RetractPuncher());
     }

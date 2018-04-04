@@ -3,6 +3,10 @@ package org.usfirst.frc.team5803.robot.commands.autoCommands;
 import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
+import org.usfirst.frc.team5803.robot.arcs.ScaleLeftStartLeftArc;
+import org.usfirst.frc.team5803.robot.arcs.ScaleLeftStartRightArc;
+import org.usfirst.frc.team5803.robot.arcs.ScaleRightStartRightArc;
+import org.usfirst.frc.team5803.robot.commands.FollowArc;
 //import org.usfirst.frc.team5803.robot.models.SrxTrajectory;
 //import org.usfirst.frc.team5803.robot.utils.SrxTrajectoryImporter;
 //import org.usfirst.frc.team5803.robot.commands.FollowTrajectory;
@@ -15,6 +19,8 @@ import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeManual;
 import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
+
 import org.usfirst.frc.team5803.robot.utils.*;
 import org.usfirst.frc.team5803.robot.models.*;
 
@@ -33,14 +39,11 @@ public class ScaleLeftStartLeft extends CommandGroup {
 //    			// TODO Auto-generated catch block
 //    			e.printStackTrace();
 //    		}
-//        	//addSequential(new IntakeCreep());
-//        	addParallel(new IntakeCreep(), 10);
-//        	addSequential(new FollowTrajectory("ScaleLeftStartLeft"));
-        	System.out.println("Driving ScaleLeftStartLeft");
-//        	//addSequential(new Drive(), 1);
-//        	addSequential(new RotateArmAngle(80), 1);
-//        	addSequential(new PunchCube(), 2);
-//        	addSequential(new RetractPuncher());
-//        	//addParallel(new SpitCubeManual());
+    	addParallel(new IntakeCreep(), 6);
+    	addSequential(new FollowArc(new ScaleLeftStartLeftArc()));
+    	System.out.println("Driving ScaleLeftStartLeft");
+    	addSequential(new RotateArmAngle(80), 2);
+    	addSequential(new PunchCube(), 2);
+    	addSequential(new RetractPuncher());
     }
 }
