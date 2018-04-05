@@ -22,8 +22,8 @@ public class Arm extends Subsystem {
 	public TalonSRX Arm1 = Robot.Arm1;
 	public VictorSPX Arm2 = Robot.Arm2;
 	public TalonSRX Extender1 = RobotMap.Extender1;
-//	public TalonSRX Extender2 = RobotMap.Extender2;
-	public VictorSPX Extender2 = RobotMap.Extender2;
+	public TalonSRX Extender2 = RobotMap.Extender2;
+//	public VictorSPX Extender2 = RobotMap.Extender2;
 	public static DoubleSolenoid ArmBrake = RobotMap.ArmBrake;
 //	public DigitalInput HallEffect = RobotMap.HallEffect;
 	
