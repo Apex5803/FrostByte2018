@@ -1,10 +1,9 @@
-package org.usfirst.frc.team5803.robot.commands.armCommands;
+package org.usfirst.frc.team5803.robot.commands.extensionCommands;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5803.robot.OI;
 import org.usfirst.frc.team5803.robot.Robot;
-import org.usfirst.frc.team5803.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -17,6 +16,7 @@ public class ExtendArm extends Command {
 		
 		// Use requires() here to declare subsystem dependencies
 		//requires(Robot.kArm);
+		requires(Robot.extension);
 	}
 
 	// Called just before this Command runs the first time
@@ -32,7 +32,7 @@ public class ExtendArm extends Command {
 //		if(OI.xbox2.getTriggerAxis(Hand.kRight) > 0.75) {
 //			System.out.println("running full manual test");
 			if(OI.xbox2.getY(Hand.kRight) >= 0.2 || OI.xbox2.getY(Hand.kRight) <= -0.2) {
-				Robot.arm.extend(ControlMode.PercentOutput, -1.0 * OI.xbox2.getY(Hand.kRight)); 						
+				Robot.extension.extend(ControlMode.PercentOutput, -1.0 * OI.xbox2.getY(Hand.kRight)); 						
 				System.out.println("running extension in manual");
 				
 				//THIS IS AN ATTEMPT AT HOLDING IN EXTENSION LOGIC

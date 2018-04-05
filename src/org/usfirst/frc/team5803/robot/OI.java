@@ -7,15 +7,10 @@
 
 package org.usfirst.frc.team5803.robot;
 
-import org.usfirst.frc.team5803.robot.commands.armCommands.ExtendArm;
 import org.usfirst.frc.team5803.robot.commands.armCommands.HoldArmPosition;
-import org.usfirst.frc.team5803.robot.commands.armCommands.HoldExtenderPosition;
 import org.usfirst.frc.team5803.robot.commands.armCommands.LockArm;
-import org.usfirst.frc.team5803.robot.commands.armCommands.ReleaseArm;
 import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmAngle;
 import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmManual;
-import org.usfirst.frc.team5803.robot.commands.armCommands.StopArm;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.AutonomousCommand;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.EatCubeManual;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.EatCubeStandard;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.IntakeCreep;
@@ -24,16 +19,15 @@ import org.usfirst.frc.team5803.robot.commands.cubeCommands.RetractPuncher;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.SoftPunchCube;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeManual;
 import org.usfirst.frc.team5803.robot.commands.cubeCommands.SpitCubeStandard;
-import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
+import org.usfirst.frc.team5803.robot.commands.extensionCommands.ExtendArm;
+import org.usfirst.frc.team5803.robot.commands.extensionCommands.HoldExtenderPosition;
 import org.usfirst.frc.team5803.robot.utils.POVTrigger;
 import org.usfirst.frc.team5803.robot.utils.TriggerButton;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.Trigger;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 //
 /**

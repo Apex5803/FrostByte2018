@@ -10,6 +10,7 @@
 
 package org.usfirst.frc.team5803.robot;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -20,28 +21,13 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5803.robot.arcs.CrossTheLineArc;
-import org.usfirst.frc.team5803.robot.commands.*;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveBackward;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveForward;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveForwardFiveFeet;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.FiftyFiftyLeft;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.FiftyFiftyRight;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromCenter;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromLeft;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromRight;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleLeft;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleLeftStartLeft;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleLeftStartRight;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleRight;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleRightStartLeft;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleRightStartRight;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchCenterLeftOneHalf;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchCenterOneHalf;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchFromCenter;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchLeft;
-import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchRight;
-import org.usfirst.frc.team5803.robot.commands.driveBaseCommands.Drive;
 import org.usfirst.frc.team5803.robot.models.GameState;
 import org.usfirst.frc.team5803.robot.models.SRXGains;
 //import org.usfirst.frc5803.RobotTestBench.commands.autonomous.DriveForwardFiveFeet;
@@ -51,7 +37,6 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.ctre.phoenix.sensors.PigeonIMU;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -69,6 +54,7 @@ public class Robot extends TimedRobot {
 	public static OI oi;
 	public static DriveBase driveTrain;
 	public static Arm arm;
+	public static Extension extension;
 	public static CubeEater kCubeEater;
 
 	public GameState gameState;
@@ -85,8 +71,10 @@ public class Robot extends TimedRobot {
 
 		RobotMap.init();
 
-		CameraServer.getInstance().startAutomaticCapture();
-//		camera->SetResolution(320., 240.);
+		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+		camera1.setResolution(320, 240);
+		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+		camera2.setResolution(320, 240);
 
 		Arm1 = new TalonSRX(PortMap.ARM_LEAD);
 		int absolutePosition = Arm1.getSensorCollection().getPulseWidthPosition();
@@ -115,7 +103,6 @@ public class Robot extends TimedRobot {
 		Arm2.follow(Arm1);
 		Arm2.setInverted(false);
 
-		// REMOVE THIS WHEN WE HAVE TIME TO TEST
 
 		Arm2.configMotionCruiseVelocity(1000, 0);
 		Arm2.configMotionAcceleration(500, 0);
@@ -131,16 +118,15 @@ public class Robot extends TimedRobot {
 		driveTrain = new DriveBase();
 		arm = new Arm();
 		kCubeEater = new CubeEater();
+		extension = new Extension();
 		compressor.setClosedLoopControl(true);
 		arm.configPIDF(2.2, 0, 0, 1.6);
 		// p = 1.8
-		arm.configPIDFextender(0.2, 0, 0, 0);
+		extension.configPIDFextender(0.2, 0, 0, 0);
 
 		SRXGains highGearGains = new SRXGains(DriveBase.HIGH_GEAR_PROFILE, 1.4, 0.0, 8.0, 0.25, 0);
 		SRXGains rotationGains = new SRXGains(DriveBase.ROTATION_PROFILE, 1.6, 0.00, 50, 0.0, 0);
-		// SRXGains rotationGains = new SRXGains(DriveBase.ROTATION_PROFILE, 2.5, 0.00,
-		// 25.0, 0.0, 0);
-		// d=180
+
 		driveTrain.R1.setSelectedSensorPosition(0, 0, 0);
 		// driveTrain.configPIDF(0.2, 0, 50, 0.5);
 		driveTrain.configGains(highGearGains);
@@ -167,14 +153,14 @@ public class Robot extends TimedRobot {
 		autoChooser.addObject("DriveBackward", "DriveBackward");
 		autoChooser.addObject("SwitchFromCenterTwoCube", "SwitchFromCenterTwoCube");
 		autoChooser.addObject("SwitchCenterOneAndHalf", "SwitchCenterOneAndHalf");
-        //autoChooser.addObject("ScaleFromCenter", "ScaleFromCenter");
+		// autoChooser.addObject("ScaleFromCenter", "ScaleFromCenter");
 		autoChooser.addObject("ScaleFromLeft", "ScaleFromLeft");
 		autoChooser.addObject("ScaleFromRight", "ScaleFromRight");
 		autoChooser.addObject("50/50FromLeft", "50/50FromLeft");
 		autoChooser.addObject("50/50FromRight", "50/50FromRight");
 		// SmartDashboard.putData("Auto Mode Chooser", autoChooser);
 		SmartDashboard.putData("New Auto Mode Chooser", autoChooser);
-//		SmartDashboard.putData("CrossTheLine", new FollowArc(new CrossTheLineArc()));
+		// SmartDashboard.putData("CrossTheLine", new FollowArc(new CrossTheLineArc()));
 	}
 
 	/**
@@ -183,7 +169,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-//		arm.secure();
+		// arm.secure();
 	}
 
 	@Override
@@ -250,7 +236,7 @@ public class Robot extends TimedRobot {
 		autoChooser.addObject("DriveBackward", "DriveBackward");
 		autoChooser.addObject("SwitchFromCenterTwoCube", "SwitchFromCenterTwoCube");
 		autoChooser.addObject("SwitchCenterOneAndHalf", "SwitchCenterOneAndHalf");
-        //autoChooser.addObject("ScaleFromCenter", "ScaleFromCenter");
+		// autoChooser.addObject("ScaleFromCenter", "ScaleFromCenter");
 		autoChooser.addObject("ScaleFromLeft", "ScaleFromLeft");
 		autoChooser.addObject("ScaleFromRight", "ScaleFromRight");
 		autoChooser.addObject("50/50FromLeft", "50/50FromLeft");

@@ -1,8 +1,7 @@
 package org.usfirst.frc.team5803.robot.commands.armCommands;
 
 import org.usfirst.frc.team5803.robot.Robot;
-import org.usfirst.frc.team5803.robot.RobotMap;
-import org.usfirst.frc.team5803.robot.subsystems.Arm;
+
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 

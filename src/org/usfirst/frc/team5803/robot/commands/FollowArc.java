@@ -2,7 +2,6 @@ package org.usfirst.frc.team5803.robot.commands;
 //package org.usfirst.frc.team319.robot.commands;
 
 import org.usfirst.frc.team5803.robot.models.BobTalonSRX;
-import org.usfirst.frc.team5803.robot.models.SRXGains;
 import org.usfirst.frc.team5803.robot.models.SrxMotionProfile;
 import org.usfirst.frc.team5803.robot.utils.SrxTrajectory;
 import org.usfirst.frc.team5803.robot.Robot;
@@ -25,7 +24,7 @@ public class FollowArc extends Command {
 	private BobTalonSRX leftTalon = Robot.driveTrain.L1;
 	private int distancePidSlot = DriveBase.HIGH_GEAR_PROFILE;
 	private int rotationPidSlot = DriveBase.ROTATION_PROFILE;
-	//DO add actual rotationGains values
+	// DO add actual rotationGains values
 	private int kMinPointsInTalon = 5;
 	private boolean isFinished = false;
 	private SrxTrajectory trajectoryToFollow = null;
@@ -77,7 +76,7 @@ public class FollowArc extends Command {
 				if ((lastPointSent + 1) == prof.numPoints) {
 					point.isLastPoint = true; /** set this to true on the last point */
 				}
-				//System.out.println(point);
+				// System.out.println(point);
 				talon.pushMotionProfileTrajectory(point);
 				lastPointSent++;
 				hasPathStarted = true;
@@ -95,13 +94,13 @@ public class FollowArc extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		
-//		if (trajectoryToFollow.highGear) {
-//			Robot.pneumatics.drivetrainShiftUp();
-//		}else {
-			//Robot.pneumatics.drivetrainShiftDown();
-//			Robot.pneumatics.drivetrainShiftUp();
-//		}
+
+		// if (trajectoryToFollow.highGear) {
+		// Robot.pneumatics.drivetrainShiftUp();
+		// }else {
+		// Robot.pneumatics.drivetrainShiftDown();
+		// Robot.pneumatics.drivetrainShiftUp();
+		// }
 
 		setUpTalon(leftTalon);
 		setUpTalon(rightTalon);
@@ -111,10 +110,8 @@ public class FollowArc extends Command {
 		rightTalon.set(ControlMode.MotionProfileArc, setValue.value);
 		leftTalon.follow(rightTalon, FollowerType.AuxOutput1);
 
-		loadLeftBuffer = new Notifier(
-				new BufferLoader(rightTalon, trajectoryToFollow.centerProfile, trajectoryToFollow.flipped,
-						Robot.driveTrain.getDistance(),
-						Robot.driveTrain.getAngle()));
+		loadLeftBuffer = new Notifier(new BufferLoader(rightTalon, trajectoryToFollow.centerProfile,
+				trajectoryToFollow.flipped, Robot.driveTrain.getDistance(), Robot.driveTrain.getAngle()));
 
 		loadLeftBuffer.startPeriodic(.005);
 	}
@@ -122,7 +119,7 @@ public class FollowArc extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		rightTalon.getMotionProfileStatus(status);
-//		System.out.println("Motion Profile Status: " + status);
+		// System.out.println("Motion Profile Status: " + status);
 		if (status.isUnderrun) {
 			// if either MP has underrun, stop both
 			System.out.println("Motion profile has underrun!");

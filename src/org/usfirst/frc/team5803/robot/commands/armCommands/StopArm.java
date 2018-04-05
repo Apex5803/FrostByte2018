@@ -1,15 +1,10 @@
 package org.usfirst.frc.team5803.robot.commands.armCommands;
 
-
-
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team5803.robot.subsystems.Arm;
-import org.usfirst.frc.team5803.robot.OI;
 import org.usfirst.frc.team5803.robot.Robot;
 
 /**
- * An example command.  You can replace me with your own command.
+ * An example command. You can replace me with your own command.
  */
 public class StopArm extends Command {
 	public StopArm() {
@@ -26,9 +21,9 @@ public class StopArm extends Command {
 	@Override
 	protected void execute() {
 
-//		System.out.println("Stopping Arm");
-//		 Robot.arm.move(0);
-		}		
+		// System.out.println("Stopping Arm");
+		// Robot.arm.move(0);
+	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override

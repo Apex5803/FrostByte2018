@@ -1,8 +1,7 @@
-package org.usfirst.frc.team5803.robot.commands.armCommands;
+package org.usfirst.frc.team5803.robot.commands.extensionCommands;
 
 import org.usfirst.frc.team5803.robot.Robot;
 import org.usfirst.frc.team5803.robot.RobotMap;
-import org.usfirst.frc.team5803.robot.subsystems.Arm;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -15,7 +14,7 @@ public class HoldExtenderPosition extends Command {
 
 	public HoldExtenderPosition() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.arm);
+		requires(Robot.extension);
 	}
 
 	// Called just before this Command runs the first time
@@ -27,7 +26,7 @@ public class HoldExtenderPosition extends Command {
 		System.out.println("Holding Extender position");
 		// double angle = RobotMap.Arm1.getClosedLoopTarget(0);
 		double Extension = RobotMap.Extender1.getSelectedSensorPosition(0);
-		Robot.arm.extend(ControlMode.MotionMagic, Extension);
+		Robot.extension.extend(ControlMode.MotionMagic, Extension);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

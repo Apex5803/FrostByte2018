@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5803.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -8,13 +7,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5803.robot.Robot;
 import org.usfirst.frc.team5803.robot.RobotMap;
-import org.usfirst.frc.team5803.robot.commands.armCommands.RotateArmAngle;
+import org.usfirst.frc.team5803.robot.commands.armCommands.HoldArmPosition;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
  * An example subsystem. You can replace me with your own Subsystem.
@@ -22,25 +19,14 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 public class Arm extends Subsystem {
 	public TalonSRX Arm1 = Robot.Arm1;
 	public VictorSPX Arm2 = Robot.Arm2;
-	public TalonSRX Extender1 = RobotMap.Extender1;
-	public TalonSRX Extender2 = RobotMap.Extender2;
-	// public VictorSPX Extender2 = RobotMap.Extender2;
-	public static DoubleSolenoid ArmBrake = RobotMap.ArmBrake;
 	// public DigitalInput HallEffect = RobotMap.HallEffect;
+
+
+	public static DoubleSolenoid ArmBrake = RobotMap.ArmBrake;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public boolean IsSecured;
-
-	public void extend(ControlMode controlmode, double position) {
-		Extender1.set(controlmode, position);
-		// Extender2.set(ControlMode.PercentOutput, speed);
-	}
-
-	public void retract() {
-		Extender1.set(ControlMode.PercentOutput, -0.2);
-		// Extender2.set(ControlMode.PercentOutput, -0.2);
-	}
 
 	public void secure() {
 		ArmBrake.set(Value.kReverse);
@@ -56,29 +42,13 @@ public class Arm extends Subsystem {
 		ArmBrake.free();
 	}
 
-	public void endExtender() {
-		Extender1.set(ControlMode.PercentOutput, 0.0);
-		// Extender2.set(ControlMode.PercentOutput, 0.0);
-	}
 
-	public void end() {
-		// ArmBrake.set(Value.kOff);
-		Extender1.set(ControlMode.PercentOutput, 0.0);
-		// Extender2.set(ControlMode.PercentOutput, 0.0);
-	}
 
 	public void configPIDF(double p, double i, double d, double f) {
 		this.Arm1.config_kP(0, p, 0);
 		this.Arm1.config_kI(0, i, 0);
 		this.Arm1.config_kD(0, d, 0);
 		this.Arm1.config_kF(0, f, 0);
-	}
-
-	public void configPIDFextender(double p, double i, double d, double f) {
-		this.Extender1.config_kP(0, p, 0);
-		this.Extender1.config_kI(0, i, 0);
-		this.Extender1.config_kD(0, d, 0);
-		this.Extender1.config_kF(0, f, 0);
 	}
 
 	public double vgiver() {
@@ -105,5 +75,6 @@ public class Arm extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new HoldArmPosition());
 	}
 }
