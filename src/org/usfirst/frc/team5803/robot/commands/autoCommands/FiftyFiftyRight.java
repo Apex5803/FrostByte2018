@@ -10,7 +10,7 @@ public FiftyFiftyRight(GameState gameState) {
 		addSequential(new ScaleRightStartRight()); 
 	}
 	else if (gameState.scaleSide.toString()== "LEFT") {
-		addSequential(new DriveBackward());
+		addSequential(new StartRightFiftyFifty());
 	}
 	else System.out.println("did not recieve scale side");
 }

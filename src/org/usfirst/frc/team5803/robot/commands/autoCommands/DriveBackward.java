@@ -8,6 +8,9 @@ import org.json.simple.parser.ParseException;
 //import org.usfirst.frc.team5803.robot.commands.FollowTrajectory;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team5803.robot.utils.*;
+import org.usfirst.frc.team5803.robot.arcs.FifteenFeetReverseArc;
+import org.usfirst.frc.team5803.robot.arcs.StartLeftFiftyFiftyArc;
+import org.usfirst.frc.team5803.robot.commands.FollowArc;
 import org.usfirst.frc.team5803.robot.models.*;
 
 /**
@@ -27,6 +30,7 @@ public class DriveBackward extends CommandGroup {
 //    		}
 //        	
 //        	addSequential(new FollowTrajectory("DriveBackwardTwelveFeet"));
-        	System.out.println("Driving TwelveFeet Backward");
+    	System.out.println("Driving Backward");
+    	addSequential(new FollowArc(new FifteenFeetReverseArc()));
     }
 }

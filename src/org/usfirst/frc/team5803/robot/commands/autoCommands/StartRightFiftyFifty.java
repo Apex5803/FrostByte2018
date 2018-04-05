@@ -16,11 +16,11 @@ import org.usfirst.frc.team5803.robot.arcs.*;
  * This autonomous routine is used for tuning the FollowTrajectory command with motion profiling.
  * It will drive forward 5 feet. 
  */
-public class DriveForward extends CommandGroup {
+public class StartRightFiftyFifty extends CommandGroup {
 //	SrxTrajectoryImporter importer = new SrxTrajectoryImporter("/home/lvuser/Autos");
 //	SrxTrajectory toFollow = null;
-    public DriveForward() {
+    public StartRightFiftyFifty() {
     	System.out.println("driving forward");
-    	addSequential(new FollowArc(new FifteenFeetArc()));
+    	addSequential(new FollowArc(new StartRightFiftyFiftyArc()));
     }
 }

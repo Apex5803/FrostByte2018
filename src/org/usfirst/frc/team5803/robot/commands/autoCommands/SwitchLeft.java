@@ -25,43 +25,30 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.usfirst.frc.team5803.robot.utils.*;
 import org.usfirst.frc.team5803.robot.models.*;
 
-/**
- * This autonomous routine is used for tuning the FollowTrajectory command with motion profiling.
- * It will drive forward 5 feet. 
- */
 public class SwitchLeft extends CommandGroup {
-//	SrxTrajectoryImporter importer = new SrxTrajectoryImporter("/home/lvuser/Autos");
-//	SrxTrajectory toFollow = null;
-    public SwitchLeft() {
-//        	try {
-//    			this.toFollow = importer.importSrxTrajectory("SwitchLeft");
-//    			System.out.println("import" + this.toFollow); 
-//    		} catch (IOException | ParseException e) {
-//    			// TODO Auto-generated catch block
-//    			e.printStackTrace();
-//    		}
-//        
-        	addParallel(new IntakeCreep(), 3);
-        	addParallel(new FollowArc(new CenterToLeftSwitchArc()));
-//        	//addSequential(new IntakeCreep(), 1);
-        	System.out.println("Driving SwitchLeft");
-        	addSequential(new WaitCommand(2.5));
-        	addSequential(new ReleaseArm() , 0.1);
-        	addSequential(new RotateArmAngle(40), .5);        	
-        	addSequential(new SpitCubeAuto(), .5);
-        	addSequential(new LockArm() , 0.1);
-        	addParallel(new FollowArc(new CenterToLeftSwitchPt2Arc()));
-        	addSequential(new WaitCommand(1));
-        	addParallel(new RotateArmAngle(5), .5);
-        	addParallel(new EatCubeStandard(), 3.5);
-        	addSequential(new WaitCommand(2));
-        	addSequential (new FollowArc(new CenterToLeftSwitchPt3Arc()));
-        	addParallel(new IntakeCreep(), 3);
-        	addSequential (new FollowArc(new CenterToLeftSwitchPt4Arc()));
-        	addParallel(new RotateArmAngle(40), .5);        	
-        	addSequential (new FollowArc(new CenterToLeftSwitchPt5Arc()));
-        	addSequential(new SpitCubeAuto(), .5);
-        	addSequential(new LockArm() , 0.1);
-        	//addSequential(new IntakeCreep());
-    }
+	public SwitchLeft() {
+
+		addParallel(new IntakeCreep(), 3);
+		addParallel(new FollowArc(new CenterToLeftSwitchArc()));
+		// //addSequential(new IntakeCreep(), 1);
+		System.out.println("Driving SwitchLeft");
+		addSequential(new WaitCommand(2.5));
+		addSequential(new ReleaseArm(), 0.1);
+		addSequential(new RotateArmAngle(40), .5);
+		addSequential(new SpitCubeAuto(), .5);
+		addSequential(new LockArm(), 0.1);
+		addParallel(new FollowArc(new CenterToLeftSwitchPt2Arc()));
+		addSequential(new WaitCommand(1));
+		addParallel(new RotateArmAngle(5), .5);
+		addParallel(new EatCubeStandard(), 3.5);
+		addSequential(new WaitCommand(2));
+		addSequential(new FollowArc(new CenterToLeftSwitchPt3Arc()));
+		addParallel(new IntakeCreep(), 3);
+		addSequential(new FollowArc(new CenterToLeftSwitchPt4Arc()));
+		addParallel(new RotateArmAngle(40), .5);
+		addSequential(new FollowArc(new CenterToLeftSwitchPt5Arc()));
+		addSequential(new SpitCubeAuto(), .5);
+		addSequential(new LockArm(), 0.1);
+		// addSequential(new IntakeCreep());
+	}
 }
