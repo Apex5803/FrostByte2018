@@ -73,13 +73,15 @@ public class Robot extends TimedRobot {
 
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
 		camera1.setResolution(320, 240);
+//		camera1.setResolution(160, 120);
 		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
 		camera2.setResolution(320, 240);
+//		camera2.setResolution(160, 120);
 
 		Arm1 = new TalonSRX(PortMap.ARM_LEAD);
 		int absolutePosition = Arm1.getSensorCollection().getPulseWidthPosition();
 		absolutePosition &= 0xFFF;
-		Arm1.setSelectedSensorPosition(absolutePosition - 3205, 0, 0);
+		Arm1.setSelectedSensorPosition(absolutePosition - 4068 , 0, 0); //- 3205 for PracticeBot, -4068 for CompBot
 		System.out.println("Set arm encoder 0");
 
 		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
@@ -158,8 +160,8 @@ public class Robot extends TimedRobot {
 		autoChooser.addObject("ScaleFromRight", "ScaleFromRight");
 		autoChooser.addObject("50/50FromLeft", "50/50FromLeft");
 		autoChooser.addObject("50/50FromRight", "50/50FromRight");
-		// SmartDashboard.putData("Auto Mode Chooser", autoChooser);
-		SmartDashboard.putData("New Auto Mode Chooser", autoChooser);
+		 SmartDashboard.putData("Auto Mode Chooser", autoChooser);
+//		SmartDashboard.putData("New Auto Mode Chooser", autoChooser);
 		// SmartDashboard.putData("CrossTheLine", new FollowArc(new CrossTheLineArc()));
 	}
 
@@ -174,7 +176,9 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledPeriodic() {
+		//GET RID OF THIS
 		this.gameState = new GameState(DriverStation.getInstance().getGameSpecificMessage());
+//		this.gameState = new GameState("RRR");
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Arm 1 encoderPosition", Arm1.getSelectedSensorPosition(0));
 		// 3SmartDashboard.putNumber("Arm1 encoder speed",

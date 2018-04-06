@@ -23,7 +23,7 @@ public class HoldExtenderPosition extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		System.out.println("Holding Extender position");
+//		System.out.println("Holding Extender position");
 		// double angle = RobotMap.Arm1.getClosedLoopTarget(0);
 		double Extension = RobotMap.Extender1.getSelectedSensorPosition(0);
 		Robot.extension.extend(ControlMode.MotionMagic, Extension);

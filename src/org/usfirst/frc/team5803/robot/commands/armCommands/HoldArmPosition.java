@@ -23,7 +23,7 @@ public class HoldArmPosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Holding position");
+//    	System.out.println("Holding arm position");
 //    	double angle = RobotMap.Arm1.getClosedLoopTarget(0);
     	double angle = Robot.Arm1.getSelectedSensorPosition(0)*360/4096;
     	if(angle > 100){

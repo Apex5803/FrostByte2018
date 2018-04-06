@@ -7,8 +7,8 @@ public class CenterToLeftSwitchPt2Arc extends SrxTrajectory{
 	
 	// WAYPOINTS:
 	// (X,Y,degrees)
-	// (10.63,18.58,0.00)
-	// (6.63,13.08,0.00)
+	// (11.13,18.58,0.00)
+	// (7.13,13.08,0.00)
 	
     public CenterToLeftSwitchPt2Arc() {
 		super();
