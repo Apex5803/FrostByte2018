@@ -42,7 +42,7 @@ public class ScaleLeftStartLeft extends CommandGroup {
     	addParallel(new IntakeCreep(), 6);
     	addSequential(new FollowArc(new ScaleLeftStartLeftArc()));
     	System.out.println("Driving ScaleLeftStartLeft");
-    	addSequential(new RotateArmAngle(80), 2);
+    	addSequential(new RotateArmAngle(80), 1);
     	addSequential(new PunchCube(), 2);
     	addSequential(new RetractPuncher());
     }

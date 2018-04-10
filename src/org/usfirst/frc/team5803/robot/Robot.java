@@ -72,10 +72,10 @@ public class Robot extends TimedRobot {
 		RobotMap.init();
 
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-		camera1.setResolution(320, 240);
-//		camera1.setResolution(160, 120);
-		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-		camera2.setResolution(320, 240);
+//		camera1.setResolution(320, 240);
+		camera1.setResolution(160, 120);
+//		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+//		camera2.setResolution(320, 240);
 //		camera2.setResolution(160, 120);
 
 		Arm1 = new TalonSRX(PortMap.ARM_LEAD);
@@ -123,8 +123,7 @@ public class Robot extends TimedRobot {
 		extension = new Extension();
 		compressor.setClosedLoopControl(true);
 		arm.configPIDF(2.2, 0, 0, 1.6);
-		// p = 1.8
-		extension.configPIDFextender(0.2, 0, 0, 0);
+		extension.configPIDFextender(0.4, 0, 0, 0);
 
 		SRXGains highGearGains = new SRXGains(DriveBase.HIGH_GEAR_PROFILE, 1.4, 0.0, 8.0, 0.25, 0);
 		SRXGains rotationGains = new SRXGains(DriveBase.ROTATION_PROFILE, 1.6, 0.00, 50, 0.0, 0);
@@ -160,8 +159,8 @@ public class Robot extends TimedRobot {
 		autoChooser.addObject("ScaleFromRight", "ScaleFromRight");
 		autoChooser.addObject("50/50FromLeft", "50/50FromLeft");
 		autoChooser.addObject("50/50FromRight", "50/50FromRight");
-		 SmartDashboard.putData("Auto Mode Chooser", autoChooser);
-//		SmartDashboard.putData("New Auto Mode Chooser", autoChooser);
+//		SmartDashboard.putData("Auto Mode Chooser", autoChooser);
+		SmartDashboard.putData("New Auto Mode Chooser", autoChooser);
 		// SmartDashboard.putData("CrossTheLine", new FollowArc(new CrossTheLineArc()));
 	}
 
@@ -177,8 +176,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledPeriodic() {
 		//GET RID OF THIS
-		this.gameState = new GameState(DriverStation.getInstance().getGameSpecificMessage());
-//		this.gameState = new GameState("RRR");
+	    this.gameState = new GameState(DriverStation.getInstance().getGameSpecificMessage());
+		//this.gameState = new GameState("LLL");
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Arm 1 encoderPosition", Arm1.getSelectedSensorPosition(0));
 		// 3SmartDashboard.putNumber("Arm1 encoder speed",
