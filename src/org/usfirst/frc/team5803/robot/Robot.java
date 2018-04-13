@@ -25,7 +25,9 @@ import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveBackward;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.FiftyFiftyLeft;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.FiftyFiftyRight;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromLeft;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromLeftTwoCube;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromRight;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromRightTwoCube;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchCenterOneHalf;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.SwitchFromCenter;
 import org.usfirst.frc.team5803.robot.models.GameState;
@@ -81,7 +83,7 @@ public class Robot extends TimedRobot {
 		Arm1 = new TalonSRX(PortMap.ARM_LEAD);
 		int absolutePosition = Arm1.getSensorCollection().getPulseWidthPosition();
 		absolutePosition &= 0xFFF;
-		Arm1.setSelectedSensorPosition(absolutePosition - 4068 , 0, 0); //- 3205 for PracticeBot, -4068 for CompBot
+		Arm1.setSelectedSensorPosition(absolutePosition - 3205, 0, 0); //- 3205 for PracticeBot, -4068 for CompBot
 		System.out.println("Set arm encoder 0");
 
 		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
@@ -159,6 +161,9 @@ public class Robot extends TimedRobot {
 		autoChooser.addObject("ScaleFromRight", "ScaleFromRight");
 		autoChooser.addObject("50/50FromLeft", "50/50FromLeft");
 		autoChooser.addObject("50/50FromRight", "50/50FromRight");
+		autoChooser.addObject("TwoCubeScaleFromRight", "TwoCubeScaleFromRight");
+		autoChooser.addObject("TwoCubeScaleFromLeft", "TwoCubeScaleFromLeft");
+
 //		SmartDashboard.putData("Auto Mode Chooser", autoChooser);
 		SmartDashboard.putData("New Auto Mode Chooser", autoChooser);
 		// SmartDashboard.putData("CrossTheLine", new FollowArc(new CrossTheLineArc()));
@@ -231,6 +236,12 @@ public class Robot extends TimedRobot {
 		case "50/50FromLeft":
 			autonomousCommand = new FiftyFiftyLeft(gameState);
 			break;
+		case "TwoCubeScaleFromRight":
+			autonomousCommand = new ScaleFromRightTwoCube(gameState);
+			break;
+		case "TwoCubeScaleFRomLeft":
+			autonomousCommand = new ScaleFromLeftTwoCube(gameState);
+			break;
 		default:
 			System.out.println("Default, no auto");
 			break;
@@ -268,6 +279,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("L1 encoderVelocity", RobotMap.L1.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("R1 encoderPosition", RobotMap.R1.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("R1 encoderVelocity", RobotMap.R1.getSelectedSensorVelocity(0));
+		SmartDashboard.putBoolean("Arm Hall Effect", RobotMap.ClimbMin.get());
 		SmartDashboard.putNumber("yaw", Robot.driveTrain.getAngle());
 	}
 
@@ -305,6 +317,8 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Arm1 encoder speed", Arm1.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("yaw", Robot.driveTrain.getAngle());
 		SmartDashboard.putNumber("Intake Power", OI.xbox2.getTriggerAxis(Hand.kLeft));
+		SmartDashboard.putBoolean("Arm Hall Effect", RobotMap.ClimbMin.get());
+
 
 		// SmartDashboard.putNumber("Arm 1 error", RobotMap.Arm1.get)
 		// SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;

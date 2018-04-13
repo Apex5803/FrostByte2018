@@ -5,6 +5,7 @@ import org.usfirst.frc.team5803.robot.commands.extensionCommands.HoldExtenderPos
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -16,11 +17,11 @@ public class Extension extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public DigitalInput ClimbMin = RobotMap.ClimbMin;
-	public DigitalInput ClimbMax = RobotMap.ClimbMax;
+//	public DigitalInput ClimbMax = RobotMap.ClimbMax;
 
 	public TalonSRX Extender1 = RobotMap.Extender1;
-	public TalonSRX Extender2 = RobotMap.Extender2;
-	// public VictorSPX Extender2 = RobotMap.Extender2;
+//	public TalonSRX Extender2 = RobotMap.Extender2;
+	 public VictorSPX Extender2 = RobotMap.Extender2;
 
 	public void configPIDFextender(double p, double i, double d, double f) {
 		this.Extender1.config_kP(0, p, 0);
