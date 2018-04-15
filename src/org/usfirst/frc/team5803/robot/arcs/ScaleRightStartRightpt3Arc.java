@@ -7,9 +7,9 @@ public class ScaleRightStartRightpt3Arc extends SrxTrajectory{
 	
 	// WAYPOINTS:
 	// (X,Y,degrees)
-	// (18.38,7.29,0.00)
-	// (21.38,4.29,89.90)
-	// (26.38,0.29,89.90)
+	// (34.38,7.29,0.00)
+	// (37.38,4.29,89.90)
+	// (42.38,0.29,89.90)
 	
     public ScaleRightStartRightpt3Arc() {
 		super();

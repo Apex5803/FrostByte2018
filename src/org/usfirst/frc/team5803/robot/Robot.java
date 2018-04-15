@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.DriveBackward;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.FiftyFiftyLeft;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.FiftyFiftyRight;
+import org.usfirst.frc.team5803.robot.commands.autoCommands.NoAuto;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromLeft;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromLeftTwoCube;
 import org.usfirst.frc.team5803.robot.commands.autoCommands.ScaleFromRight;
@@ -130,11 +131,12 @@ public class Robot extends TimedRobot {
 		SRXGains highGearGains = new SRXGains(DriveBase.HIGH_GEAR_PROFILE, 1.4, 0.0, 8.0, 0.25, 0);
 		SRXGains rotationGains = new SRXGains(DriveBase.ROTATION_PROFILE, 1.6, 0.00, 50, 0.0, 0);
 
-		driveTrain.R1.setSelectedSensorPosition(0, 0, 0);
 		// driveTrain.configPIDF(0.2, 0, 50, 0.5);
 		driveTrain.configGains(highGearGains);
 		driveTrain.configGains(rotationGains);
 		driveTrain.L1.setSelectedSensorPosition(0, 0, 0);
+		driveTrain.R1.setSelectedSensorPosition(0, 0, 0);
+
 		// OI must be constructed after subsystems. If the OI creates Commands
 		// (which it very likely will), subsystems are not guaranteed to be
 		// constructed yet. Thus, their requires() statements may grab null
@@ -194,7 +196,10 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Extender1 encoderPosition", RobotMap.Extender1.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("RollerT1 encoder Postion", RobotMap.RollerT1.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("yaw", Robot.driveTrain.getAngle());
+//		SmartDashboard.putNumber("Arm Hall Effect", Robot.extension.ClimbMin.);
+
 		// SmartDashboard.putNumber("RobotAngle", 50. * OI.xbox2.getY(Hand.kLeft));;
+		
 
 	}
 
@@ -210,8 +215,9 @@ public class Robot extends TimedRobot {
 		RobotMap.L2.setNeutralMode(NeutralMode.Brake);
 		RobotMap.L3.setNeutralMode(NeutralMode.Brake);
 		Robot.driveTrain.pigeon.setYaw(0, 0);
-		driveTrain.R1.setSelectedSensorPosition(0, 0, 0);
 		driveTrain.L1.setSelectedSensorPosition(0, 0, 0);
+		driveTrain.R1.setSelectedSensorPosition(0, 0, 0);
+
 
 		String selectedAuto = (String) autoChooser.getSelected();
 		switch (selectedAuto) {
@@ -239,23 +245,14 @@ public class Robot extends TimedRobot {
 		case "TwoCubeScaleFromRight":
 			autonomousCommand = new ScaleFromRightTwoCube(gameState);
 			break;
-		case "TwoCubeScaleFRomLeft":
+		case "TwoCubeScaleFromLeft":
 			autonomousCommand = new ScaleFromLeftTwoCube(gameState);
 			break;
-		default:
-			System.out.println("Default, no auto");
+		default: 
+			autonomousCommand = new NoAuto();
 			break;
 		}
-		autoChooser.addDefault("No Auto", "No Auto");
-		autoChooser.addObject("DriveBackward", "DriveBackward");
-		autoChooser.addObject("SwitchFromCenterTwoCube", "SwitchFromCenterTwoCube");
-		autoChooser.addObject("SwitchCenterOneAndHalf", "SwitchCenterOneAndHalf");
-		// autoChooser.addObject("ScaleFromCenter", "ScaleFromCenter");
-		autoChooser.addObject("ScaleFromLeft", "ScaleFromLeft");
-		autoChooser.addObject("ScaleFromRight", "ScaleFromRight");
-		autoChooser.addObject("50/50FromLeft", "50/50FromLeft");
-		autoChooser.addObject("50/50FromRight", "50/50FromRight");
-		/*
+/*
 		 * autonomousCommand = chooser.getSelected(); // schedule the autonomous command
 		 * (example) if (autonomousCommand != null) autonomousCommand.start();
 		 */
@@ -279,7 +276,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("L1 encoderVelocity", RobotMap.L1.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("R1 encoderPosition", RobotMap.R1.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("R1 encoderVelocity", RobotMap.R1.getSelectedSensorVelocity(0));
-		SmartDashboard.putBoolean("Arm Hall Effect", RobotMap.ClimbMin.get());
+//		SmartDashboard.putBoolean("Arm Hall Effect", RobotMap.ClimbMin.get());
 		SmartDashboard.putNumber("yaw", Robot.driveTrain.getAngle());
 	}
 
@@ -301,6 +298,9 @@ public class Robot extends TimedRobot {
 		RobotMap.R2.setNeutralMode(NeutralMode.Coast);
 		RobotMap.R3.setNeutralMode(NeutralMode.Coast);
 		Robot.driveTrain.pigeon.setYaw(0, 0);
+		driveTrain.L1.setSelectedSensorPosition(0, 0, 0);
+		driveTrain.R1.setSelectedSensorPosition(0, 0, 0);
+
 
 	}
 
@@ -317,7 +317,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Arm1 encoder speed", Arm1.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("yaw", Robot.driveTrain.getAngle());
 		SmartDashboard.putNumber("Intake Power", OI.xbox2.getTriggerAxis(Hand.kLeft));
-		SmartDashboard.putBoolean("Arm Hall Effect", RobotMap.ClimbMin.get());
+//		SmartDashboard.putBoolean("Arm Hall Effect", Robot.extension.ClimbMin.get());
 
 
 		// SmartDashboard.putNumber("Arm 1 error", RobotMap.Arm1.get)
