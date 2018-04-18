@@ -84,7 +84,7 @@ public class Robot extends TimedRobot {
 		Arm1 = new TalonSRX(PortMap.ARM_LEAD);
 		int absolutePosition = Arm1.getSensorCollection().getPulseWidthPosition();
 		absolutePosition &= 0xFFF;
-		Arm1.setSelectedSensorPosition(absolutePosition - 3205, 0, 0); //- 3205 for PracticeBot, -4068 for CompBot
+		Arm1.setSelectedSensorPosition(absolutePosition - 4068, 0, 0); //- 3205 for PracticeBot, -4068 for CompBot
 		System.out.println("Set arm encoder 0");
 
 		Arm1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);

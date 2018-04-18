@@ -13,6 +13,9 @@ import org.usfirst.frc.team5803.robot.arcs.CenterToRightSwitchPt2Arc;
 import org.usfirst.frc.team5803.robot.arcs.CenterToRightSwitchPt3Arc;
 import org.usfirst.frc.team5803.robot.arcs.CenterToRightSwitchPt4Arc;
 import org.usfirst.frc.team5803.robot.arcs.CenterToRightSwitchPt5Arc;
+import org.usfirst.frc.team5803.robot.arcs.ScaleLeftStartLeftTwoCubeArc;
+import org.usfirst.frc.team5803.robot.arcs.ScaleLeftStartLeftpt2Arc;
+import org.usfirst.frc.team5803.robot.arcs.ScaleLeftStartLeftpt3Arc;
 import org.usfirst.frc.team5803.robot.arcs.ScaleRightStartRightArc;
 import org.usfirst.frc.team5803.robot.arcs.ScaleRightStartRightpt2Arc;
 import org.usfirst.frc.team5803.robot.arcs.ScaleRightStartRightpt3Arc;
@@ -39,23 +42,23 @@ import org.usfirst.frc.team5803.robot.models.*;
 public class ScaleRightStartRightTwoCube extends CommandGroup {
 	public ScaleRightStartRightTwoCube() {
 		addParallel(new IntakeCreep(), 3);
-		addParallel(new FollowArc(new ScaleRightStartRightArc()));
+		addSequential(new FollowArc(new ScaleRightStartRightArc()));
 		// //addSequential(new IntakeCreep(), 1);
 		System.out.println("Driving ScaleRightTwoCube");
-		addSequential(new WaitCommand(3.0));
 		addSequential(new ReleaseArm(), 0.1);
-		addSequential(new RotateArmAngle(80), .5);
-		addSequential(new PunchCube(), 2);
-		addSequential (new RotateArmAngle(5), 0.3);
-		addSequential(new LockArm(), 0.1);
-		addParallel(new FollowArc(new ScaleRightStartRightpt2Arc()));
-		addSequential(new WaitCommand(1));
+		addSequential(new RotateArmAngle(80));
+		addSequential(new PunchCube(), 0.5);
+		addParallel(new RetractPuncher(), 0.1); 
+		addParallel(new ReleaseArm(), 0.1);
+		addSequential (new RotateArmAngle(5));
+		addParallel(new LockArm(), 0.1);
 		addParallel(new EatCubeStandard(), 3.5);
-		addSequential(new WaitCommand(2));
+		addSequential(new FollowArc(new ScaleRightStartRightpt2Arc()));
 		addSequential(new FollowArc(new ScaleRightStartRightpt3Arc()));
-		addParallel(new IntakeCreep(), 3);
-		addParallel(new RotateArmAngle(80), .5);
-		addSequential(new PunchCube(), .5);
+		addParallel(new IntakeCreep(), 4);
+		addSequential(new RotateArmAngle(80));
+		addSequential(new PunchCube(), 1);
+		addSequential(new RetractPuncher(), 1); 
 		addSequential(new LockArm(), 0.1);
 	}
 }

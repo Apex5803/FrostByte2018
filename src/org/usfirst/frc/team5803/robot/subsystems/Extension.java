@@ -20,8 +20,8 @@ public class Extension extends Subsystem {
 //	public DigitalInput ClimbMax = RobotMap.ClimbMax;
 
 	public TalonSRX Extender1 = RobotMap.Extender1;
-//	public TalonSRX Extender2 = RobotMap.Extender2;
-	 public VictorSPX Extender2 = RobotMap.Extender2;
+	public TalonSRX Extender2 = RobotMap.Extender2;
+//	 public VictorSPX Extender2 = RobotMap.Extender2;
 
 	public void configPIDFextender(double p, double i, double d, double f) {
 		this.Extender1.config_kP(0, p, 0);
