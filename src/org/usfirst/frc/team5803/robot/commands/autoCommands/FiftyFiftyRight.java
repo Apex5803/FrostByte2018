@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class FiftyFiftyRight extends CommandGroup {
 public FiftyFiftyRight(GameState gameState) {
 	if (gameState.scaleSide.toString() == "RIGHT") {
-		addSequential(new ScaleRightStartRight()); 
+		addSequential(new ScaleRightStartRightTwoCube()); 
 	}
 	else if (gameState.scaleSide.toString()== "LEFT") {
 //		addSequential(new StartRightFiftyFifty());

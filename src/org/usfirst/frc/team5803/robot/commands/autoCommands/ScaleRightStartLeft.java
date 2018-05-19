@@ -44,7 +44,7 @@ public class ScaleRightStartLeft extends CommandGroup {
     	addSequential(new RotateArmAngle(45), 1);
     	System.out.println("Driving ScaleRightStartLeft");
     	addSequential(new WaitCommand(5));
-    	addSequential(new RotateArmAngle(80), 1);
+    	addSequential(new RotateArmAngle(80), 2);
     	addSequential(new PunchCube(), 2);
     	addSequential(new RetractPuncher());
 }

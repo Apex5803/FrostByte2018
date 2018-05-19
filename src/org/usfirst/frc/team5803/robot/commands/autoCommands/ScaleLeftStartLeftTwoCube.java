@@ -22,21 +22,20 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class ScaleLeftStartLeftTwoCube extends CommandGroup {
 	public ScaleLeftStartLeftTwoCube() {
 		addParallel(new IntakeCreep(), 3);
-		addSequential(new FollowArc(new ScaleLeftStartLeftTwoCubeArc()));
-		// //addSequential(new IntakeCreep(), 1);
+		addSequential(new FollowArc(new ScaleLeftStartLeftArc()));
 		System.out.println("Driving ScaleLeftTwoCube");
 		addSequential(new ReleaseArm(), 0.1);
-		addSequential(new RotateArmAngle(80));
+		addSequential(new RotateArmAngle(80), 0.3);
 		addSequential(new PunchCube(), 0.5);
 		addParallel(new RetractPuncher(), 0.1); 
 		addParallel(new ReleaseArm(), 0.1);
-		addSequential (new RotateArmAngle(5));
+		addSequential (new RotateArmAngle(5), 0.3);
 		addParallel(new LockArm(), 0.1);
 		addParallel(new EatCubeStandard(), 3.5);
 		addSequential(new FollowArc(new ScaleLeftStartLeftpt2Arc()));
 		addSequential(new FollowArc(new ScaleLeftStartLeftpt3Arc()));
 		addParallel(new IntakeCreep(), 4);
-		addSequential(new RotateArmAngle(80));
+		addSequential(new RotateArmAngle(80), 1.7);
 		addSequential(new PunchCube(), 1);
 		addSequential(new RetractPuncher(), 1); 
 		addSequential(new LockArm(), 0.1);

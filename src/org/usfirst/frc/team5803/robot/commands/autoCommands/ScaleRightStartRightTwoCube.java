@@ -43,20 +43,19 @@ public class ScaleRightStartRightTwoCube extends CommandGroup {
 	public ScaleRightStartRightTwoCube() {
 		addParallel(new IntakeCreep(), 3);
 		addSequential(new FollowArc(new ScaleRightStartRightArc()));
-		// //addSequential(new IntakeCreep(), 1);
 		System.out.println("Driving ScaleRightTwoCube");
 		addSequential(new ReleaseArm(), 0.1);
-		addSequential(new RotateArmAngle(80));
+		addSequential(new RotateArmAngle(80), 0.3);
 		addSequential(new PunchCube(), 0.5);
 		addParallel(new RetractPuncher(), 0.1); 
 		addParallel(new ReleaseArm(), 0.1);
-		addSequential (new RotateArmAngle(5));
+		addSequential (new RotateArmAngle(5), 0.3);
 		addParallel(new LockArm(), 0.1);
 		addParallel(new EatCubeStandard(), 3.5);
 		addSequential(new FollowArc(new ScaleRightStartRightpt2Arc()));
 		addSequential(new FollowArc(new ScaleRightStartRightpt3Arc()));
 		addParallel(new IntakeCreep(), 4);
-		addSequential(new RotateArmAngle(80));
+		addSequential(new RotateArmAngle(80), 1.7);
 		addSequential(new PunchCube(), 1);
 		addSequential(new RetractPuncher(), 1); 
 		addSequential(new LockArm(), 0.1);

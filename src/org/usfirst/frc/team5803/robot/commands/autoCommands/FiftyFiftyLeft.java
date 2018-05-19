@@ -7,10 +7,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class FiftyFiftyLeft extends CommandGroup{
 public FiftyFiftyLeft(GameState gameState) {
 	if (gameState.scaleSide.toString() == "LEFT") {
-		addSequential(new ScaleLeftStartLeft()); 
+		addSequential(new ScaleLeftStartLeftTwoCube()); 
+		//addSequential(new ScaleLeftStartLeft()); 
 	}
 	else if (gameState.scaleSide.toString()== "RIGHT") {
-		addSequential(new StartLeftFiftyFifty());
+//		addSequential(new StartLeftFiftyFifty());
+		addSequential(new DriveBackward());
+
 	}
 	else System.out.println("did not recieve scale side");
 }

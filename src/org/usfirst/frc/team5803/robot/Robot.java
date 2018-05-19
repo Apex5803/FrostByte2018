@@ -76,6 +76,7 @@ public class Robot extends TimedRobot {
 
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
 //		camera1.setResolution(320, 240);
+
 		camera1.setResolution(160, 120);
 //		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
 //		camera2.setResolution(320, 240);
@@ -166,8 +167,8 @@ public class Robot extends TimedRobot {
 		autoChooser.addObject("TwoCubeScaleFromRight", "TwoCubeScaleFromRight");
 		autoChooser.addObject("TwoCubeScaleFromLeft", "TwoCubeScaleFromLeft");
 
-//		SmartDashboard.putData("Auto Mode Chooser", autoChooser);
-		SmartDashboard.putData("New Auto Mode Chooser", autoChooser);
+		SmartDashboard.putData("Auto Mode Chooser", autoChooser);
+//		SmartDashboard.putData("New Auto Mode Chooser", autoChooser);
 		// SmartDashboard.putData("CrossTheLine", new FollowArc(new CrossTheLineArc()));
 	}
 
